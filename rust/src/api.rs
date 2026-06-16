@@ -8170,190 +8170,6 @@ pub mod types {
             Default::default()
         }
     }
-    ///`CreateOnrampSessionBody`
-    ///
-    /// <details><summary>JSON schema</summary>
-    ///
-    /// ```json
-    ///{
-    ///  "type": "object",
-    ///  "required": [
-    ///    "destinationAddress",
-    ///    "destinationNetwork",
-    ///    "purchaseCurrency"
-    ///  ],
-    ///  "properties": {
-    ///    "clientIp": {
-    ///      "description": "The IP address of the end user requesting the onramp transaction.",
-    ///      "examples": [
-    ///        "127.0.0.1"
-    ///      ],
-    ///      "type": "string"
-    ///    },
-    ///    "country": {
-    ///      "description": "The ISO 3166-1 two letter country code (e.g. US).",
-    ///      "examples": [
-    ///        "US"
-    ///      ],
-    ///      "type": "string"
-    ///    },
-    ///    "destinationAddress": {
-    ///      "description": "The address the purchased crypto will be sent to.",
-    ///      "allOf": [
-    ///        {
-    ///          "$ref": "#/components/schemas/BlockchainAddress"
-    ///        }
-    ///      ]
-    ///    },
-    ///    "destinationNetwork": {
-    ///      "description": "The name of the crypto network the purchased currency will be sent on.\n\nUse the [Onramp Buy Options API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-buy-options) to discover the supported networks for your user's location.",
-    ///      "examples": [
-    ///        "base"
-    ///      ],
-    ///      "type": "string"
-    ///    },
-    ///    "partnerUserRef": {
-    ///      "description": "A unique string that represents the user in your app. This can be used to link individual transactions together so you can retrieve the transaction history for your users. Prefix this string with “sandbox-”  (e.g. \"sandbox-user-1234\") to perform a sandbox transaction which will allow you to test your integration  without any real transfer of funds.\n\nThis value can be used with with [Onramp User Transactions API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-onramp-transactions-by-id) to retrieve all transactions created by the user.",
-    ///      "examples": [
-    ///        "user-1234"
-    ///      ],
-    ///      "type": "string"
-    ///    },
-    ///    "paymentAmount": {
-    ///      "description": "A string representing the amount of fiat the user wishes to pay in exchange for crypto. When using this parameter, the returned quote will be inclusive of fees i.e. the user  will pay this exact amount of the payment currency.",
-    ///      "examples": [
-    ///        "100.00"
-    ///      ],
-    ///      "type": "string"
-    ///    },
-    ///    "paymentCurrency": {
-    ///      "description": "The fiat currency to be converted to crypto.",
-    ///      "examples": [
-    ///        "USD"
-    ///      ],
-    ///      "type": "string"
-    ///    },
-    ///    "paymentMethod": {
-    ///      "$ref": "#/components/schemas/OnrampQuotePaymentMethodTypeId"
-    ///    },
-    ///    "purchaseAmount": {
-    ///      "description": "A string representing the amount of crypto the user wishes to purchase. When using  this parameter, the returned quote will be exclusive of fees i.e. the user will  receive this exact amount of the purchase currency.",
-    ///      "examples": [
-    ///        "10.000000"
-    ///      ],
-    ///      "type": "string"
-    ///    },
-    ///    "purchaseCurrency": {
-    ///      "description": "The ticker (e.g. `BTC`, `USDC`, `SOL`) or the Coinbase UUID (e.g. `d85dce9b-5b73-5c3c-8978-522ce1d1c1b4`)  of the crypto asset to be purchased.\n\nUse the [Onramp Buy Options API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-buy-options) to discover the supported purchase currencies for your user's location.",
-    ///      "examples": [
-    ///        "USDC"
-    ///      ],
-    ///      "type": "string"
-    ///    },
-    ///    "redirectUrl": {
-    ///      "description": "URI to redirect the user to when they successfully complete a transaction. This URI will be embedded in the returned onramp URI as a query parameter.",
-    ///      "examples": [
-    ///        "https://example.com/success"
-    ///      ],
-    ///      "allOf": [
-    ///        {
-    ///          "$ref": "#/components/schemas/Uri"
-    ///        }
-    ///      ]
-    ///    },
-    ///    "subdivision": {
-    ///      "description": "The ISO 3166-2 two letter state code (e.g. NY). Only required for US.",
-    ///      "examples": [
-    ///        "NY"
-    ///      ],
-    ///      "type": "string"
-    ///    }
-    ///  }
-    ///}
-    /// ```
-    /// </details>
-    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
-    pub struct CreateOnrampSessionBody {
-        ///The IP address of the end user requesting the onramp transaction.
-        #[serde(
-            rename = "clientIp",
-            default,
-            skip_serializing_if = "::std::option::Option::is_none"
-        )]
-        pub client_ip: ::std::option::Option<::std::string::String>,
-        ///The ISO 3166-1 two letter country code (e.g. US).
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub country: ::std::option::Option<::std::string::String>,
-        ///The address the purchased crypto will be sent to.
-        #[serde(rename = "destinationAddress")]
-        pub destination_address: BlockchainAddress,
-        /**The name of the crypto network the purchased currency will be sent on.
-
-        Use the [Onramp Buy Options API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-buy-options) to discover the supported networks for your user's location.*/
-        #[serde(rename = "destinationNetwork")]
-        pub destination_network: ::std::string::String,
-        /**A unique string that represents the user in your app. This can be used to link individual transactions together so you can retrieve the transaction history for your users. Prefix this string with “sandbox-”  (e.g. "sandbox-user-1234") to perform a sandbox transaction which will allow you to test your integration  without any real transfer of funds.
-
-        This value can be used with with [Onramp User Transactions API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-onramp-transactions-by-id) to retrieve all transactions created by the user.*/
-        #[serde(
-            rename = "partnerUserRef",
-            default,
-            skip_serializing_if = "::std::option::Option::is_none"
-        )]
-        pub partner_user_ref: ::std::option::Option<::std::string::String>,
-        ///A string representing the amount of fiat the user wishes to pay in exchange for crypto. When using this parameter, the returned quote will be inclusive of fees i.e. the user  will pay this exact amount of the payment currency.
-        #[serde(
-            rename = "paymentAmount",
-            default,
-            skip_serializing_if = "::std::option::Option::is_none"
-        )]
-        pub payment_amount: ::std::option::Option<::std::string::String>,
-        ///The fiat currency to be converted to crypto.
-        #[serde(
-            rename = "paymentCurrency",
-            default,
-            skip_serializing_if = "::std::option::Option::is_none"
-        )]
-        pub payment_currency: ::std::option::Option<::std::string::String>,
-        #[serde(
-            rename = "paymentMethod",
-            default,
-            skip_serializing_if = "::std::option::Option::is_none"
-        )]
-        pub payment_method: ::std::option::Option<OnrampQuotePaymentMethodTypeId>,
-        ///A string representing the amount of crypto the user wishes to purchase. When using  this parameter, the returned quote will be exclusive of fees i.e. the user will  receive this exact amount of the purchase currency.
-        #[serde(
-            rename = "purchaseAmount",
-            default,
-            skip_serializing_if = "::std::option::Option::is_none"
-        )]
-        pub purchase_amount: ::std::option::Option<::std::string::String>,
-        /**The ticker (e.g. `BTC`, `USDC`, `SOL`) or the Coinbase UUID (e.g. `d85dce9b-5b73-5c3c-8978-522ce1d1c1b4`)  of the crypto asset to be purchased.
-
-        Use the [Onramp Buy Options API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-buy-options) to discover the supported purchase currencies for your user's location.*/
-        #[serde(rename = "purchaseCurrency")]
-        pub purchase_currency: ::std::string::String,
-        ///URI to redirect the user to when they successfully complete a transaction. This URI will be embedded in the returned onramp URI as a query parameter.
-        #[serde(
-            rename = "redirectUrl",
-            default,
-            skip_serializing_if = "::std::option::Option::is_none"
-        )]
-        pub redirect_url: ::std::option::Option<Uri>,
-        ///The ISO 3166-2 two letter state code (e.g. NY). Only required for US.
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub subdivision: ::std::option::Option<::std::string::String>,
-    }
-    impl ::std::convert::From<&CreateOnrampSessionBody> for CreateOnrampSessionBody {
-        fn from(value: &CreateOnrampSessionBody) -> Self {
-            value.clone()
-        }
-    }
-    impl CreateOnrampSessionBody {
-        pub fn builder() -> builder::CreateOnrampSessionBody {
-            Default::default()
-        }
-    }
     ///`CreateOnrampSessionResponse`
     ///
     /// <details><summary>JSON schema</summary>
@@ -12813,7 +12629,12 @@ pub mod types {
     ///      "$ref": "#/components/schemas/PhysicalAddress"
     ///    },
     ///    "dateOfBirth": {
-    ///      "$ref": "#/components/schemas/DateOfBirth"
+    ///      "description": "Date of birth of the originator.",
+    ///      "allOf": [
+    ///        {
+    ///          "$ref": "#/components/schemas/DateOfBirth"
+    ///        }
+    ///      ]
     ///    },
     ///    "name": {
     ///      "description": "Full name of the originator.",
@@ -12823,7 +12644,7 @@ pub mod types {
     ///      "type": "string"
     ///    },
     ///    "personalId": {
-    ///      "description": "Government-issued personal identification number for the originator.",
+    ///      "description": "Personal identifier for travel rule compliance. For individuals: passport number, national ID, or driver's license. For institutions: LEI (Legal Entity Identifier).",
     ///      "examples": [
     ///        "123-45-6789"
     ///      ],
@@ -12855,6 +12676,7 @@ pub mod types {
     pub struct DepositTravelRuleOriginator {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub address: ::std::option::Option<PhysicalAddress>,
+        ///Date of birth of the originator.
         #[serde(
             rename = "dateOfBirth",
             default,
@@ -12864,7 +12686,7 @@ pub mod types {
         ///Full name of the originator.
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub name: ::std::option::Option<::std::string::String>,
-        ///Government-issued personal identification number for the originator.
+        ///Personal identifier for travel rule compliance. For individuals: passport number, national ID, or driver's license. For institutions: LEI (Legal Entity Identifier).
         #[serde(
             rename = "personalId",
             default,
@@ -13020,7 +12842,12 @@ pub mod types {
     ///  "type": "object",
     ///  "properties": {
     ///    "beneficiary": {
-    ///      "$ref": "#/components/schemas/DepositTravelRuleBeneficiary"
+    ///      "description": "Beneficiary information for the travel rule submission.",
+    ///      "allOf": [
+    ///        {
+    ///          "$ref": "#/components/schemas/DepositTravelRuleBeneficiary"
+    ///        }
+    ///      ]
     ///    },
     ///    "isSelf": {
     ///      "description": "Indicates whether the user attests that the originating wallet belongs to them.",
@@ -13030,7 +12857,12 @@ pub mod types {
     ///      "type": "boolean"
     ///    },
     ///    "originator": {
-    ///      "$ref": "#/components/schemas/DepositTravelRuleOriginator"
+    ///      "description": "Originator information for the travel rule submission.",
+    ///      "allOf": [
+    ///        {
+    ///          "$ref": "#/components/schemas/DepositTravelRuleOriginator"
+    ///        }
+    ///      ]
     ///    }
     ///  }
     ///}
@@ -13038,6 +12870,7 @@ pub mod types {
     /// </details>
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct DepositTravelRuleRequest {
+        ///Beneficiary information for the travel rule submission.
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub beneficiary: ::std::option::Option<DepositTravelRuleBeneficiary>,
         ///Indicates whether the user attests that the originating wallet belongs to them.
@@ -13047,6 +12880,7 @@ pub mod types {
             skip_serializing_if = "::std::option::Option::is_none"
         )]
         pub is_self: ::std::option::Option<bool>,
+        ///Originator information for the travel rule submission.
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub originator: ::std::option::Option<DepositTravelRuleOriginator>,
     }
@@ -15371,6 +15205,12 @@ pub mod types {
     ///    "guest_transaction_limit",
     ///    "guest_transaction_count",
     ///    "phone_number_verification_expired",
+    ///    "onramp_otp_verification_code_invalid",
+    ///    "onramp_otp_verification_destination_mismatch",
+    ///    "onramp_otp_verification_expired",
+    ///    "onramp_otp_verification_invalid",
+    ///    "onramp_otp_verification_not_found",
+    ///    "onramp_otp_verification_required",
     ///    "document_verification_failed",
     ///    "recipient_allowlist_violation",
     ///    "recipient_allowlist_pending",
@@ -15411,7 +15251,17 @@ pub mod types {
     ///    "delegation_not_authorized",
     ///    "delegation_not_enabled",
     ///    "network_mismatch",
-    ///    "already_enabled"
+    ///    "already_enabled",
+    ///    "payment_session_already_canceled",
+    ///    "payment_session_already_authorized",
+    ///    "payment_session_action_pending",
+    ///    "no_capturable_balance",
+    ///    "no_voidable_balance",
+    ///    "no_refundable_balance",
+    ///    "entity_not_configured_for_payment_acceptance",
+    ///    "daily_transaction_limit_exceeded",
+    ///    "daily_amount_limit_exceeded",
+    ///    "stale_attestation"
     ///  ],
     ///  "x-error-instructions": {
     ///    "account_not_ready": "This error occurs when an operation is attempted on an account that is still being provisioned.\n\n**Steps to resolve:**\n1. Wait a few moments and retry the request\n2. If the error persists, the account may still be completing setup — retry with exponential backoff",
@@ -15422,7 +15272,9 @@ pub mod types {
     ///    "bad_gateway": "This error occurs when the CDP API is unable to connect to the backend service.\n\n**Steps to resolve:**\n1. Retry your request after a short delay\n2. If persistent, contact CDP support with:\n   - The timestamp of the error\n   - Request details\n3. Consider implementing retry logic with an exponential backoff\n\n**Note:** These errors are automatically logged and monitored by CDP.",
     ///    "capture_expired": "Returned when a capture attempt is made after the payment session's capture deadline has passed. The payment session can no longer be captured.",
     ///    "client_closed_request": "This error occurs when the client closes the connection before the server can send a response.\n\n**Common causes:**\n- The client timed out waiting for the server response\n- The client application was terminated during a pending request\n- Network interruption caused the client connection to drop\n\n**Steps to resolve:**\n1. Increase client-side timeout settings if applicable\n2. Implement retry logic with exponential backoff for long-running queries\n3. Consider optimizing the request to reduce server processing time",
-    ///    "customer_not_authorized": "This error occurs when the customer is not currently authorized for one\nor more capabilities required to perform the requested action. This can\nhappen at any point in the customer's lifecycle and may or may not be\nresolvable by the developer.\n\nThe response includes an `unauthorizedCapabilities` field listing the\ncapability code(s) that were not authorized on this request.\n\n**Steps to resolve:**\n1. Fetch the customer with `GET /v2/customers/{customerId}` and inspect\n   the `requirements` field. If `requirements.due` is non-empty, submit\n   the listed fields via `POST /v2/customers/{customerId}` and retry.\n2. If `requirements.due` is empty, no further action is available — the\n   customer is not currently eligible for this action.",
+    ///    "customer_not_authorized": "This error occurs when the customer is not currently authorized for one\nor more capabilities required to perform the requested action. This can\nhappen at any point in the customer's lifecycle and may or may not be\nresolvable by the developer.\n\nThe response includes an `unauthorizedCapabilities` field listing the\ncapability code(s) that were not authorized on this request.\n\n**Steps to resolve:**\n1. Fetch the customer with `GET /v2/customers/{customerId}` and inspect\n   the `requirements` field. If `requirements.due` is non-empty, submit\n   the listed fields via `PUT /v2/customers/{customerId}` and retry.\n2. If `requirements.due` is empty, no further action is available — the\n   customer is not currently eligible for this action.",
+    ///    "daily_amount_limit_exceeded": "This error occurs when the daily authorization amount limit has been exceeded.\n\n**Steps to resolve:**\n1. Wait until the next day when the daily limit resets\n2. Contact support for questions about your limit",
+    ///    "daily_transaction_limit_exceeded": "This error occurs when the daily transaction limit has been exceeded.\n\n**Steps to resolve:**\n1. Wait until the next day when the daily limit resets\n2. Contact support for questions about your limit",
     ///    "delegation_expired": "This error occurs when the delegation grant used for signing has expired.\nDelegation grants have a limited lifetime set at creation.\n\n**Steps to resolve:**\n1. Create a new delegation grant using `createDelegationForEndUser` or\n   `createDelegationForEndUserAccount`\n2. Retry the signing operation with the new grant active\n3. Consider creating grants with a longer TTL if expiry is frequent",
     ///    "delegation_not_authorized": "This error occurs when a delegation grant exists but does not authorize the\nrequested operation.\n\n**Steps to resolve:**\n1. For account-scoped grants, verify the signing address matches the address\n   the grant was created for\n2. Check that the operation is permitted for delegated signing on your project\n3. Create a grant with the correct scope if needed",
     ///    "delegation_not_enabled": "This error occurs when delegated signing is attempted on a project that has\nnot enabled the feature.\n\n**Steps to resolve:**\n1. Enable delegated signing in your project configuration via the CDP Portal\n2. Contact support if you believe delegated signing should already be enabled\n   for your project",
@@ -15430,6 +15282,7 @@ pub mod types {
     ///    "delegation_revoked": "This error occurs when the delegation grant has been explicitly revoked.\n\n**Steps to resolve:**\n1. Create a new delegation grant using `createDelegationForEndUser` or\n   `createDelegationForEndUserAccount`\n2. Confirm with the end user before recreating, since revocation is\n   typically intentional",
     ///    "document_verification_failed": "This error occurs when the user has not verified their identity for their coinbase.com account.\n**Steps to resolve:**\n1. Verify your coinbase account identity with valid documents at https://www.coinbase.com/settings/account-levels.",
     ///    "endpoint_unavailable": "This error occurs when a specific endpoint has been temporarily disabled by an operator (e.g. a kill switch). The CDP API as a whole is still healthy; only this endpoint is unavailable. Distinct from `service_unavailable`, which indicates the API itself is down.\n\nRe-enabling is a manual operator action, so the endpoint may remain unavailable for an extended period.\n\n**Steps to resolve:**\n1. Check the [CDP status page](https://cdpstatus.coinbase.com/) for an active incident.\n2. If persistent, contact CDP support with:\n   - The timestamp of the error\n   - Request details",
+    ///    "entity_not_configured_for_payment_acceptance": "This error occurs when the entity is not configured to accept payments.\n\n**Steps to resolve:**\n1. Contact support to enable payment acceptance for the entity",
     ///    "faucet_limit_exceeded": "This error occurs when you've exceeded the faucet request limits.\n\n**Steps to resolve:**\n1. Wait for the time window to reset\n2. Use funds more efficiently in your testing\n\nFor more information on faucet limits, please visit the [EVM Faucet endpoint](https://docs.cdp.coinbase.com/api-reference/v2/rest-api/faucets/request-funds-on-evm-test-networks) or the [Solana Faucet endpoint](https://docs.cdp.coinbase.com/api-reference/v2/rest-api/faucets/request-funds-on-solana-devnet).",
     ///    "forbidden": "This error occurs when you don't have permission to access the resource.\n\n**Steps to resolve:**\n1. Verify your permissions to access the resource\n2. Ensure that you are the owner of the requested resource",
     ///    "guest_permission_denied": "This error occurs when the user is not allowed to complete onramp transactions as a guest.\n\n**Steps to resolve:**\n1. Redirect the user to create a Coinbase account to buy and send crypto.",
@@ -15455,12 +15308,24 @@ pub mod types {
     ///    "mfa_required": "This error occurs when attempting to perform a sensitive operation that requires MFA verification, but the user has not completed MFA verification.\n\n**Steps to resolve:**\n1. Initiate the MFA verification flow using the `/mfa/verify/{mfaMethod}/init` endpoint\n2. Prompt the user to enter their MFA code\n3. Submit the verification using the `/mfa/verify/{mfaMethod}/submit` endpoint\n4. Use the returned access token with MFA claim for the sensitive operation\n5. Retry the original request with the new MFA-verified token\n\n**Operations requiring MFA:**\n- Transactions Sign/Send\n- Key export\n- Account management actions (when configured)",
     ///    "network_mismatch": "This error occurs when the requested operation specifies a network on which the\ntarget resource is not deployed or not available.\n\n**Steps to resolve:**\n1. Use the network the resource was originally created or deployed on\n2. Check the resource metadata to confirm the correct network\n\n**Common causes:**\n- Specifying `base` for a resource that only exists on `base-sepolia` (or vice versa)\n- Cross-network operation attempted on a resource scoped to a single network",
     ///    "network_not_tradable": "This error occurs when the selected asset cannot be purchased on the selected network in the user's location.\n\n**Steps to resolve:**\n1. Verify the asset is tradable on the selected network\n2. Check the user's location to ensure it is allowed to purchase the asset on the selected network\n\n**Common causes:**\n- Users in NY are not allowed to purchase USDC on any network other than Ethereum",
+    ///    "no_capturable_balance": "This error occurs when there is no remaining balance available to capture on the payment session.\n\n**Steps to resolve:**\n1. Verify the payment session status and previously captured amounts\n2. Ensure the session was authorized and has uncaptured funds remaining",
+    ///    "no_refundable_balance": "This error occurs when the payment session has no captured amount available to refund.\n\n**Steps to resolve:**\n1. Verify the payment session has been previously captured\n2. Check that the session has not already been fully refunded",
+    ///    "no_voidable_balance": "This error occurs when there is no held balance remaining to void on the payment session.\n\n**Steps to resolve:**\n1. Verify the payment session has an authorized but uncaptured balance\n2. Check whether the session has already been fully captured or voided",
     ///    "not_found": "This error occurs when the resource specified in your request doesn't exist or you don't have access to it.\n\n**Steps to resolve:**\n1. Verify the resource ID/address/account exists\n2. Check your permissions to access the resource\n3. Ensure you're using the correct network/environment\n4. Confirm the resource hasn't been deleted\n\n**Common causes:**\n- Mistyped addresses\n- Accessing resources from the wrong CDP project\n- Resource was deleted or hasn't been created yet",
+    ///    "onramp_otp_verification_code_invalid": "This error occurs when the OTP code submitted to complete a verification is incorrect or has expired\n(the 10-minute OTP window has elapsed).\n\n**Steps to resolve:**\n1. Ask the user to re-enter the code.\n2. If the OTP window has expired, start a new verification flow.",
+    ///    "onramp_otp_verification_destination_mismatch": "The `phoneNumber` or `email` on the order does not match the `destination` that was verified.\n\n**Steps to resolve:**\n1. Ensure the `phoneNumber` or `email` field on the order matches the `destination` used during verification.\n2. If the value changed, complete a new verification for the updated phone number or email.",
+    ///    "onramp_otp_verification_expired": "The `smsVerificationId` or `emailVerificationId` provided has expired.\nVerification IDs are valid for 60 days after successful OTP submission.\n\n**Steps to resolve:**\n1. Complete a new verification flow for the user.\n2. Use the new verification ID when creating orders.",
+    ///    "onramp_otp_verification_invalid": "This error occurs when the verification record exists but is not in a usable state for the requested operation.\n\n**Common causes:**\n- The verification is still pending (OTP not yet submitted successfully).\n- The verification has been revoked.\n- The verification channel does not match the expected field (`smsVerificationId` or `emailVerificationId`).\n\n**Steps to resolve:**\n1. Complete a new verification flow and retry.",
+    ///    "onramp_otp_verification_not_found": "The provided SMS or email verification ID does not correspond to any verification record.\n\n**Steps to resolve:**\n1. Ensure you are passing the correct verification ID as `smsVerificationId` or `emailVerificationId`.\n2. If the issue persists, complete a new verification flow.",
+    ///    "onramp_otp_verification_required": "An SMS or email verification ID is required on order creation but none was provided.\n\n**Steps to resolve:**\n1. Verify the user's phone number and email before creating an order.\n2. Pass the returned verification IDs as `smsVerificationId` and `emailVerificationId` when creating orders.",
     ///    "order_already_canceled": "This error occurs when attempting to cancel or execute an order that has already been canceled.\n\n**Steps to resolve:**\n1. Check the current status of the order using `GET /v2/orders/{orderId}`.\n2. Create a new order if you still want to trade.",
     ///    "order_already_filled": "This error occurs when attempting to cancel or modify an order that has already been filled.\n\n**Steps to resolve:**\n1. Check the current status of the order using `GET /v2/orders/{orderId}`.\n2. A filled order cannot be canceled or re-executed.",
     ///    "order_quote_expired": "This error occurs when attempting to execute an order whose quote has expired.\n\n**Steps to resolve:**\n1. Create a new order with `execute: false` to get an updated quote.\n2. Execute the new order before the quote expires (check the `expiresAt` field).\n3. Alternatively, create a new order with `execute: true` to skip the quote step and execute immediately.",
     ///    "payment_method_required": "This error occurs when a payment method is required to complete the requested operation but none is configured or available.\n\n**Steps to resolve:**\n1. Add a valid payment method to your account using the [CDP Portal](https://portal.cdp.coinbase.com)\n2. Ensure your payment method is valid and not expired\n\n**Common causes:**\n- No payment method configured on the account\n- Payment method is expired",
     ///    "payment_required": "This error occurs when an x402 payment is required to access the requested resource.\n\n**Steps to resolve:**\n1. Include a valid x402 payment header in your request\n2. Ensure the payment meets the resource's pricing requirements",
+    ///    "payment_session_action_pending": "This error occurs when another action is already in progress for the payment session.\n\n**Steps to resolve:**\n1. Wait for the current action to complete before retrying\n2. Check the payment session status to confirm the current action result",
+    ///    "payment_session_already_authorized": "This error occurs when attempting to authorize a payment session that has already been authorized.\n\n**Steps to resolve:**\n1. Check the payment session status — it is already authorized\n2. Proceed to capture, void, or other post-authorization actions as needed",
+    ///    "payment_session_already_canceled": "This error occurs when an action is attempted on a payment session that has already been canceled.\n\n**Steps to resolve:**\n1. Create a new payment session to proceed with the payment flow",
     ///    "phone_number_verification_expired": "This error occurs when the user's phone number verification has expired. Use of guest Onramp requires the user's\nphone number to be verified every 60 days.\n\n**Steps to resolve:**\n1. Re-verify the user's phone number via OTP.\n2. Retry the request with the phoneNumberVerifiedAt field set to new verification timestamp.",
     ///    "policy_in_use": "This error occurs when trying to delete a Policy that is currently in use by at least one project or account.\n\n**Steps to resolve:**\n1. Update project or accounts to remove references to the Policy in question.\n2. Retry your delete request.",
     ///    "rate_limit_exceeded": "This error occurs when you've exceeded the API rate limits.\n\n**Steps to resolve:**\n1. Implement exponential backoff\n2. Cache responses where possible\n3. Wait for rate limit window to reset\n\n**Best practices:**\n```typescript lines wrap\nasync function withRetry(fn: () => Promise<any>) {\n  let delay = 1000;\n  while (true) {\n    try {\n      return await fn();\n    } catch (e) {\n      if (e.errorType === \"rate_limit_exceeded\") {\n        await sleep(delay);\n        delay *= 2;\n        continue;\n      }\n      throw e;\n    }\n  }\n}\n```",
@@ -15473,6 +15338,7 @@ pub mod types {
     ///    "source_account_invalid": "This error occurs when the source account specified in the transfer request is invalid or malformed.\n\n**Steps to resolve:**\n1. Verify the account ID format is correct (e.g., `account_xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`)\n2. Ensure the account ID belongs to your CDP entity\n3. Verify the account ID exists by calling `GET /v2/accounts/{accountId}` or `GET /v2/accounts`\n\n**Common causes:**\n- Malformed account ID\n- Typo in the account ID",
     ///    "source_account_not_found": "This error occurs when the source account specified in the transfer does not exist.\n\n**Steps to resolve:**\n1. Verify the account ID exists by calling `GET /v2/accounts/{accountId}` or `GET /v2/accounts`",
     ///    "source_asset_not_supported": "This error occurs when the asset specified in the transfer source is not supported for this transfer type.\n\n**Steps to resolve:**\n1. Check the list of supported assets for the source account type\n2. Verify the asset symbol is correctly specified (e.g., `usdc`, `usdt`)\n\n**Common causes:**\n- Unsupported asset for the transfer route\n- Incorrect asset symbol",
+    ///    "stale_attestation": "The platform attestation (iOS App Attest assertion or Android Play Integrity token) was\ngenerated against a challenge that has since expired. The request was well-formed, but\nthe challenge is no longer valid.\n\n**Steps to resolve:**\n1. Call [Create Onramp Mobile Challenge](#operation/createOnrampMobileChallenge) to obtain\n   a fresh challenge.\n2. Re-run the platform attestation flow against the new challenge.\n3. Submit the new attestation to\n   [Create Onramp Mobile Session](#operation/createOnrampMobileSession) promptly —\n   challenges are short-lived.\n\n**Common causes:**\n- Too much time elapsed between obtaining the challenge and submitting the attestation.",
     ///    "target_account_invalid": "This error occurs when the target account specified in the transfer request is invalid or malformed.\n\n**Steps to resolve:**\n1. Verify the account ID format is correct (e.g., `account_xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`)\n2. Ensure the account exists and can receive funds\n3. Verify the account ID exists by calling `GET /v2/accounts/{accountId}` or `GET /v2/accounts`\n\n**Common causes:**\n- Malformed account ID\n- Typo in the account ID",
     ///    "target_account_not_found": "This error occurs when the target account specified in the transfer does not exist.\n\n**Steps to resolve:**\n1. Verify the account ID exists by calling `GET /v2/accounts/{accountId}` or `GET /v2/accounts`",
     ///    "target_asset_not_supported": "This error occurs when the asset specified in the transfer target is not supported for this transfer type.\n\n**Steps to resolve:**\n1. Check the list of supported assets for the target\n2. Verify the asset symbol is correctly specified (e.g., `usdc`, `usdt`)\n3. Ensure the target can receive this asset type\n\n**Common causes:**\n- Asset not supported by the target\n- Unsupported conversion between source and target assets",
@@ -15572,6 +15438,18 @@ pub mod types {
         GuestTransactionCount,
         #[serde(rename = "phone_number_verification_expired")]
         PhoneNumberVerificationExpired,
+        #[serde(rename = "onramp_otp_verification_code_invalid")]
+        OnrampOtpVerificationCodeInvalid,
+        #[serde(rename = "onramp_otp_verification_destination_mismatch")]
+        OnrampOtpVerificationDestinationMismatch,
+        #[serde(rename = "onramp_otp_verification_expired")]
+        OnrampOtpVerificationExpired,
+        #[serde(rename = "onramp_otp_verification_invalid")]
+        OnrampOtpVerificationInvalid,
+        #[serde(rename = "onramp_otp_verification_not_found")]
+        OnrampOtpVerificationNotFound,
+        #[serde(rename = "onramp_otp_verification_required")]
+        OnrampOtpVerificationRequired,
         #[serde(rename = "document_verification_failed")]
         DocumentVerificationFailed,
         #[serde(rename = "recipient_allowlist_violation")]
@@ -15654,6 +15532,26 @@ pub mod types {
         NetworkMismatch,
         #[serde(rename = "already_enabled")]
         AlreadyEnabled,
+        #[serde(rename = "payment_session_already_canceled")]
+        PaymentSessionAlreadyCanceled,
+        #[serde(rename = "payment_session_already_authorized")]
+        PaymentSessionAlreadyAuthorized,
+        #[serde(rename = "payment_session_action_pending")]
+        PaymentSessionActionPending,
+        #[serde(rename = "no_capturable_balance")]
+        NoCapturableBalance,
+        #[serde(rename = "no_voidable_balance")]
+        NoVoidableBalance,
+        #[serde(rename = "no_refundable_balance")]
+        NoRefundableBalance,
+        #[serde(rename = "entity_not_configured_for_payment_acceptance")]
+        EntityNotConfiguredForPaymentAcceptance,
+        #[serde(rename = "daily_transaction_limit_exceeded")]
+        DailyTransactionLimitExceeded,
+        #[serde(rename = "daily_amount_limit_exceeded")]
+        DailyAmountLimitExceeded,
+        #[serde(rename = "stale_attestation")]
+        StaleAttestation,
     }
     impl ::std::convert::From<&Self> for ErrorType {
         fn from(value: &ErrorType) -> Self {
@@ -15699,6 +15597,24 @@ pub mod types {
                 Self::PhoneNumberVerificationExpired => {
                     f.write_str("phone_number_verification_expired")
                 }
+                Self::OnrampOtpVerificationCodeInvalid => {
+                    f.write_str("onramp_otp_verification_code_invalid")
+                }
+                Self::OnrampOtpVerificationDestinationMismatch => {
+                    f.write_str("onramp_otp_verification_destination_mismatch")
+                }
+                Self::OnrampOtpVerificationExpired => {
+                    f.write_str("onramp_otp_verification_expired")
+                }
+                Self::OnrampOtpVerificationInvalid => {
+                    f.write_str("onramp_otp_verification_invalid")
+                }
+                Self::OnrampOtpVerificationNotFound => {
+                    f.write_str("onramp_otp_verification_not_found")
+                }
+                Self::OnrampOtpVerificationRequired => {
+                    f.write_str("onramp_otp_verification_required")
+                }
                 Self::DocumentVerificationFailed => f.write_str("document_verification_failed"),
                 Self::RecipientAllowlistViolation => f.write_str("recipient_allowlist_violation"),
                 Self::RecipientAllowlistPending => f.write_str("recipient_allowlist_pending"),
@@ -15742,6 +15658,24 @@ pub mod types {
                 Self::DelegationNotEnabled => f.write_str("delegation_not_enabled"),
                 Self::NetworkMismatch => f.write_str("network_mismatch"),
                 Self::AlreadyEnabled => f.write_str("already_enabled"),
+                Self::PaymentSessionAlreadyCanceled => {
+                    f.write_str("payment_session_already_canceled")
+                }
+                Self::PaymentSessionAlreadyAuthorized => {
+                    f.write_str("payment_session_already_authorized")
+                }
+                Self::PaymentSessionActionPending => f.write_str("payment_session_action_pending"),
+                Self::NoCapturableBalance => f.write_str("no_capturable_balance"),
+                Self::NoVoidableBalance => f.write_str("no_voidable_balance"),
+                Self::NoRefundableBalance => f.write_str("no_refundable_balance"),
+                Self::EntityNotConfiguredForPaymentAcceptance => {
+                    f.write_str("entity_not_configured_for_payment_acceptance")
+                }
+                Self::DailyTransactionLimitExceeded => {
+                    f.write_str("daily_transaction_limit_exceeded")
+                }
+                Self::DailyAmountLimitExceeded => f.write_str("daily_amount_limit_exceeded"),
+                Self::StaleAttestation => f.write_str("stale_attestation"),
             }
         }
     }
@@ -15783,6 +15717,16 @@ pub mod types {
                 "guest_transaction_limit" => Ok(Self::GuestTransactionLimit),
                 "guest_transaction_count" => Ok(Self::GuestTransactionCount),
                 "phone_number_verification_expired" => Ok(Self::PhoneNumberVerificationExpired),
+                "onramp_otp_verification_code_invalid" => {
+                    Ok(Self::OnrampOtpVerificationCodeInvalid)
+                }
+                "onramp_otp_verification_destination_mismatch" => {
+                    Ok(Self::OnrampOtpVerificationDestinationMismatch)
+                }
+                "onramp_otp_verification_expired" => Ok(Self::OnrampOtpVerificationExpired),
+                "onramp_otp_verification_invalid" => Ok(Self::OnrampOtpVerificationInvalid),
+                "onramp_otp_verification_not_found" => Ok(Self::OnrampOtpVerificationNotFound),
+                "onramp_otp_verification_required" => Ok(Self::OnrampOtpVerificationRequired),
                 "document_verification_failed" => Ok(Self::DocumentVerificationFailed),
                 "recipient_allowlist_violation" => Ok(Self::RecipientAllowlistViolation),
                 "recipient_allowlist_pending" => Ok(Self::RecipientAllowlistPending),
@@ -15824,6 +15768,18 @@ pub mod types {
                 "delegation_not_enabled" => Ok(Self::DelegationNotEnabled),
                 "network_mismatch" => Ok(Self::NetworkMismatch),
                 "already_enabled" => Ok(Self::AlreadyEnabled),
+                "payment_session_already_canceled" => Ok(Self::PaymentSessionAlreadyCanceled),
+                "payment_session_already_authorized" => Ok(Self::PaymentSessionAlreadyAuthorized),
+                "payment_session_action_pending" => Ok(Self::PaymentSessionActionPending),
+                "no_capturable_balance" => Ok(Self::NoCapturableBalance),
+                "no_voidable_balance" => Ok(Self::NoVoidableBalance),
+                "no_refundable_balance" => Ok(Self::NoRefundableBalance),
+                "entity_not_configured_for_payment_acceptance" => {
+                    Ok(Self::EntityNotConfiguredForPaymentAcceptance)
+                }
+                "daily_transaction_limit_exceeded" => Ok(Self::DailyTransactionLimitExceeded),
+                "daily_amount_limit_exceeded" => Ok(Self::DailyAmountLimitExceeded),
+                "stale_attestation" => Ok(Self::StaleAttestation),
                 _ => Err("invalid value".into()),
             }
         }
@@ -16166,6 +16122,134 @@ pub mod types {
         }
     }
     impl ::std::convert::TryFrom<::std::string::String> for EthValueCriterionType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    /**A webhook event type identifier following dot-separated format:
+    `<domain>.<entity>.<verb>` (e.g., "onchain.activity.detected").
+    */
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "A webhook event type identifier following dot-separated format:\n`<domain>.<entity>.<verb>` (e.g., \"onchain.activity.detected\").\n",
+    ///  "examples": [
+    ///    "onchain.activity.detected"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "onchain.activity.detected",
+    ///    "wallet.activity.detected",
+    ///    "wallet.activity.multi",
+    ///    "onramp.transaction.created",
+    ///    "onramp.transaction.updated",
+    ///    "onramp.transaction.success",
+    ///    "onramp.transaction.failed",
+    ///    "offramp.transaction.created",
+    ///    "offramp.transaction.updated",
+    ///    "offramp.transaction.success",
+    ///    "offramp.transaction.failed"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum EventType {
+        #[serde(rename = "onchain.activity.detected")]
+        OnchainActivityDetected,
+        #[serde(rename = "wallet.activity.detected")]
+        WalletActivityDetected,
+        #[serde(rename = "wallet.activity.multi")]
+        WalletActivityMulti,
+        #[serde(rename = "onramp.transaction.created")]
+        OnrampTransactionCreated,
+        #[serde(rename = "onramp.transaction.updated")]
+        OnrampTransactionUpdated,
+        #[serde(rename = "onramp.transaction.success")]
+        OnrampTransactionSuccess,
+        #[serde(rename = "onramp.transaction.failed")]
+        OnrampTransactionFailed,
+        #[serde(rename = "offramp.transaction.created")]
+        OfframpTransactionCreated,
+        #[serde(rename = "offramp.transaction.updated")]
+        OfframpTransactionUpdated,
+        #[serde(rename = "offramp.transaction.success")]
+        OfframpTransactionSuccess,
+        #[serde(rename = "offramp.transaction.failed")]
+        OfframpTransactionFailed,
+    }
+    impl ::std::convert::From<&Self> for EventType {
+        fn from(value: &EventType) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for EventType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::OnchainActivityDetected => f.write_str("onchain.activity.detected"),
+                Self::WalletActivityDetected => f.write_str("wallet.activity.detected"),
+                Self::WalletActivityMulti => f.write_str("wallet.activity.multi"),
+                Self::OnrampTransactionCreated => f.write_str("onramp.transaction.created"),
+                Self::OnrampTransactionUpdated => f.write_str("onramp.transaction.updated"),
+                Self::OnrampTransactionSuccess => f.write_str("onramp.transaction.success"),
+                Self::OnrampTransactionFailed => f.write_str("onramp.transaction.failed"),
+                Self::OfframpTransactionCreated => f.write_str("offramp.transaction.created"),
+                Self::OfframpTransactionUpdated => f.write_str("offramp.transaction.updated"),
+                Self::OfframpTransactionSuccess => f.write_str("offramp.transaction.success"),
+                Self::OfframpTransactionFailed => f.write_str("offramp.transaction.failed"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for EventType {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "onchain.activity.detected" => Ok(Self::OnchainActivityDetected),
+                "wallet.activity.detected" => Ok(Self::WalletActivityDetected),
+                "wallet.activity.multi" => Ok(Self::WalletActivityMulti),
+                "onramp.transaction.created" => Ok(Self::OnrampTransactionCreated),
+                "onramp.transaction.updated" => Ok(Self::OnrampTransactionUpdated),
+                "onramp.transaction.success" => Ok(Self::OnrampTransactionSuccess),
+                "onramp.transaction.failed" => Ok(Self::OnrampTransactionFailed),
+                "offramp.transaction.created" => Ok(Self::OfframpTransactionCreated),
+                "offramp.transaction.updated" => Ok(Self::OfframpTransactionUpdated),
+                "offramp.transaction.success" => Ok(Self::OfframpTransactionSuccess),
+                "offramp.transaction.failed" => Ok(Self::OfframpTransactionFailed),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for EventType {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for EventType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for EventType {
         type Error = self::error::ConversionError;
         fn try_from(
             value: ::std::string::String,
@@ -28109,7 +28193,7 @@ pub mod types {
         }
     }
     /**Information about the end user's MFA enrollments.
-     */
+    */
     ///
     /// <details><summary>JSON schema</summary>
     ///
@@ -28600,6 +28684,60 @@ pub mod types {
             value: ::std::string::String,
         ) -> ::std::result::Result<Self, self::error::ConversionError> {
             value.parse()
+        }
+    }
+    ///A monetary amount with currency.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "A monetary amount with currency.",
+    ///  "examples": [
+    ///    {
+    ///      "currency": "USD",
+    ///      "value": "5.00"
+    ///    }
+    ///  ],
+    ///  "type": "object",
+    ///  "required": [
+    ///    "currency",
+    ///    "value"
+    ///  ],
+    ///  "properties": {
+    ///    "currency": {
+    ///      "description": "Currency code (e.g., \"USD\", \"USDC\", \"ETH\").",
+    ///      "examples": [
+    ///        "USD"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "value": {
+    ///      "description": "The amount as a string.",
+    ///      "examples": [
+    ///        "100.00"
+    ///      ],
+    ///      "type": "string"
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct MoneyAmount {
+        ///Currency code (e.g., "USD", "USDC", "ETH").
+        pub currency: ::std::string::String,
+        ///The amount as a string.
+        pub value: ::std::string::String,
+    }
+    impl ::std::convert::From<&MoneyAmount> for MoneyAmount {
+        fn from(value: &MoneyAmount) -> Self {
+            value.clone()
+        }
+    }
+    impl MoneyAmount {
+        pub fn builder() -> builder::MoneyAmount {
+            Default::default()
         }
     }
     ///A schema for specifying a criterion for the USD denominated asset transfer or exposure for a transaction. This includes native transfers, as well as token transfers.
@@ -29130,6 +29268,990 @@ pub mod types {
             value: ::std::string::String,
         ) -> ::std::result::Result<Self, self::error::ConversionError> {
             value.parse()
+        }
+    }
+    ///`OfframpTransactionCreatedEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "allOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/OfframpTransactionPayload"
+    ///    }
+    ///  ],
+    ///  "x-event-type": "offramp.transaction.created"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct OfframpTransactionCreatedEvent(pub OfframpTransactionPayload);
+    impl ::std::ops::Deref for OfframpTransactionCreatedEvent {
+        type Target = OfframpTransactionPayload;
+        fn deref(&self) -> &OfframpTransactionPayload {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<OfframpTransactionCreatedEvent> for OfframpTransactionPayload {
+        fn from(value: OfframpTransactionCreatedEvent) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<&OfframpTransactionCreatedEvent> for OfframpTransactionCreatedEvent {
+        fn from(value: &OfframpTransactionCreatedEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::convert::From<OfframpTransactionPayload> for OfframpTransactionCreatedEvent {
+        fn from(value: OfframpTransactionPayload) -> Self {
+            Self(value)
+        }
+    }
+    ///`OfframpTransactionFailedEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "allOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/OfframpTransactionPayload"
+    ///    }
+    ///  ],
+    ///  "x-event-type": "offramp.transaction.failed"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct OfframpTransactionFailedEvent(pub OfframpTransactionPayload);
+    impl ::std::ops::Deref for OfframpTransactionFailedEvent {
+        type Target = OfframpTransactionPayload;
+        fn deref(&self) -> &OfframpTransactionPayload {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<OfframpTransactionFailedEvent> for OfframpTransactionPayload {
+        fn from(value: OfframpTransactionFailedEvent) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<&OfframpTransactionFailedEvent> for OfframpTransactionFailedEvent {
+        fn from(value: &OfframpTransactionFailedEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::convert::From<OfframpTransactionPayload> for OfframpTransactionFailedEvent {
+        fn from(value: OfframpTransactionPayload) -> Self {
+            Self(value)
+        }
+    }
+    ///Webhook payload for offramp transactions. Serialized from the OfframpTransaction proto via protojson with eventType appended.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Webhook payload for offramp transactions. Serialized from the OfframpTransaction proto via protojson with eventType appended.",
+    ///  "type": "object",
+    ///  "required": [
+    ///    "eventType",
+    ///    "status",
+    ///    "transactionId"
+    ///  ],
+    ///  "properties": {
+    ///    "asset": {
+    ///      "description": "The crypto currency being sold (e.g., \"ETH\", \"USDC\").",
+    ///      "examples": [
+    ///        "ETH"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "coinbaseFee": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "createdAt": {
+    ///      "description": "When the transaction was created.",
+    ///      "examples": [
+    ///        "2025-09-02T02:34:13Z"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    },
+    ///    "eventType": {
+    ///      "description": "The webhook event type.",
+    ///      "examples": [
+    ///        "offramp.transaction.updated"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "exchangeRate": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "fromAddress": {
+    ///      "description": "The address crypto was received from.",
+    ///      "examples": [
+    ///        "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "minimumTotal": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "network": {
+    ///      "description": "The blockchain network (e.g., \"ethereum\", \"base\").",
+    ///      "examples": [
+    ///        "ethereum"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "paymentMethod": {
+    ///      "description": "The payment method type used for cashout.",
+    ///      "examples": [
+    ///        "ACH_BANK_ACCOUNT"
+    ///      ],
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "UNSPECIFIED",
+    ///        "CARD",
+    ///        "ACH_BANK_ACCOUNT",
+    ///        "APPLE_PAY",
+    ///        "FIAT_WALLET",
+    ///        "CRYPTO_ACCOUNT",
+    ///        "GUEST_CHECKOUT_CARD",
+    ///        "PAYPAL",
+    ///        "RTP",
+    ///        "GUEST_CHECKOUT_APPLE_PAY",
+    ///        "GUEST_CHECKOUT_GOOGLE_PAY"
+    ///      ]
+    ///    },
+    ///    "redirectUrl": {
+    ///      "description": "The URL the user was redirected to after confirming the offramp.",
+    ///      "examples": [
+    ///        "https://partner.com/offramp/complete"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "sellAmount": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "status": {
+    ///      "description": "Current status of the offramp transaction.",
+    ///      "examples": [
+    ///        "TRANSACTION_STATUS_STARTED"
+    ///      ],
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "TRANSACTION_STATUS_UNSPECIFIED",
+    ///        "TRANSACTION_STATUS_CREATED",
+    ///        "TRANSACTION_STATUS_EXPIRED",
+    ///        "TRANSACTION_STATUS_STARTED",
+    ///        "TRANSACTION_STATUS_SUCCESS",
+    ///        "TRANSACTION_STATUS_FAILED"
+    ///      ]
+    ///    },
+    ///    "subtotal": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "toAddress": {
+    ///      "description": "The address crypto was sent to (Coinbase deposit address).",
+    ///      "examples": [
+    ///        "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "total": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "transactionId": {
+    ///      "description": "Unique transaction identifier.",
+    ///      "examples": [
+    ///        "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "txHash": {
+    ///      "description": "The onchain transaction hash of the crypto send.",
+    ///      "examples": [
+    ///        "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "unitPrice": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "updatedAt": {
+    ///      "description": "When the transaction was last updated.",
+    ///      "examples": [
+    ///        "2025-09-02T02:40:00Z"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct OfframpTransactionPayload {
+        ///The crypto currency being sold (e.g., "ETH", "USDC").
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub asset: ::std::option::Option<::std::string::String>,
+        #[serde(
+            rename = "coinbaseFee",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub coinbase_fee: ::std::option::Option<MoneyAmount>,
+        ///When the transaction was created.
+        #[serde(
+            rename = "createdAt",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub created_at: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+        ///The webhook event type.
+        #[serde(rename = "eventType")]
+        pub event_type: ::std::string::String,
+        #[serde(
+            rename = "exchangeRate",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub exchange_rate: ::std::option::Option<MoneyAmount>,
+        ///The address crypto was received from.
+        #[serde(
+            rename = "fromAddress",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub from_address: ::std::option::Option<::std::string::String>,
+        #[serde(
+            rename = "minimumTotal",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub minimum_total: ::std::option::Option<MoneyAmount>,
+        ///The blockchain network (e.g., "ethereum", "base").
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub network: ::std::option::Option<::std::string::String>,
+        ///The payment method type used for cashout.
+        #[serde(
+            rename = "paymentMethod",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_method: ::std::option::Option<OfframpTransactionPayloadPaymentMethod>,
+        ///The URL the user was redirected to after confirming the offramp.
+        #[serde(
+            rename = "redirectUrl",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub redirect_url: ::std::option::Option<::std::string::String>,
+        #[serde(
+            rename = "sellAmount",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub sell_amount: ::std::option::Option<MoneyAmount>,
+        ///Current status of the offramp transaction.
+        pub status: OfframpTransactionPayloadStatus,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub subtotal: ::std::option::Option<MoneyAmount>,
+        ///The address crypto was sent to (Coinbase deposit address).
+        #[serde(
+            rename = "toAddress",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub to_address: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub total: ::std::option::Option<MoneyAmount>,
+        ///Unique transaction identifier.
+        #[serde(rename = "transactionId")]
+        pub transaction_id: ::std::string::String,
+        ///The onchain transaction hash of the crypto send.
+        #[serde(
+            rename = "txHash",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub tx_hash: ::std::option::Option<::std::string::String>,
+        #[serde(
+            rename = "unitPrice",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub unit_price: ::std::option::Option<MoneyAmount>,
+        ///When the transaction was last updated.
+        #[serde(
+            rename = "updatedAt",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub updated_at: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+    }
+    impl ::std::convert::From<&OfframpTransactionPayload> for OfframpTransactionPayload {
+        fn from(value: &OfframpTransactionPayload) -> Self {
+            value.clone()
+        }
+    }
+    impl OfframpTransactionPayload {
+        pub fn builder() -> builder::OfframpTransactionPayload {
+            Default::default()
+        }
+    }
+    ///The payment method type used for cashout.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The payment method type used for cashout.",
+    ///  "examples": [
+    ///    "ACH_BANK_ACCOUNT"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "UNSPECIFIED",
+    ///    "CARD",
+    ///    "ACH_BANK_ACCOUNT",
+    ///    "APPLE_PAY",
+    ///    "FIAT_WALLET",
+    ///    "CRYPTO_ACCOUNT",
+    ///    "GUEST_CHECKOUT_CARD",
+    ///    "PAYPAL",
+    ///    "RTP",
+    ///    "GUEST_CHECKOUT_APPLE_PAY",
+    ///    "GUEST_CHECKOUT_GOOGLE_PAY"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum OfframpTransactionPayloadPaymentMethod {
+        #[serde(rename = "UNSPECIFIED")]
+        Unspecified,
+        #[serde(rename = "CARD")]
+        Card,
+        #[serde(rename = "ACH_BANK_ACCOUNT")]
+        AchBankAccount,
+        #[serde(rename = "APPLE_PAY")]
+        ApplePay,
+        #[serde(rename = "FIAT_WALLET")]
+        FiatWallet,
+        #[serde(rename = "CRYPTO_ACCOUNT")]
+        CryptoAccount,
+        #[serde(rename = "GUEST_CHECKOUT_CARD")]
+        GuestCheckoutCard,
+        #[serde(rename = "PAYPAL")]
+        Paypal,
+        #[serde(rename = "RTP")]
+        Rtp,
+        #[serde(rename = "GUEST_CHECKOUT_APPLE_PAY")]
+        GuestCheckoutApplePay,
+        #[serde(rename = "GUEST_CHECKOUT_GOOGLE_PAY")]
+        GuestCheckoutGooglePay,
+    }
+    impl ::std::convert::From<&Self> for OfframpTransactionPayloadPaymentMethod {
+        fn from(value: &OfframpTransactionPayloadPaymentMethod) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for OfframpTransactionPayloadPaymentMethod {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Unspecified => f.write_str("UNSPECIFIED"),
+                Self::Card => f.write_str("CARD"),
+                Self::AchBankAccount => f.write_str("ACH_BANK_ACCOUNT"),
+                Self::ApplePay => f.write_str("APPLE_PAY"),
+                Self::FiatWallet => f.write_str("FIAT_WALLET"),
+                Self::CryptoAccount => f.write_str("CRYPTO_ACCOUNT"),
+                Self::GuestCheckoutCard => f.write_str("GUEST_CHECKOUT_CARD"),
+                Self::Paypal => f.write_str("PAYPAL"),
+                Self::Rtp => f.write_str("RTP"),
+                Self::GuestCheckoutApplePay => f.write_str("GUEST_CHECKOUT_APPLE_PAY"),
+                Self::GuestCheckoutGooglePay => f.write_str("GUEST_CHECKOUT_GOOGLE_PAY"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for OfframpTransactionPayloadPaymentMethod {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "UNSPECIFIED" => Ok(Self::Unspecified),
+                "CARD" => Ok(Self::Card),
+                "ACH_BANK_ACCOUNT" => Ok(Self::AchBankAccount),
+                "APPLE_PAY" => Ok(Self::ApplePay),
+                "FIAT_WALLET" => Ok(Self::FiatWallet),
+                "CRYPTO_ACCOUNT" => Ok(Self::CryptoAccount),
+                "GUEST_CHECKOUT_CARD" => Ok(Self::GuestCheckoutCard),
+                "PAYPAL" => Ok(Self::Paypal),
+                "RTP" => Ok(Self::Rtp),
+                "GUEST_CHECKOUT_APPLE_PAY" => Ok(Self::GuestCheckoutApplePay),
+                "GUEST_CHECKOUT_GOOGLE_PAY" => Ok(Self::GuestCheckoutGooglePay),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for OfframpTransactionPayloadPaymentMethod {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for OfframpTransactionPayloadPaymentMethod {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for OfframpTransactionPayloadPaymentMethod {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///Current status of the offramp transaction.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Current status of the offramp transaction.",
+    ///  "examples": [
+    ///    "TRANSACTION_STATUS_STARTED"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "TRANSACTION_STATUS_UNSPECIFIED",
+    ///    "TRANSACTION_STATUS_CREATED",
+    ///    "TRANSACTION_STATUS_EXPIRED",
+    ///    "TRANSACTION_STATUS_STARTED",
+    ///    "TRANSACTION_STATUS_SUCCESS",
+    ///    "TRANSACTION_STATUS_FAILED"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum OfframpTransactionPayloadStatus {
+        #[serde(rename = "TRANSACTION_STATUS_UNSPECIFIED")]
+        TransactionStatusUnspecified,
+        #[serde(rename = "TRANSACTION_STATUS_CREATED")]
+        TransactionStatusCreated,
+        #[serde(rename = "TRANSACTION_STATUS_EXPIRED")]
+        TransactionStatusExpired,
+        #[serde(rename = "TRANSACTION_STATUS_STARTED")]
+        TransactionStatusStarted,
+        #[serde(rename = "TRANSACTION_STATUS_SUCCESS")]
+        TransactionStatusSuccess,
+        #[serde(rename = "TRANSACTION_STATUS_FAILED")]
+        TransactionStatusFailed,
+    }
+    impl ::std::convert::From<&Self> for OfframpTransactionPayloadStatus {
+        fn from(value: &OfframpTransactionPayloadStatus) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for OfframpTransactionPayloadStatus {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::TransactionStatusUnspecified => f.write_str("TRANSACTION_STATUS_UNSPECIFIED"),
+                Self::TransactionStatusCreated => f.write_str("TRANSACTION_STATUS_CREATED"),
+                Self::TransactionStatusExpired => f.write_str("TRANSACTION_STATUS_EXPIRED"),
+                Self::TransactionStatusStarted => f.write_str("TRANSACTION_STATUS_STARTED"),
+                Self::TransactionStatusSuccess => f.write_str("TRANSACTION_STATUS_SUCCESS"),
+                Self::TransactionStatusFailed => f.write_str("TRANSACTION_STATUS_FAILED"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for OfframpTransactionPayloadStatus {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "TRANSACTION_STATUS_UNSPECIFIED" => Ok(Self::TransactionStatusUnspecified),
+                "TRANSACTION_STATUS_CREATED" => Ok(Self::TransactionStatusCreated),
+                "TRANSACTION_STATUS_EXPIRED" => Ok(Self::TransactionStatusExpired),
+                "TRANSACTION_STATUS_STARTED" => Ok(Self::TransactionStatusStarted),
+                "TRANSACTION_STATUS_SUCCESS" => Ok(Self::TransactionStatusSuccess),
+                "TRANSACTION_STATUS_FAILED" => Ok(Self::TransactionStatusFailed),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for OfframpTransactionPayloadStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for OfframpTransactionPayloadStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for OfframpTransactionPayloadStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///`OfframpTransactionSuccessEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "allOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/OfframpTransactionPayload"
+    ///    }
+    ///  ],
+    ///  "x-event-type": "offramp.transaction.success"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct OfframpTransactionSuccessEvent(pub OfframpTransactionPayload);
+    impl ::std::ops::Deref for OfframpTransactionSuccessEvent {
+        type Target = OfframpTransactionPayload;
+        fn deref(&self) -> &OfframpTransactionPayload {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<OfframpTransactionSuccessEvent> for OfframpTransactionPayload {
+        fn from(value: OfframpTransactionSuccessEvent) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<&OfframpTransactionSuccessEvent> for OfframpTransactionSuccessEvent {
+        fn from(value: &OfframpTransactionSuccessEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::convert::From<OfframpTransactionPayload> for OfframpTransactionSuccessEvent {
+        fn from(value: OfframpTransactionPayload) -> Self {
+            Self(value)
+        }
+    }
+    ///`OfframpTransactionUpdatedEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "allOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/OfframpTransactionPayload"
+    ///    }
+    ///  ],
+    ///  "x-event-type": "offramp.transaction.updated"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct OfframpTransactionUpdatedEvent(pub OfframpTransactionPayload);
+    impl ::std::ops::Deref for OfframpTransactionUpdatedEvent {
+        type Target = OfframpTransactionPayload;
+        fn deref(&self) -> &OfframpTransactionPayload {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<OfframpTransactionUpdatedEvent> for OfframpTransactionPayload {
+        fn from(value: OfframpTransactionUpdatedEvent) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<&OfframpTransactionUpdatedEvent> for OfframpTransactionUpdatedEvent {
+        fn from(value: &OfframpTransactionUpdatedEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::convert::From<OfframpTransactionPayload> for OfframpTransactionUpdatedEvent {
+        fn from(value: OfframpTransactionPayload) -> Self {
+            Self(value)
+        }
+    }
+    ///The payload delivered when onchain activity matching your subscription filters is detected. Each event corresponds to a single decoded contract log emitted onchain. The set of keys in `parameters` varies by the contract event being decoded (e.g., `Transfer(address,address,uint256)`).
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The payload delivered when onchain activity matching your subscription filters is detected. Each event corresponds to a single decoded contract log emitted onchain. The set of keys in `parameters` varies by the contract event being decoded (e.g., `Transfer(address,address,uint256)`).",
+    ///  "examples": [
+    ///    {
+    ///      "block_number": 46218191,
+    ///      "contract_address": "0x940181a94A35A4569E4529A3CDfB74e38FD98631",
+    ///      "event_name": "Transfer",
+    ///      "event_signature": "Transfer(address,address,uint256)",
+    ///      "log_index": 29,
+    ///      "network": "base-mainnet",
+    ///      "parameters": {
+    ///        "from": "0xF33a96b5932D9E9B9A0eDA447AbD8C9d48d2e0c8",
+    ///        "to": "0x61040E143A77F165Ba44543AF4A079F2C809D14b",
+    ///        "value": "474891138228179365"
+    ///      },
+    ///      "timestamp": "2026-05-19T21:22:10Z",
+    ///      "transaction_from": "0x3E16D476D8Df15e3E776EAa5A46f37EC44C830cD",
+    ///      "transaction_hash": "0xa58e4471bcce875b1ea49cc0864a620d3a484b9b7c1b0b4fd18ce83f5b30e5e0",
+    ///      "transaction_to": "0x61040E143A77F165Ba44543AF4A079F2C809D14b"
+    ///    }
+    ///  ],
+    ///  "type": "object",
+    ///  "required": [
+    ///    "block_number",
+    ///    "contract_address",
+    ///    "event_name",
+    ///    "event_signature",
+    ///    "log_index",
+    ///    "network",
+    ///    "parameters",
+    ///    "timestamp",
+    ///    "transaction_from",
+    ///    "transaction_hash",
+    ///    "transaction_to"
+    ///  ],
+    ///  "properties": {
+    ///    "block_number": {
+    ///      "description": "The block number containing the transaction that emitted the event.",
+    ///      "examples": [
+    ///        46218191
+    ///      ],
+    ///      "type": "integer",
+    ///      "format": "int64"
+    ///    },
+    ///    "contract_address": {
+    ///      "description": "The contract address that emitted the event.",
+    ///      "examples": [
+    ///        "0x940181a94A35A4569E4529A3CDfB74e38FD98631"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "event_name": {
+    ///      "description": "The name of the decoded contract event.",
+    ///      "examples": [
+    ///        "Transfer"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "event_signature": {
+    ///      "description": "The canonical event signature used to decode the log, including parameter types (e.g., `Transfer(address,address,uint256)`).",
+    ///      "examples": [
+    ///        "Transfer(address,address,uint256)"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "log_index": {
+    ///      "description": "The zero-based index of the log within the transaction.",
+    ///      "examples": [
+    ///        29
+    ///      ],
+    ///      "type": "integer",
+    ///      "format": "int64"
+    ///    },
+    ///    "network": {
+    ///      "description": "The blockchain network where the activity was detected.",
+    ///      "examples": [
+    ///        "base-mainnet"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "parameters": {
+    ///      "$ref": "#/components/schemas/OnchainActivityEventParameters"
+    ///    },
+    ///    "timestamp": {
+    ///      "description": "The block timestamp of the transaction (ISO 8601 format).",
+    ///      "examples": [
+    ///        "2026-05-19T21:22:10Z"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    },
+    ///    "transaction_from": {
+    ///      "description": "The address that initiated the transaction (the transaction sender).",
+    ///      "examples": [
+    ///        "0x3E16D476D8Df15e3E776EAa5A46f37EC44C830cD"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "transaction_hash": {
+    ///      "description": "The hash of the transaction that emitted the event.",
+    ///      "examples": [
+    ///        "0xa58e4471bcce875b1ea49cc0864a620d3a484b9b7c1b0b4fd18ce83f5b30e5e0"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "transaction_to": {
+    ///      "description": "The address the transaction was sent to (typically a contract address).",
+    ///      "examples": [
+    ///        "0x61040E143A77F165Ba44543AF4A079F2C809D14b"
+    ///      ],
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-event-type": "onchain.activity.detected"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct OnchainActivityDetectedEvent {
+        ///The block number containing the transaction that emitted the event.
+        pub block_number: i64,
+        ///The contract address that emitted the event.
+        pub contract_address: ::std::string::String,
+        ///The name of the decoded contract event.
+        pub event_name: ::std::string::String,
+        ///The canonical event signature used to decode the log, including parameter types (e.g., `Transfer(address,address,uint256)`).
+        pub event_signature: ::std::string::String,
+        ///The zero-based index of the log within the transaction.
+        pub log_index: i64,
+        ///The blockchain network where the activity was detected.
+        pub network: ::std::string::String,
+        pub parameters: OnchainActivityEventParameters,
+        ///The block timestamp of the transaction (ISO 8601 format).
+        pub timestamp: ::chrono::DateTime<::chrono::offset::Utc>,
+        ///The address that initiated the transaction (the transaction sender).
+        pub transaction_from: ::std::string::String,
+        ///The hash of the transaction that emitted the event.
+        pub transaction_hash: ::std::string::String,
+        ///The address the transaction was sent to (typically a contract address).
+        pub transaction_to: ::std::string::String,
+    }
+    impl ::std::convert::From<&OnchainActivityDetectedEvent> for OnchainActivityDetectedEvent {
+        fn from(value: &OnchainActivityDetectedEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl OnchainActivityDetectedEvent {
+        pub fn builder() -> builder::OnchainActivityDetectedEvent {
+            Default::default()
+        }
+    }
+    ///Decoded blockchain event data for the wallet activity webhook. The exact fields depend on the type of onchain activity detected. Common fields include network, block info, and transaction hash. Additional fields are event-specific (e.g., `from`, `to`, `value` for transfers).
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Decoded blockchain event data for the wallet activity webhook. The exact fields depend on the type of onchain activity detected. Common fields include network, block info, and transaction hash. Additional fields are event-specific (e.g., `from`, `to`, `value` for transfers).",
+    ///  "examples": [
+    ///    {
+    ///      "blockNumber": "12345678",
+    ///      "blockTimestamp": "2025-06-01T11:59:55Z",
+    ///      "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    ///      "eventName": "Transfer",
+    ///      "logIndex": "0",
+    ///      "network": "base-mainnet",
+    ///      "transactionHash": "0xabc123def456789012345678901234567890abcdef1234567890abcdef123456"
+    ///    }
+    ///  ],
+    ///  "type": "object",
+    ///  "required": [
+    ///    "network",
+    ///    "transactionHash"
+    ///  ],
+    ///  "properties": {
+    ///    "blockNumber": {
+    ///      "description": "The block number containing the transaction.",
+    ///      "examples": [
+    ///        "12345678"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "blockTimestamp": {
+    ///      "description": "The timestamp of the block.",
+    ///      "examples": [
+    ///        "2025-06-01T11:59:55Z"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    },
+    ///    "contractAddress": {
+    ///      "description": "The contract address that emitted the event.",
+    ///      "examples": [
+    ///        "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "eventName": {
+    ///      "description": "The name of the decoded contract event.",
+    ///      "examples": [
+    ///        "Transfer"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "logIndex": {
+    ///      "description": "The log index within the transaction.",
+    ///      "examples": [
+    ///        "0"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "network": {
+    ///      "description": "The blockchain network where the activity was detected.",
+    ///      "examples": [
+    ///        "base-mainnet"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "transactionHash": {
+    ///      "description": "The transaction hash of the detected activity.",
+    ///      "examples": [
+    ///        "0xabc123def456789012345678901234567890abcdef1234567890abcdef123456"
+    ///      ],
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "additionalProperties": true
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct OnchainActivityEventData {
+        ///The block number containing the transaction.
+        #[serde(
+            rename = "blockNumber",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub block_number: ::std::option::Option<::std::string::String>,
+        ///The timestamp of the block.
+        #[serde(
+            rename = "blockTimestamp",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub block_timestamp: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+        ///The contract address that emitted the event.
+        #[serde(
+            rename = "contractAddress",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub contract_address: ::std::option::Option<::std::string::String>,
+        ///The name of the decoded contract event.
+        #[serde(
+            rename = "eventName",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub event_name: ::std::option::Option<::std::string::String>,
+        ///The log index within the transaction.
+        #[serde(
+            rename = "logIndex",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub log_index: ::std::option::Option<::std::string::String>,
+        ///The blockchain network where the activity was detected.
+        pub network: ::std::string::String,
+        ///The transaction hash of the detected activity.
+        #[serde(rename = "transactionHash")]
+        pub transaction_hash: ::std::string::String,
+    }
+    impl ::std::convert::From<&OnchainActivityEventData> for OnchainActivityEventData {
+        fn from(value: &OnchainActivityEventData) -> Self {
+            value.clone()
+        }
+    }
+    impl OnchainActivityEventData {
+        pub fn builder() -> builder::OnchainActivityEventData {
+            Default::default()
+        }
+    }
+    ///Decoded event parameters from the contract event. Keys correspond to the named arguments in the event signature (e.g., `from`, `to`, `value` for an ERC-20 `Transfer`). Values are returned as strings to preserve precision for large integers and to avoid loss for address types. The exact set of keys depends on the contract event.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Decoded event parameters from the contract event. Keys correspond to the named arguments in the event signature (e.g., `from`, `to`, `value` for an ERC-20 `Transfer`). Values are returned as strings to preserve precision for large integers and to avoid loss for address types. The exact set of keys depends on the contract event.",
+    ///  "examples": [
+    ///    {
+    ///      "from": "0xF33a96b5932D9E9B9A0eDA447AbD8C9d48d2e0c8",
+    ///      "to": "0x61040E143A77F165Ba44543AF4A079F2C809D14b",
+    ///      "value": "474891138228179365"
+    ///    }
+    ///  ],
+    ///  "type": "object",
+    ///  "additionalProperties": {
+    ///    "type": "string"
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct OnchainActivityEventParameters(
+        pub ::std::collections::HashMap<::std::string::String, ::std::string::String>,
+    );
+    impl ::std::ops::Deref for OnchainActivityEventParameters {
+        type Target = ::std::collections::HashMap<::std::string::String, ::std::string::String>;
+        fn deref(
+            &self,
+        ) -> &::std::collections::HashMap<::std::string::String, ::std::string::String> {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<OnchainActivityEventParameters>
+        for ::std::collections::HashMap<::std::string::String, ::std::string::String>
+    {
+        fn from(value: OnchainActivityEventParameters) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<&OnchainActivityEventParameters> for OnchainActivityEventParameters {
+        fn from(value: &OnchainActivityEventParameters) -> Self {
+            value.clone()
+        }
+    }
+    impl
+        ::std::convert::From<
+            ::std::collections::HashMap<::std::string::String, ::std::string::String>,
+        > for OnchainActivityEventParameters
+    {
+        fn from(
+            value: ::std::collections::HashMap<::std::string::String, ::std::string::String>,
+        ) -> Self {
+            Self(value)
         }
     }
     ///The target of the payment is an onchain address.
@@ -29759,7 +30881,7 @@ pub mod types {
         }
     }
     /**Schema information for the query result. This is a derived schema from the query result, so types may not match the underlying table.
-     */
+    */
     ///
     /// <details><summary>JSON schema</summary>
     ///
@@ -30428,7 +31550,6 @@ pub mod types {
     ///  ],
     ///  "type": "object",
     ///  "required": [
-    ///    "fields",
     ///    "userId",
     ///    "userIdType"
     ///  ],
@@ -30452,7 +31573,8 @@ pub mod types {
     /// </details>
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct OnrampLimitUpgradeRequest {
-        pub fields: OnrampLimitUpgradeIdentityFields,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub fields: ::std::option::Option<OnrampLimitUpgradeIdentityFields>,
         ///The user identifier value. For `phone_number` type, this must be in E.164 format.
         #[serde(rename = "userId")]
         pub user_id: ::std::string::String,
@@ -30822,6 +31944,529 @@ pub mod types {
         }
     }
     impl ::std::convert::TryFrom<::std::string::String> for OnrampOrderFeeType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///Webhook payload for Headless Onramp API orders (Apple Pay / Google Pay). Serialized from the OnrampOrder proto via protojson with eventType appended.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Webhook payload for Headless Onramp API orders (Apple Pay / Google Pay). Serialized from the OnrampOrder proto via protojson with eventType appended.",
+    ///  "type": "object",
+    ///  "required": [
+    ///    "eventType",
+    ///    "orderId",
+    ///    "status"
+    ///  ],
+    ///  "properties": {
+    ///    "createdAt": {
+    ///      "description": "When the order was created.",
+    ///      "examples": [
+    ///        "2025-09-10T10:30:00Z"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    },
+    ///    "destinationAddress": {
+    ///      "description": "The destination wallet address.",
+    ///      "examples": [
+    ///        "0x1234567890abcdef1234567890abcdef12345678"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "destinationNetwork": {
+    ///      "description": "The blockchain network for delivery.",
+    ///      "examples": [
+    ///        "base"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "eventType": {
+    ///      "description": "The webhook event type.",
+    ///      "examples": [
+    ///        "onramp.transaction.success"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "exchangeRate": {
+    ///      "description": "The exchange rate used for conversion.",
+    ///      "examples": [
+    ///        "1"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "fees": {
+    ///      "description": "Breakdown of fees for the order.",
+    ///      "examples": [
+    ///        [
+    ///          {
+    ///            "feeAmount": "0.5",
+    ///            "feeCurrency": "USD",
+    ///            "feeType": "FEE_TYPE_NETWORK"
+    ///          },
+    ///          {
+    ///            "feeAmount": "0.25",
+    ///            "feeCurrency": "USD",
+    ///            "feeType": "FEE_TYPE_EXCHANGE"
+    ///          }
+    ///        ]
+    ///      ],
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/OrderFee"
+    ///      }
+    ///    },
+    ///    "orderId": {
+    ///      "description": "Unique order identifier.",
+    ///      "examples": [
+    ///        "123e4567-e89b-12d3-a456-426614174000"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "uuid"
+    ///    },
+    ///    "partnerUserRef": {
+    ///      "description": "The partner user reference ID.",
+    ///      "examples": [
+    ///        "example_user_ref"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "paymentCurrency": {
+    ///      "description": "The fiat currency used for payment.",
+    ///      "examples": [
+    ///        "USD"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "paymentMethod": {
+    ///      "description": "The payment method used.",
+    ///      "examples": [
+    ///        "GUEST_CHECKOUT_APPLE_PAY"
+    ///      ],
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "UNSPECIFIED",
+    ///        "CARD",
+    ///        "ACH_BANK_ACCOUNT",
+    ///        "APPLE_PAY",
+    ///        "FIAT_WALLET",
+    ///        "CRYPTO_ACCOUNT",
+    ///        "GUEST_CHECKOUT_CARD",
+    ///        "PAYPAL",
+    ///        "RTP",
+    ///        "GUEST_CHECKOUT_APPLE_PAY",
+    ///        "GUEST_CHECKOUT_GOOGLE_PAY"
+    ///      ]
+    ///    },
+    ///    "paymentSubtotal": {
+    ///      "description": "The fiat amount converted to crypto (excluding fees).",
+    ///      "examples": [
+    ///        "100"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "paymentTotal": {
+    ///      "description": "The total fiat amount paid.",
+    ///      "examples": [
+    ///        "100.75"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "purchaseAmount": {
+    ///      "description": "The amount of crypto purchased.",
+    ///      "examples": [
+    ///        "100.000000"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "purchaseCurrency": {
+    ///      "description": "The crypto currency purchased.",
+    ///      "examples": [
+    ///        "USDC"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "status": {
+    ///      "description": "The status of the order.",
+    ///      "examples": [
+    ///        "ONRAMP_ORDER_STATUS_COMPLETED"
+    ///      ],
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "ONRAMP_ORDER_STATUS_UNSPECIFIED",
+    ///        "ONRAMP_ORDER_STATUS_PENDING_AUTH",
+    ///        "ONRAMP_ORDER_STATUS_PENDING_PAYMENT",
+    ///        "ONRAMP_ORDER_STATUS_PROCESSING",
+    ///        "ONRAMP_ORDER_STATUS_COMPLETED",
+    ///        "ONRAMP_ORDER_STATUS_FAILED"
+    ///      ]
+    ///    },
+    ///    "txHash": {
+    ///      "description": "The onchain transaction hash (available once crypto is sent).",
+    ///      "examples": [
+    ///        "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "updatedAt": {
+    ///      "description": "When the order was last updated.",
+    ///      "examples": [
+    ///        "2025-09-10T10:35:00Z"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct OnrampOrderPayload {
+        ///When the order was created.
+        #[serde(
+            rename = "createdAt",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub created_at: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+        ///The destination wallet address.
+        #[serde(
+            rename = "destinationAddress",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub destination_address: ::std::option::Option<::std::string::String>,
+        ///The blockchain network for delivery.
+        #[serde(
+            rename = "destinationNetwork",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub destination_network: ::std::option::Option<::std::string::String>,
+        ///The webhook event type.
+        #[serde(rename = "eventType")]
+        pub event_type: ::std::string::String,
+        ///The exchange rate used for conversion.
+        #[serde(
+            rename = "exchangeRate",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub exchange_rate: ::std::option::Option<::std::string::String>,
+        ///Breakdown of fees for the order.
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub fees: ::std::vec::Vec<OrderFee>,
+        ///Unique order identifier.
+        #[serde(rename = "orderId")]
+        pub order_id: ::uuid::Uuid,
+        ///The partner user reference ID.
+        #[serde(
+            rename = "partnerUserRef",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub partner_user_ref: ::std::option::Option<::std::string::String>,
+        ///The fiat currency used for payment.
+        #[serde(
+            rename = "paymentCurrency",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_currency: ::std::option::Option<::std::string::String>,
+        ///The payment method used.
+        #[serde(
+            rename = "paymentMethod",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_method: ::std::option::Option<OnrampOrderPayloadPaymentMethod>,
+        ///The fiat amount converted to crypto (excluding fees).
+        #[serde(
+            rename = "paymentSubtotal",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_subtotal: ::std::option::Option<::std::string::String>,
+        ///The total fiat amount paid.
+        #[serde(
+            rename = "paymentTotal",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_total: ::std::option::Option<::std::string::String>,
+        ///The amount of crypto purchased.
+        #[serde(
+            rename = "purchaseAmount",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub purchase_amount: ::std::option::Option<::std::string::String>,
+        ///The crypto currency purchased.
+        #[serde(
+            rename = "purchaseCurrency",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub purchase_currency: ::std::option::Option<::std::string::String>,
+        ///The status of the order.
+        pub status: OnrampOrderPayloadStatus,
+        ///The onchain transaction hash (available once crypto is sent).
+        #[serde(
+            rename = "txHash",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub tx_hash: ::std::option::Option<::std::string::String>,
+        ///When the order was last updated.
+        #[serde(
+            rename = "updatedAt",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub updated_at: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+    }
+    impl ::std::convert::From<&OnrampOrderPayload> for OnrampOrderPayload {
+        fn from(value: &OnrampOrderPayload) -> Self {
+            value.clone()
+        }
+    }
+    impl OnrampOrderPayload {
+        pub fn builder() -> builder::OnrampOrderPayload {
+            Default::default()
+        }
+    }
+    ///The payment method used.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The payment method used.",
+    ///  "examples": [
+    ///    "GUEST_CHECKOUT_APPLE_PAY"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "UNSPECIFIED",
+    ///    "CARD",
+    ///    "ACH_BANK_ACCOUNT",
+    ///    "APPLE_PAY",
+    ///    "FIAT_WALLET",
+    ///    "CRYPTO_ACCOUNT",
+    ///    "GUEST_CHECKOUT_CARD",
+    ///    "PAYPAL",
+    ///    "RTP",
+    ///    "GUEST_CHECKOUT_APPLE_PAY",
+    ///    "GUEST_CHECKOUT_GOOGLE_PAY"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum OnrampOrderPayloadPaymentMethod {
+        #[serde(rename = "UNSPECIFIED")]
+        Unspecified,
+        #[serde(rename = "CARD")]
+        Card,
+        #[serde(rename = "ACH_BANK_ACCOUNT")]
+        AchBankAccount,
+        #[serde(rename = "APPLE_PAY")]
+        ApplePay,
+        #[serde(rename = "FIAT_WALLET")]
+        FiatWallet,
+        #[serde(rename = "CRYPTO_ACCOUNT")]
+        CryptoAccount,
+        #[serde(rename = "GUEST_CHECKOUT_CARD")]
+        GuestCheckoutCard,
+        #[serde(rename = "PAYPAL")]
+        Paypal,
+        #[serde(rename = "RTP")]
+        Rtp,
+        #[serde(rename = "GUEST_CHECKOUT_APPLE_PAY")]
+        GuestCheckoutApplePay,
+        #[serde(rename = "GUEST_CHECKOUT_GOOGLE_PAY")]
+        GuestCheckoutGooglePay,
+    }
+    impl ::std::convert::From<&Self> for OnrampOrderPayloadPaymentMethod {
+        fn from(value: &OnrampOrderPayloadPaymentMethod) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for OnrampOrderPayloadPaymentMethod {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Unspecified => f.write_str("UNSPECIFIED"),
+                Self::Card => f.write_str("CARD"),
+                Self::AchBankAccount => f.write_str("ACH_BANK_ACCOUNT"),
+                Self::ApplePay => f.write_str("APPLE_PAY"),
+                Self::FiatWallet => f.write_str("FIAT_WALLET"),
+                Self::CryptoAccount => f.write_str("CRYPTO_ACCOUNT"),
+                Self::GuestCheckoutCard => f.write_str("GUEST_CHECKOUT_CARD"),
+                Self::Paypal => f.write_str("PAYPAL"),
+                Self::Rtp => f.write_str("RTP"),
+                Self::GuestCheckoutApplePay => f.write_str("GUEST_CHECKOUT_APPLE_PAY"),
+                Self::GuestCheckoutGooglePay => f.write_str("GUEST_CHECKOUT_GOOGLE_PAY"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for OnrampOrderPayloadPaymentMethod {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "UNSPECIFIED" => Ok(Self::Unspecified),
+                "CARD" => Ok(Self::Card),
+                "ACH_BANK_ACCOUNT" => Ok(Self::AchBankAccount),
+                "APPLE_PAY" => Ok(Self::ApplePay),
+                "FIAT_WALLET" => Ok(Self::FiatWallet),
+                "CRYPTO_ACCOUNT" => Ok(Self::CryptoAccount),
+                "GUEST_CHECKOUT_CARD" => Ok(Self::GuestCheckoutCard),
+                "PAYPAL" => Ok(Self::Paypal),
+                "RTP" => Ok(Self::Rtp),
+                "GUEST_CHECKOUT_APPLE_PAY" => Ok(Self::GuestCheckoutApplePay),
+                "GUEST_CHECKOUT_GOOGLE_PAY" => Ok(Self::GuestCheckoutGooglePay),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for OnrampOrderPayloadPaymentMethod {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for OnrampOrderPayloadPaymentMethod {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for OnrampOrderPayloadPaymentMethod {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///The status of the order.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The status of the order.",
+    ///  "examples": [
+    ///    "ONRAMP_ORDER_STATUS_COMPLETED"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "ONRAMP_ORDER_STATUS_UNSPECIFIED",
+    ///    "ONRAMP_ORDER_STATUS_PENDING_AUTH",
+    ///    "ONRAMP_ORDER_STATUS_PENDING_PAYMENT",
+    ///    "ONRAMP_ORDER_STATUS_PROCESSING",
+    ///    "ONRAMP_ORDER_STATUS_COMPLETED",
+    ///    "ONRAMP_ORDER_STATUS_FAILED"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum OnrampOrderPayloadStatus {
+        #[serde(rename = "ONRAMP_ORDER_STATUS_UNSPECIFIED")]
+        OnrampOrderStatusUnspecified,
+        #[serde(rename = "ONRAMP_ORDER_STATUS_PENDING_AUTH")]
+        OnrampOrderStatusPendingAuth,
+        #[serde(rename = "ONRAMP_ORDER_STATUS_PENDING_PAYMENT")]
+        OnrampOrderStatusPendingPayment,
+        #[serde(rename = "ONRAMP_ORDER_STATUS_PROCESSING")]
+        OnrampOrderStatusProcessing,
+        #[serde(rename = "ONRAMP_ORDER_STATUS_COMPLETED")]
+        OnrampOrderStatusCompleted,
+        #[serde(rename = "ONRAMP_ORDER_STATUS_FAILED")]
+        OnrampOrderStatusFailed,
+    }
+    impl ::std::convert::From<&Self> for OnrampOrderPayloadStatus {
+        fn from(value: &OnrampOrderPayloadStatus) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for OnrampOrderPayloadStatus {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::OnrampOrderStatusUnspecified => {
+                    f.write_str("ONRAMP_ORDER_STATUS_UNSPECIFIED")
+                }
+                Self::OnrampOrderStatusPendingAuth => {
+                    f.write_str("ONRAMP_ORDER_STATUS_PENDING_AUTH")
+                }
+                Self::OnrampOrderStatusPendingPayment => {
+                    f.write_str("ONRAMP_ORDER_STATUS_PENDING_PAYMENT")
+                }
+                Self::OnrampOrderStatusProcessing => f.write_str("ONRAMP_ORDER_STATUS_PROCESSING"),
+                Self::OnrampOrderStatusCompleted => f.write_str("ONRAMP_ORDER_STATUS_COMPLETED"),
+                Self::OnrampOrderStatusFailed => f.write_str("ONRAMP_ORDER_STATUS_FAILED"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for OnrampOrderPayloadStatus {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "ONRAMP_ORDER_STATUS_UNSPECIFIED" => Ok(Self::OnrampOrderStatusUnspecified),
+                "ONRAMP_ORDER_STATUS_PENDING_AUTH" => Ok(Self::OnrampOrderStatusPendingAuth),
+                "ONRAMP_ORDER_STATUS_PENDING_PAYMENT" => Ok(Self::OnrampOrderStatusPendingPayment),
+                "ONRAMP_ORDER_STATUS_PROCESSING" => Ok(Self::OnrampOrderStatusProcessing),
+                "ONRAMP_ORDER_STATUS_COMPLETED" => Ok(Self::OnrampOrderStatusCompleted),
+                "ONRAMP_ORDER_STATUS_FAILED" => Ok(Self::OnrampOrderStatusFailed),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for OnrampOrderPayloadStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for OnrampOrderPayloadStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for OnrampOrderPayloadStatus {
         type Error = self::error::ConversionError;
         fn try_from(
             value: ::std::string::String,
@@ -31439,6 +33084,1287 @@ pub mod types {
             Default::default()
         }
     }
+    ///Common request parameters shared by [Create Onramp Session](#operation/createOnrampSession) and [Create Onramp Mobile Challenge](#operation/createOnrampMobileChallenge).
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Common request parameters shared by [Create Onramp Session](#operation/createOnrampSession) and [Create Onramp Mobile Challenge](#operation/createOnrampMobileChallenge).",
+    ///  "type": "object",
+    ///  "required": [
+    ///    "destinationAddress",
+    ///    "destinationNetwork",
+    ///    "purchaseCurrency"
+    ///  ],
+    ///  "properties": {
+    ///    "clientIp": {
+    ///      "description": "The IP address of the end user requesting the onramp transaction.",
+    ///      "examples": [
+    ///        "127.0.0.1"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "country": {
+    ///      "description": "The ISO 3166-1 two letter country code (e.g. US).",
+    ///      "examples": [
+    ///        "US"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "destinationAddress": {
+    ///      "description": "The address the purchased crypto will be sent to.",
+    ///      "examples": [
+    ///        "0x1234567890abcdef1234567890abcdef12345678"
+    ///      ],
+    ///      "allOf": [
+    ///        {
+    ///          "$ref": "#/components/schemas/BlockchainAddress"
+    ///        }
+    ///      ]
+    ///    },
+    ///    "destinationNetwork": {
+    ///      "description": "The name of the crypto network the purchased currency will be sent on.\n\nUse the [Onramp Buy Options API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-buy-options) to discover the supported networks for your user's location.",
+    ///      "examples": [
+    ///        "base"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "partnerUserRef": {
+    ///      "description": "A unique string that represents the user in your app. This can be used to link individual transactions together so you can retrieve the transaction history for your users. Prefix this string with \"sandbox-\" (e.g. \"sandbox-user-1234\") to perform a sandbox transaction which will allow you to test your integration without any real transfer of funds.\n\nThis value can be used with the [Onramp User Transactions API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-onramp-transactions-by-id) to retrieve all transactions created by the user.",
+    ///      "examples": [
+    ///        "user-1234"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "paymentAmount": {
+    ///      "description": "A string representing the amount of fiat the user wishes to pay in exchange for crypto. When using this parameter, the returned quote will be inclusive of fees i.e. the user will pay this exact amount of the payment currency.",
+    ///      "examples": [
+    ///        "100.00"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "paymentCurrency": {
+    ///      "description": "The fiat currency to be converted to crypto.",
+    ///      "examples": [
+    ///        "USD"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "paymentMethod": {
+    ///      "$ref": "#/components/schemas/OnrampQuotePaymentMethodTypeId"
+    ///    },
+    ///    "purchaseAmount": {
+    ///      "description": "A string representing the amount of crypto the user wishes to purchase. When using this parameter, the returned quote will be exclusive of fees i.e. the user will receive this exact amount of the purchase currency.",
+    ///      "examples": [
+    ///        "10.000000"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "purchaseCurrency": {
+    ///      "description": "The ticker (e.g. `BTC`, `USDC`, `SOL`) or the Coinbase UUID (e.g. `d85dce9b-5b73-5c3c-8978-522ce1d1c1b4`) of the crypto asset to be purchased.\n\nUse the [Onramp Buy Options API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-buy-options) to discover the supported purchase currencies for your user's location.",
+    ///      "examples": [
+    ///        "USDC"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "redirectUrl": {
+    ///      "description": "URI to redirect the user to after they complete or dismiss the transaction. Embedded in the returned onramp URL as a query parameter.",
+    ///      "examples": [
+    ///        "https://example.com/success"
+    ///      ],
+    ///      "allOf": [
+    ///        {
+    ///          "$ref": "#/components/schemas/Uri"
+    ///        }
+    ///      ]
+    ///    },
+    ///    "subdivision": {
+    ///      "description": "The ISO 3166-2 two letter state code (e.g. NY). Only required for US.",
+    ///      "examples": [
+    ///        "NY"
+    ///      ],
+    ///      "type": "string"
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct OnrampSessionRequest {
+        ///The IP address of the end user requesting the onramp transaction.
+        #[serde(
+            rename = "clientIp",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub client_ip: ::std::option::Option<::std::string::String>,
+        ///The ISO 3166-1 two letter country code (e.g. US).
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub country: ::std::option::Option<::std::string::String>,
+        ///The address the purchased crypto will be sent to.
+        #[serde(rename = "destinationAddress")]
+        pub destination_address: BlockchainAddress,
+        /**The name of the crypto network the purchased currency will be sent on.
+
+        Use the [Onramp Buy Options API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-buy-options) to discover the supported networks for your user's location.*/
+        #[serde(rename = "destinationNetwork")]
+        pub destination_network: ::std::string::String,
+        /**A unique string that represents the user in your app. This can be used to link individual transactions together so you can retrieve the transaction history for your users. Prefix this string with "sandbox-" (e.g. "sandbox-user-1234") to perform a sandbox transaction which will allow you to test your integration without any real transfer of funds.
+
+        This value can be used with the [Onramp User Transactions API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-onramp-transactions-by-id) to retrieve all transactions created by the user.*/
+        #[serde(
+            rename = "partnerUserRef",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub partner_user_ref: ::std::option::Option<::std::string::String>,
+        ///A string representing the amount of fiat the user wishes to pay in exchange for crypto. When using this parameter, the returned quote will be inclusive of fees i.e. the user will pay this exact amount of the payment currency.
+        #[serde(
+            rename = "paymentAmount",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_amount: ::std::option::Option<::std::string::String>,
+        ///The fiat currency to be converted to crypto.
+        #[serde(
+            rename = "paymentCurrency",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_currency: ::std::option::Option<::std::string::String>,
+        #[serde(
+            rename = "paymentMethod",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_method: ::std::option::Option<OnrampQuotePaymentMethodTypeId>,
+        ///A string representing the amount of crypto the user wishes to purchase. When using this parameter, the returned quote will be exclusive of fees i.e. the user will receive this exact amount of the purchase currency.
+        #[serde(
+            rename = "purchaseAmount",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub purchase_amount: ::std::option::Option<::std::string::String>,
+        /**The ticker (e.g. `BTC`, `USDC`, `SOL`) or the Coinbase UUID (e.g. `d85dce9b-5b73-5c3c-8978-522ce1d1c1b4`) of the crypto asset to be purchased.
+
+        Use the [Onramp Buy Options API](https://docs.cdp.coinbase.com/api-reference/rest-api/onramp-offramp/get-buy-options) to discover the supported purchase currencies for your user's location.*/
+        #[serde(rename = "purchaseCurrency")]
+        pub purchase_currency: ::std::string::String,
+        ///URI to redirect the user to after they complete or dismiss the transaction. Embedded in the returned onramp URL as a query parameter.
+        #[serde(
+            rename = "redirectUrl",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub redirect_url: ::std::option::Option<Uri>,
+        ///The ISO 3166-2 two letter state code (e.g. NY). Only required for US.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub subdivision: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::convert::From<&OnrampSessionRequest> for OnrampSessionRequest {
+        fn from(value: &OnrampSessionRequest) -> Self {
+            value.clone()
+        }
+    }
+    impl OnrampSessionRequest {
+        pub fn builder() -> builder::OnrampSessionRequest {
+            Default::default()
+        }
+    }
+    ///`OnrampTransactionCreatedEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "allOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/OnrampTransactionEvent"
+    ///    }
+    ///  ],
+    ///  "x-event-type": "onramp.transaction.created"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct OnrampTransactionCreatedEvent(pub OnrampTransactionEvent);
+    impl ::std::ops::Deref for OnrampTransactionCreatedEvent {
+        type Target = OnrampTransactionEvent;
+        fn deref(&self) -> &OnrampTransactionEvent {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<OnrampTransactionCreatedEvent> for OnrampTransactionEvent {
+        fn from(value: OnrampTransactionCreatedEvent) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<&OnrampTransactionCreatedEvent> for OnrampTransactionCreatedEvent {
+        fn from(value: &OnrampTransactionCreatedEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::convert::From<OnrampTransactionEvent> for OnrampTransactionCreatedEvent {
+        fn from(value: OnrampTransactionEvent) -> Self {
+            Self(value)
+        }
+    }
+    ///Webhook payload for all onramp transaction events (created, updated, success, failed). Shape depends on transaction type — standard flow (guest checkout / authorized) uses OnrampTransactionPayload, Headless API (Apple Pay / Google Pay) uses OnrampOrderPayload. Distinguish by presence of `orderId` (Headless) vs `transactionId` (standard).
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Webhook payload for all onramp transaction events (created, updated, success, failed). Shape depends on transaction type — standard flow (guest checkout / authorized) uses OnrampTransactionPayload, Headless API (Apple Pay / Google Pay) uses OnrampOrderPayload. Distinguish by presence of `orderId` (Headless) vs `transactionId` (standard).",
+    ///  "oneOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/OnrampTransactionPayload"
+    ///    },
+    ///    {
+    ///      "$ref": "#/components/schemas/OnrampOrderPayload"
+    ///    }
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(untagged)]
+    pub enum OnrampTransactionEvent {
+        TransactionPayload(OnrampTransactionPayload),
+        OrderPayload(OnrampOrderPayload),
+    }
+    impl ::std::convert::From<&Self> for OnrampTransactionEvent {
+        fn from(value: &OnrampTransactionEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::convert::From<OnrampTransactionPayload> for OnrampTransactionEvent {
+        fn from(value: OnrampTransactionPayload) -> Self {
+            Self::TransactionPayload(value)
+        }
+    }
+    impl ::std::convert::From<OnrampOrderPayload> for OnrampTransactionEvent {
+        fn from(value: OnrampOrderPayload) -> Self {
+            Self::OrderPayload(value)
+        }
+    }
+    ///`OnrampTransactionFailedEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "allOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/OnrampTransactionEvent"
+    ///    }
+    ///  ],
+    ///  "x-event-type": "onramp.transaction.failed"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct OnrampTransactionFailedEvent(pub OnrampTransactionEvent);
+    impl ::std::ops::Deref for OnrampTransactionFailedEvent {
+        type Target = OnrampTransactionEvent;
+        fn deref(&self) -> &OnrampTransactionEvent {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<OnrampTransactionFailedEvent> for OnrampTransactionEvent {
+        fn from(value: OnrampTransactionFailedEvent) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<&OnrampTransactionFailedEvent> for OnrampTransactionFailedEvent {
+        fn from(value: &OnrampTransactionFailedEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::convert::From<OnrampTransactionEvent> for OnrampTransactionFailedEvent {
+        fn from(value: OnrampTransactionEvent) -> Self {
+            Self(value)
+        }
+    }
+    ///Webhook payload for standard onramp transactions (guest checkout and authed flow). Serialized from the OnrampTransaction proto via protojson with eventType appended.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Webhook payload for standard onramp transactions (guest checkout and authed flow). Serialized from the OnrampTransaction proto via protojson with eventType appended.",
+    ///  "type": "object",
+    ///  "required": [
+    ///    "eventType",
+    ///    "status",
+    ///    "transactionId"
+    ///  ],
+    ///  "properties": {
+    ///    "coinbaseFee": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "completedAt": {
+    ///      "description": "When the transaction completed (uses send_started_at for early success).",
+    ///      "examples": [
+    ///        "0001-01-01T00:00:00Z"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    },
+    ///    "contractAddress": {
+    ///      "description": "The token contract address (populated when asset metadata is available).",
+    ///      "examples": [
+    ///        ""
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "country": {
+    ///      "description": "The user's country code.",
+    ///      "examples": [
+    ///        "US"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "createdAt": {
+    ///      "description": "When the transaction was created.",
+    ///      "examples": [
+    ///        "2025-09-02T02:34:13Z"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    },
+    ///    "endPartnerName": {
+    ///      "description": "The name of the developer app.",
+    ///      "examples": [
+    ///        ""
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "errorCode": {
+    ///      "description": "Error code for the transaction failure (if applicable).",
+    ///      "examples": [
+    ///        "ERROR_CODE_UNSPECIFIED"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "eventType": {
+    ///      "description": "The webhook event type.",
+    ///      "examples": [
+    ///        "onramp.transaction.updated"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "exchangeRate": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "failureReason": {
+    ///      "description": "The reason for failure (if applicable).",
+    ///      "examples": [
+    ///        "FAILURE_REASON_UNSPECIFIED"
+    ///      ],
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "FAILURE_REASON_UNSPECIFIED",
+    ///        "FAILURE_REASON_BUY_FAILED",
+    ///        "FAILURE_REASON_SEND_FAILED"
+    ///      ]
+    ///    },
+    ///    "networkFee": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "partnerUserRef": {
+    ///      "description": "The partnerUserId provided when initializing the onramp session.",
+    ///      "examples": [
+    ///        "example_user_ref"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "paymentMethod": {
+    ///      "description": "The payment method used.",
+    ///      "examples": [
+    ///        "CARD"
+    ///      ],
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "UNSPECIFIED",
+    ///        "CARD",
+    ///        "ACH_BANK_ACCOUNT",
+    ///        "APPLE_PAY",
+    ///        "FIAT_WALLET",
+    ///        "CRYPTO_ACCOUNT",
+    ///        "GUEST_CHECKOUT_CARD",
+    ///        "PAYPAL",
+    ///        "RTP",
+    ///        "GUEST_CHECKOUT_APPLE_PAY",
+    ///        "GUEST_CHECKOUT_GOOGLE_PAY"
+    ///      ]
+    ///    },
+    ///    "paymentSubtotal": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "paymentTotal": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "paymentTotalUsd": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "purchaseAmount": {
+    ///      "$ref": "#/components/schemas/MoneyAmount"
+    ///    },
+    ///    "purchaseCurrency": {
+    ///      "description": "The crypto currency purchased (e.g., \"USDC\", \"ETH\").",
+    ///      "examples": [
+    ///        "USDC"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "purchaseNetwork": {
+    ///      "description": "The blockchain network for the purchase (e.g., \"ethereum\", \"base\").",
+    ///      "examples": [
+    ///        "ethereum"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "status": {
+    ///      "description": "Current status of the transaction.",
+    ///      "examples": [
+    ///        "ONRAMP_TRANSACTION_STATUS_IN_PROGRESS"
+    ///      ],
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "ONRAMP_TRANSACTION_STATUS_UNSPECIFIED",
+    ///        "ONRAMP_TRANSACTION_STATUS_CREATED",
+    ///        "ONRAMP_TRANSACTION_STATUS_IN_PROGRESS",
+    ///        "ONRAMP_TRANSACTION_STATUS_SUCCESS",
+    ///        "ONRAMP_TRANSACTION_STATUS_FAILED",
+    ///        "ONRAMP_TRANSACTION_STATUS_AWAITING_AUTH",
+    ///        "ONRAMP_TRANSACTION_STATUS_AWAITING_PAYMENT"
+    ///      ]
+    ///    },
+    ///    "transactionId": {
+    ///      "description": "Unique transaction identifier.",
+    ///      "examples": [
+    ///        "1f087a54-ff1f-62e8-9f85-aa77ac0499a5"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "txHash": {
+    ///      "description": "The onchain transaction hash of the send (0x-prefixed for EVM).",
+    ///      "examples": [
+    ///        "0x"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "type": {
+    ///      "description": "The type of onramp transaction.",
+    ///      "examples": [
+    ///        "ONRAMP_TRANSACTION_TYPE_BUY_AND_SEND"
+    ///      ],
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "ONRAMP_TRANSACTION_TYPE_UNSPECIFIED",
+    ///        "ONRAMP_TRANSACTION_TYPE_BUY_AND_SEND",
+    ///        "ONRAMP_TRANSACTION_TYPE_SEND"
+    ///      ]
+    ///    },
+    ///    "userId": {
+    ///      "description": "Hashed user identifier (entity hash for guest, user ID for authed).",
+    ///      "examples": [
+    ///        "4132b63ee21128686458155b28570289"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "userType": {
+    ///      "description": "Whether the user is authed or guest.",
+    ///      "examples": [
+    ///        "USER_TYPE_GUEST"
+    ///      ],
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "USER_TYPE_UNSPECIFIED",
+    ///        "USER_TYPE_AUTHED",
+    ///        "USER_TYPE_GUEST"
+    ///      ]
+    ///    },
+    ///    "walletAddress": {
+    ///      "description": "The destination wallet address.",
+    ///      "examples": [
+    ///        "0xe0512E358C347cc2b1A42d057065CE642068b7Ba"
+    ///      ],
+    ///      "type": "string"
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct OnrampTransactionPayload {
+        #[serde(
+            rename = "coinbaseFee",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub coinbase_fee: ::std::option::Option<MoneyAmount>,
+        ///When the transaction completed (uses send_started_at for early success).
+        #[serde(
+            rename = "completedAt",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub completed_at: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+        ///The token contract address (populated when asset metadata is available).
+        #[serde(
+            rename = "contractAddress",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub contract_address: ::std::option::Option<::std::string::String>,
+        ///The user's country code.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub country: ::std::option::Option<::std::string::String>,
+        ///When the transaction was created.
+        #[serde(
+            rename = "createdAt",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub created_at: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+        ///The name of the developer app.
+        #[serde(
+            rename = "endPartnerName",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub end_partner_name: ::std::option::Option<::std::string::String>,
+        ///Error code for the transaction failure (if applicable).
+        #[serde(
+            rename = "errorCode",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub error_code: ::std::option::Option<::std::string::String>,
+        ///The webhook event type.
+        #[serde(rename = "eventType")]
+        pub event_type: ::std::string::String,
+        #[serde(
+            rename = "exchangeRate",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub exchange_rate: ::std::option::Option<MoneyAmount>,
+        ///The reason for failure (if applicable).
+        #[serde(
+            rename = "failureReason",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub failure_reason: ::std::option::Option<OnrampTransactionPayloadFailureReason>,
+        #[serde(
+            rename = "networkFee",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub network_fee: ::std::option::Option<MoneyAmount>,
+        ///The partnerUserId provided when initializing the onramp session.
+        #[serde(
+            rename = "partnerUserRef",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub partner_user_ref: ::std::option::Option<::std::string::String>,
+        ///The payment method used.
+        #[serde(
+            rename = "paymentMethod",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_method: ::std::option::Option<OnrampTransactionPayloadPaymentMethod>,
+        #[serde(
+            rename = "paymentSubtotal",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_subtotal: ::std::option::Option<MoneyAmount>,
+        #[serde(
+            rename = "paymentTotal",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_total: ::std::option::Option<MoneyAmount>,
+        #[serde(
+            rename = "paymentTotalUsd",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub payment_total_usd: ::std::option::Option<MoneyAmount>,
+        #[serde(
+            rename = "purchaseAmount",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub purchase_amount: ::std::option::Option<MoneyAmount>,
+        ///The crypto currency purchased (e.g., "USDC", "ETH").
+        #[serde(
+            rename = "purchaseCurrency",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub purchase_currency: ::std::option::Option<::std::string::String>,
+        ///The blockchain network for the purchase (e.g., "ethereum", "base").
+        #[serde(
+            rename = "purchaseNetwork",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub purchase_network: ::std::option::Option<::std::string::String>,
+        ///Current status of the transaction.
+        pub status: OnrampTransactionPayloadStatus,
+        ///Unique transaction identifier.
+        #[serde(rename = "transactionId")]
+        pub transaction_id: ::std::string::String,
+        ///The onchain transaction hash of the send (0x-prefixed for EVM).
+        #[serde(
+            rename = "txHash",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub tx_hash: ::std::option::Option<::std::string::String>,
+        ///The type of onramp transaction.
+        #[serde(
+            rename = "type",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub type_: ::std::option::Option<OnrampTransactionPayloadType>,
+        ///Hashed user identifier (entity hash for guest, user ID for authed).
+        #[serde(
+            rename = "userId",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub user_id: ::std::option::Option<::std::string::String>,
+        ///Whether the user is authed or guest.
+        #[serde(
+            rename = "userType",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub user_type: ::std::option::Option<OnrampTransactionPayloadUserType>,
+        ///The destination wallet address.
+        #[serde(
+            rename = "walletAddress",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub wallet_address: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::convert::From<&OnrampTransactionPayload> for OnrampTransactionPayload {
+        fn from(value: &OnrampTransactionPayload) -> Self {
+            value.clone()
+        }
+    }
+    impl OnrampTransactionPayload {
+        pub fn builder() -> builder::OnrampTransactionPayload {
+            Default::default()
+        }
+    }
+    ///The reason for failure (if applicable).
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The reason for failure (if applicable).",
+    ///  "examples": [
+    ///    "FAILURE_REASON_UNSPECIFIED"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "FAILURE_REASON_UNSPECIFIED",
+    ///    "FAILURE_REASON_BUY_FAILED",
+    ///    "FAILURE_REASON_SEND_FAILED"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum OnrampTransactionPayloadFailureReason {
+        #[serde(rename = "FAILURE_REASON_UNSPECIFIED")]
+        FailureReasonUnspecified,
+        #[serde(rename = "FAILURE_REASON_BUY_FAILED")]
+        FailureReasonBuyFailed,
+        #[serde(rename = "FAILURE_REASON_SEND_FAILED")]
+        FailureReasonSendFailed,
+    }
+    impl ::std::convert::From<&Self> for OnrampTransactionPayloadFailureReason {
+        fn from(value: &OnrampTransactionPayloadFailureReason) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for OnrampTransactionPayloadFailureReason {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::FailureReasonUnspecified => f.write_str("FAILURE_REASON_UNSPECIFIED"),
+                Self::FailureReasonBuyFailed => f.write_str("FAILURE_REASON_BUY_FAILED"),
+                Self::FailureReasonSendFailed => f.write_str("FAILURE_REASON_SEND_FAILED"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for OnrampTransactionPayloadFailureReason {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "FAILURE_REASON_UNSPECIFIED" => Ok(Self::FailureReasonUnspecified),
+                "FAILURE_REASON_BUY_FAILED" => Ok(Self::FailureReasonBuyFailed),
+                "FAILURE_REASON_SEND_FAILED" => Ok(Self::FailureReasonSendFailed),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for OnrampTransactionPayloadFailureReason {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for OnrampTransactionPayloadFailureReason {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for OnrampTransactionPayloadFailureReason {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///The payment method used.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The payment method used.",
+    ///  "examples": [
+    ///    "CARD"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "UNSPECIFIED",
+    ///    "CARD",
+    ///    "ACH_BANK_ACCOUNT",
+    ///    "APPLE_PAY",
+    ///    "FIAT_WALLET",
+    ///    "CRYPTO_ACCOUNT",
+    ///    "GUEST_CHECKOUT_CARD",
+    ///    "PAYPAL",
+    ///    "RTP",
+    ///    "GUEST_CHECKOUT_APPLE_PAY",
+    ///    "GUEST_CHECKOUT_GOOGLE_PAY"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum OnrampTransactionPayloadPaymentMethod {
+        #[serde(rename = "UNSPECIFIED")]
+        Unspecified,
+        #[serde(rename = "CARD")]
+        Card,
+        #[serde(rename = "ACH_BANK_ACCOUNT")]
+        AchBankAccount,
+        #[serde(rename = "APPLE_PAY")]
+        ApplePay,
+        #[serde(rename = "FIAT_WALLET")]
+        FiatWallet,
+        #[serde(rename = "CRYPTO_ACCOUNT")]
+        CryptoAccount,
+        #[serde(rename = "GUEST_CHECKOUT_CARD")]
+        GuestCheckoutCard,
+        #[serde(rename = "PAYPAL")]
+        Paypal,
+        #[serde(rename = "RTP")]
+        Rtp,
+        #[serde(rename = "GUEST_CHECKOUT_APPLE_PAY")]
+        GuestCheckoutApplePay,
+        #[serde(rename = "GUEST_CHECKOUT_GOOGLE_PAY")]
+        GuestCheckoutGooglePay,
+    }
+    impl ::std::convert::From<&Self> for OnrampTransactionPayloadPaymentMethod {
+        fn from(value: &OnrampTransactionPayloadPaymentMethod) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for OnrampTransactionPayloadPaymentMethod {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Unspecified => f.write_str("UNSPECIFIED"),
+                Self::Card => f.write_str("CARD"),
+                Self::AchBankAccount => f.write_str("ACH_BANK_ACCOUNT"),
+                Self::ApplePay => f.write_str("APPLE_PAY"),
+                Self::FiatWallet => f.write_str("FIAT_WALLET"),
+                Self::CryptoAccount => f.write_str("CRYPTO_ACCOUNT"),
+                Self::GuestCheckoutCard => f.write_str("GUEST_CHECKOUT_CARD"),
+                Self::Paypal => f.write_str("PAYPAL"),
+                Self::Rtp => f.write_str("RTP"),
+                Self::GuestCheckoutApplePay => f.write_str("GUEST_CHECKOUT_APPLE_PAY"),
+                Self::GuestCheckoutGooglePay => f.write_str("GUEST_CHECKOUT_GOOGLE_PAY"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for OnrampTransactionPayloadPaymentMethod {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "UNSPECIFIED" => Ok(Self::Unspecified),
+                "CARD" => Ok(Self::Card),
+                "ACH_BANK_ACCOUNT" => Ok(Self::AchBankAccount),
+                "APPLE_PAY" => Ok(Self::ApplePay),
+                "FIAT_WALLET" => Ok(Self::FiatWallet),
+                "CRYPTO_ACCOUNT" => Ok(Self::CryptoAccount),
+                "GUEST_CHECKOUT_CARD" => Ok(Self::GuestCheckoutCard),
+                "PAYPAL" => Ok(Self::Paypal),
+                "RTP" => Ok(Self::Rtp),
+                "GUEST_CHECKOUT_APPLE_PAY" => Ok(Self::GuestCheckoutApplePay),
+                "GUEST_CHECKOUT_GOOGLE_PAY" => Ok(Self::GuestCheckoutGooglePay),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for OnrampTransactionPayloadPaymentMethod {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for OnrampTransactionPayloadPaymentMethod {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for OnrampTransactionPayloadPaymentMethod {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///Current status of the transaction.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Current status of the transaction.",
+    ///  "examples": [
+    ///    "ONRAMP_TRANSACTION_STATUS_IN_PROGRESS"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "ONRAMP_TRANSACTION_STATUS_UNSPECIFIED",
+    ///    "ONRAMP_TRANSACTION_STATUS_CREATED",
+    ///    "ONRAMP_TRANSACTION_STATUS_IN_PROGRESS",
+    ///    "ONRAMP_TRANSACTION_STATUS_SUCCESS",
+    ///    "ONRAMP_TRANSACTION_STATUS_FAILED",
+    ///    "ONRAMP_TRANSACTION_STATUS_AWAITING_AUTH",
+    ///    "ONRAMP_TRANSACTION_STATUS_AWAITING_PAYMENT"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum OnrampTransactionPayloadStatus {
+        #[serde(rename = "ONRAMP_TRANSACTION_STATUS_UNSPECIFIED")]
+        OnrampTransactionStatusUnspecified,
+        #[serde(rename = "ONRAMP_TRANSACTION_STATUS_CREATED")]
+        OnrampTransactionStatusCreated,
+        #[serde(rename = "ONRAMP_TRANSACTION_STATUS_IN_PROGRESS")]
+        OnrampTransactionStatusInProgress,
+        #[serde(rename = "ONRAMP_TRANSACTION_STATUS_SUCCESS")]
+        OnrampTransactionStatusSuccess,
+        #[serde(rename = "ONRAMP_TRANSACTION_STATUS_FAILED")]
+        OnrampTransactionStatusFailed,
+        #[serde(rename = "ONRAMP_TRANSACTION_STATUS_AWAITING_AUTH")]
+        OnrampTransactionStatusAwaitingAuth,
+        #[serde(rename = "ONRAMP_TRANSACTION_STATUS_AWAITING_PAYMENT")]
+        OnrampTransactionStatusAwaitingPayment,
+    }
+    impl ::std::convert::From<&Self> for OnrampTransactionPayloadStatus {
+        fn from(value: &OnrampTransactionPayloadStatus) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for OnrampTransactionPayloadStatus {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::OnrampTransactionStatusUnspecified => {
+                    f.write_str("ONRAMP_TRANSACTION_STATUS_UNSPECIFIED")
+                }
+                Self::OnrampTransactionStatusCreated => {
+                    f.write_str("ONRAMP_TRANSACTION_STATUS_CREATED")
+                }
+                Self::OnrampTransactionStatusInProgress => {
+                    f.write_str("ONRAMP_TRANSACTION_STATUS_IN_PROGRESS")
+                }
+                Self::OnrampTransactionStatusSuccess => {
+                    f.write_str("ONRAMP_TRANSACTION_STATUS_SUCCESS")
+                }
+                Self::OnrampTransactionStatusFailed => {
+                    f.write_str("ONRAMP_TRANSACTION_STATUS_FAILED")
+                }
+                Self::OnrampTransactionStatusAwaitingAuth => {
+                    f.write_str("ONRAMP_TRANSACTION_STATUS_AWAITING_AUTH")
+                }
+                Self::OnrampTransactionStatusAwaitingPayment => {
+                    f.write_str("ONRAMP_TRANSACTION_STATUS_AWAITING_PAYMENT")
+                }
+            }
+        }
+    }
+    impl ::std::str::FromStr for OnrampTransactionPayloadStatus {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "ONRAMP_TRANSACTION_STATUS_UNSPECIFIED" => {
+                    Ok(Self::OnrampTransactionStatusUnspecified)
+                }
+                "ONRAMP_TRANSACTION_STATUS_CREATED" => Ok(Self::OnrampTransactionStatusCreated),
+                "ONRAMP_TRANSACTION_STATUS_IN_PROGRESS" => {
+                    Ok(Self::OnrampTransactionStatusInProgress)
+                }
+                "ONRAMP_TRANSACTION_STATUS_SUCCESS" => Ok(Self::OnrampTransactionStatusSuccess),
+                "ONRAMP_TRANSACTION_STATUS_FAILED" => Ok(Self::OnrampTransactionStatusFailed),
+                "ONRAMP_TRANSACTION_STATUS_AWAITING_AUTH" => {
+                    Ok(Self::OnrampTransactionStatusAwaitingAuth)
+                }
+                "ONRAMP_TRANSACTION_STATUS_AWAITING_PAYMENT" => {
+                    Ok(Self::OnrampTransactionStatusAwaitingPayment)
+                }
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for OnrampTransactionPayloadStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for OnrampTransactionPayloadStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for OnrampTransactionPayloadStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///The type of onramp transaction.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The type of onramp transaction.",
+    ///  "examples": [
+    ///    "ONRAMP_TRANSACTION_TYPE_BUY_AND_SEND"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "ONRAMP_TRANSACTION_TYPE_UNSPECIFIED",
+    ///    "ONRAMP_TRANSACTION_TYPE_BUY_AND_SEND",
+    ///    "ONRAMP_TRANSACTION_TYPE_SEND"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum OnrampTransactionPayloadType {
+        #[serde(rename = "ONRAMP_TRANSACTION_TYPE_UNSPECIFIED")]
+        OnrampTransactionTypeUnspecified,
+        #[serde(rename = "ONRAMP_TRANSACTION_TYPE_BUY_AND_SEND")]
+        OnrampTransactionTypeBuyAndSend,
+        #[serde(rename = "ONRAMP_TRANSACTION_TYPE_SEND")]
+        OnrampTransactionTypeSend,
+    }
+    impl ::std::convert::From<&Self> for OnrampTransactionPayloadType {
+        fn from(value: &OnrampTransactionPayloadType) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for OnrampTransactionPayloadType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::OnrampTransactionTypeUnspecified => {
+                    f.write_str("ONRAMP_TRANSACTION_TYPE_UNSPECIFIED")
+                }
+                Self::OnrampTransactionTypeBuyAndSend => {
+                    f.write_str("ONRAMP_TRANSACTION_TYPE_BUY_AND_SEND")
+                }
+                Self::OnrampTransactionTypeSend => f.write_str("ONRAMP_TRANSACTION_TYPE_SEND"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for OnrampTransactionPayloadType {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "ONRAMP_TRANSACTION_TYPE_UNSPECIFIED" => Ok(Self::OnrampTransactionTypeUnspecified),
+                "ONRAMP_TRANSACTION_TYPE_BUY_AND_SEND" => Ok(Self::OnrampTransactionTypeBuyAndSend),
+                "ONRAMP_TRANSACTION_TYPE_SEND" => Ok(Self::OnrampTransactionTypeSend),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for OnrampTransactionPayloadType {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for OnrampTransactionPayloadType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for OnrampTransactionPayloadType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///Whether the user is authed or guest.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Whether the user is authed or guest.",
+    ///  "examples": [
+    ///    "USER_TYPE_GUEST"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "USER_TYPE_UNSPECIFIED",
+    ///    "USER_TYPE_AUTHED",
+    ///    "USER_TYPE_GUEST"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum OnrampTransactionPayloadUserType {
+        #[serde(rename = "USER_TYPE_UNSPECIFIED")]
+        UserTypeUnspecified,
+        #[serde(rename = "USER_TYPE_AUTHED")]
+        UserTypeAuthed,
+        #[serde(rename = "USER_TYPE_GUEST")]
+        UserTypeGuest,
+    }
+    impl ::std::convert::From<&Self> for OnrampTransactionPayloadUserType {
+        fn from(value: &OnrampTransactionPayloadUserType) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for OnrampTransactionPayloadUserType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::UserTypeUnspecified => f.write_str("USER_TYPE_UNSPECIFIED"),
+                Self::UserTypeAuthed => f.write_str("USER_TYPE_AUTHED"),
+                Self::UserTypeGuest => f.write_str("USER_TYPE_GUEST"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for OnrampTransactionPayloadUserType {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "USER_TYPE_UNSPECIFIED" => Ok(Self::UserTypeUnspecified),
+                "USER_TYPE_AUTHED" => Ok(Self::UserTypeAuthed),
+                "USER_TYPE_GUEST" => Ok(Self::UserTypeGuest),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for OnrampTransactionPayloadUserType {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for OnrampTransactionPayloadUserType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for OnrampTransactionPayloadUserType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///`OnrampTransactionSuccessEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "allOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/OnrampTransactionEvent"
+    ///    }
+    ///  ],
+    ///  "x-event-type": "onramp.transaction.success"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct OnrampTransactionSuccessEvent(pub OnrampTransactionEvent);
+    impl ::std::ops::Deref for OnrampTransactionSuccessEvent {
+        type Target = OnrampTransactionEvent;
+        fn deref(&self) -> &OnrampTransactionEvent {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<OnrampTransactionSuccessEvent> for OnrampTransactionEvent {
+        fn from(value: OnrampTransactionSuccessEvent) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<&OnrampTransactionSuccessEvent> for OnrampTransactionSuccessEvent {
+        fn from(value: &OnrampTransactionSuccessEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::convert::From<OnrampTransactionEvent> for OnrampTransactionSuccessEvent {
+        fn from(value: OnrampTransactionEvent) -> Self {
+            Self(value)
+        }
+    }
+    ///`OnrampTransactionUpdatedEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "allOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/OnrampTransactionEvent"
+    ///    }
+    ///  ],
+    ///  "x-event-type": "onramp.transaction.updated"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct OnrampTransactionUpdatedEvent(pub OnrampTransactionEvent);
+    impl ::std::ops::Deref for OnrampTransactionUpdatedEvent {
+        type Target = OnrampTransactionEvent;
+        fn deref(&self) -> &OnrampTransactionEvent {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<OnrampTransactionUpdatedEvent> for OnrampTransactionEvent {
+        fn from(value: OnrampTransactionUpdatedEvent) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<&OnrampTransactionUpdatedEvent> for OnrampTransactionUpdatedEvent {
+        fn from(value: &OnrampTransactionUpdatedEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::convert::From<OnrampTransactionEvent> for OnrampTransactionUpdatedEvent {
+        fn from(value: OnrampTransactionEvent) -> Self {
+            Self(value)
+        }
+    }
     /**The type of user identifier:
     - `phone_number`: A phone number in E.164 format associated with an onramp user.
     */
@@ -31579,6 +34505,174 @@ pub mod types {
     impl OnrampUserLimit {
         pub fn builder() -> builder::OnrampUserLimit {
             Default::default()
+        }
+    }
+    ///A fee associated with a Headless Onramp API order.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "A fee associated with a Headless Onramp API order.",
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "feeAmount": {
+    ///      "description": "The amount of the fee.",
+    ///      "examples": [
+    ///        "0.5"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "feeCurrency": {
+    ///      "description": "The currency of the fee.",
+    ///      "examples": [
+    ///        "USD"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "feeType": {
+    ///      "description": "The type of fee.",
+    ///      "examples": [
+    ///        "FEE_TYPE_NETWORK"
+    ///      ],
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "FEE_TYPE_UNSPECIFIED",
+    ///        "FEE_TYPE_NETWORK",
+    ///        "FEE_TYPE_EXCHANGE"
+    ///      ]
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct OrderFee {
+        ///The amount of the fee.
+        #[serde(
+            rename = "feeAmount",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub fee_amount: ::std::option::Option<::std::string::String>,
+        ///The currency of the fee.
+        #[serde(
+            rename = "feeCurrency",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub fee_currency: ::std::option::Option<::std::string::String>,
+        ///The type of fee.
+        #[serde(
+            rename = "feeType",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub fee_type: ::std::option::Option<OrderFeeFeeType>,
+    }
+    impl ::std::convert::From<&OrderFee> for OrderFee {
+        fn from(value: &OrderFee) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::default::Default for OrderFee {
+        fn default() -> Self {
+            Self {
+                fee_amount: Default::default(),
+                fee_currency: Default::default(),
+                fee_type: Default::default(),
+            }
+        }
+    }
+    impl OrderFee {
+        pub fn builder() -> builder::OrderFee {
+            Default::default()
+        }
+    }
+    ///The type of fee.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The type of fee.",
+    ///  "examples": [
+    ///    "FEE_TYPE_NETWORK"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "FEE_TYPE_UNSPECIFIED",
+    ///    "FEE_TYPE_NETWORK",
+    ///    "FEE_TYPE_EXCHANGE"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum OrderFeeFeeType {
+        #[serde(rename = "FEE_TYPE_UNSPECIFIED")]
+        FeeTypeUnspecified,
+        #[serde(rename = "FEE_TYPE_NETWORK")]
+        FeeTypeNetwork,
+        #[serde(rename = "FEE_TYPE_EXCHANGE")]
+        FeeTypeExchange,
+    }
+    impl ::std::convert::From<&Self> for OrderFeeFeeType {
+        fn from(value: &OrderFeeFeeType) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for OrderFeeFeeType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::FeeTypeUnspecified => f.write_str("FEE_TYPE_UNSPECIFIED"),
+                Self::FeeTypeNetwork => f.write_str("FEE_TYPE_NETWORK"),
+                Self::FeeTypeExchange => f.write_str("FEE_TYPE_EXCHANGE"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for OrderFeeFeeType {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "FEE_TYPE_UNSPECIFIED" => Ok(Self::FeeTypeUnspecified),
+                "FEE_TYPE_NETWORK" => Ok(Self::FeeTypeNetwork),
+                "FEE_TYPE_EXCHANGE" => Ok(Self::FeeTypeExchange),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for OrderFeeFeeType {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for OrderFeeFeeType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for OrderFeeFeeType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
         }
     }
     ///The originating US bank account details for the transfer source. Present when funds were deposited from an external bank account into a deposit destination. Only the last 4 digits of the account number are exposed.
@@ -31820,6 +34914,51 @@ pub mod types {
                 .map_err(|e: self::error::ConversionError| {
                     <D::Error as ::serde::de::Error>::custom(e.to_string())
                 })
+        }
+    }
+    ///The ERC-7677 `context` object forwarded to the paymaster service as part of the `paymasterService` capability. The fields in this object are defined by the paymaster service provider; CDP forwards them to the paymaster unchanged. This field is only valid when a paymaster is configured for the request. Providing `paymasterContext` without a paymaster configured results in an `invalid_request` error.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The ERC-7677 `context` object forwarded to the paymaster service as part of the `paymasterService` capability. The fields in this object are defined by the paymaster service provider; CDP forwards them to the paymaster unchanged. This field is only valid when a paymaster is configured for the request. Providing `paymasterContext` without a paymaster configured results in an `invalid_request` error.",
+    ///  "examples": [
+    ///    {
+    ///      "policyId": "962b252c-a726-4a37-8d86-333ce0a07299"
+    ///    }
+    ///  ],
+    ///  "type": "object",
+    ///  "additionalProperties": true
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct PaymasterContext(pub ::serde_json::Map<::std::string::String, ::serde_json::Value>);
+    impl ::std::ops::Deref for PaymasterContext {
+        type Target = ::serde_json::Map<::std::string::String, ::serde_json::Value>;
+        fn deref(&self) -> &::serde_json::Map<::std::string::String, ::serde_json::Value> {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<PaymasterContext>
+        for ::serde_json::Map<::std::string::String, ::serde_json::Value>
+    {
+        fn from(value: PaymasterContext) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<&PaymasterContext> for PaymasterContext {
+        fn from(value: &PaymasterContext) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::convert::From<::serde_json::Map<::std::string::String, ::serde_json::Value>>
+        for PaymasterContext
+    {
+        fn from(value: ::serde_json::Map<::std::string::String, ::serde_json::Value>) -> Self {
+            Self(value)
         }
     }
     ///The Payment Method specific details for the transfer.
@@ -32823,6 +35962,9 @@ pub mod types {
     ///    "network": {
     ///      "$ref": "#/components/schemas/EvmUserOperationNetwork"
     ///    },
+    ///    "paymasterContext": {
+    ///      "$ref": "#/components/schemas/PaymasterContext"
+    ///    },
     ///    "paymasterUrl": {
     ///      "description": "The URL of the paymaster to use for the user operation.",
     ///      "examples": [
@@ -32843,6 +35985,12 @@ pub mod types {
         ///The list of calls to make from the Smart Account.
         pub calls: ::std::vec::Vec<EvmCall>,
         pub network: EvmUserOperationNetwork,
+        #[serde(
+            rename = "paymasterContext",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub paymaster_context: ::std::option::Option<PaymasterContext>,
         ///The URL of the paymaster to use for the user operation.
         #[serde(
             rename = "paymasterUrl",
@@ -33049,6 +36197,9 @@ pub mod types {
     ///    "network": {
     ///      "$ref": "#/components/schemas/EvmUserOperationNetwork"
     ///    },
+    ///    "paymasterContext": {
+    ///      "$ref": "#/components/schemas/PaymasterContext"
+    ///    },
     ///    "paymasterUrl": {
     ///      "description": "The URL of the paymaster to use for the user operation.",
     ///      "examples": [
@@ -33076,6 +36227,12 @@ pub mod types {
         )]
         pub data_suffix: ::std::option::Option<PrepareUserOperationBodyDataSuffix>,
         pub network: EvmUserOperationNetwork,
+        #[serde(
+            rename = "paymasterContext",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub paymaster_context: ::std::option::Option<PaymasterContext>,
         ///The URL of the paymaster to use for the user operation.
         #[serde(
             rename = "paymasterUrl",
@@ -34251,7 +37408,7 @@ pub mod types {
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct RequestEvmFaucetResponse {
         /**The hash of the transaction that requested the funds.
-         **Note:** In rare cases, when gas conditions are unusually high, the transaction may not confirm, and the system may issue a replacement transaction to complete the faucet request. In these rare cases, the `transactionHash` will be out of sync with the actual faucet transaction that was confirmed onchain.*/
+        **Note:** In rare cases, when gas conditions are unusually high, the transaction may not confirm, and the system may issue a replacement transaction to complete the faucet request. In these rare cases, the `transactionHash` will be out of sync with the actual faucet transaction that was confirmed onchain.*/
         #[serde(rename = "transactionHash")]
         pub transaction_hash: ::std::string::String,
     }
@@ -37914,6 +41071,9 @@ pub mod types {
     ///        "world-sepolia"
     ///      ]
     ///    },
+    ///    "paymasterContext": {
+    ///      "$ref": "#/components/schemas/PaymasterContext"
+    ///    },
     ///    "paymasterUrl": {
     ///      "description": "Optional custom Paymaster URL to use for gas sponsorship. Only applicable for EVM Smart Accounts. This allows you to use your own Paymaster service instead of CDP's Paymaster. Cannot be used together with `useCdpPaymaster`.",
     ///      "examples": [
@@ -37953,6 +41113,12 @@ pub mod types {
         pub amount: SendEvmAssetWithEndUserAccountBodyAmount,
         ///The EVM network to send USDC on.
         pub network: SendEvmAssetWithEndUserAccountBodyNetwork,
+        #[serde(
+            rename = "paymasterContext",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub paymaster_context: ::std::option::Option<PaymasterContext>,
         ///Optional custom Paymaster URL to use for gas sponsorship. Only applicable for EVM Smart Accounts. This allows you to use your own Paymaster service instead of CDP's Paymaster. Cannot be used together with `useCdpPaymaster`.
         #[serde(
             rename = "paymasterUrl",
@@ -42678,6 +45844,9 @@ pub mod types {
     ///    "network": {
     ///      "$ref": "#/components/schemas/EvmUserOperationNetwork"
     ///    },
+    ///    "paymasterContext": {
+    ///      "$ref": "#/components/schemas/PaymasterContext"
+    ///    },
     ///    "paymasterUrl": {
     ///      "description": "The URL of the paymaster to use for the user operation. If using the CDP Paymaster, use the `useCdpPaymaster` option.",
     ///      "examples": [
@@ -42720,6 +45889,12 @@ pub mod types {
         )]
         pub data_suffix: ::std::option::Option<SendUserOperationWithEndUserAccountBodyDataSuffix>,
         pub network: EvmUserOperationNetwork,
+        #[serde(
+            rename = "paymasterContext",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub paymaster_context: ::std::option::Option<PaymasterContext>,
         ///The URL of the paymaster to use for the user operation. If using the CDP Paymaster, use the `useCdpPaymaster` option.
         #[serde(
             rename = "paymasterUrl",
@@ -58087,6 +61262,28 @@ pub mod types {
     /// ```json
     ///{
     ///  "description": "A Transfer represents all the information needed to execute a transfer and tracks the lifecycle of a transfer from initiation through completion or failure.",
+    ///  "examples": [
+    ///    {
+    ///      "completedAt": "2025-01-01T00:05:00Z",
+    ///      "createdAt": "2025-01-01T00:00:00Z",
+    ///      "source": {
+    ///        "accountId": "account_af2937b0-9846-4fe7-bfe9-ccc22d935114",
+    ///        "asset": "usd"
+    ///      },
+    ///      "sourceAmount": "103.50",
+    ///      "sourceAsset": "usd",
+    ///      "status": "completed",
+    ///      "target": {
+    ///        "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    ///        "asset": "usdc",
+    ///        "network": "base"
+    ///      },
+    ///      "targetAmount": "100.00",
+    ///      "targetAsset": "usdc",
+    ///      "transferId": "transfer_af2937b0-9846-4fe7-bfe9-ccc22d935114",
+    ///      "updatedAt": "2025-01-01T00:05:00Z"
+    ///    }
+    ///  ],
     ///  "type": "object",
     ///  "required": [
     ///    "source",
@@ -58175,7 +61372,7 @@ pub mod types {
     ///      "$ref": "#/components/schemas/TransferTarget"
     ///    },
     ///    "targetAmount": {
-    ///      "description": "The amount of the target asset that will be received, as a decimal string in standard unit denomination.",
+    ///      "description": "The amount of the target asset received, as a decimal string in standard unit denomination. May be omitted in the `quoted` state if the value cannot be guaranteed; see `estimate.targetAmount` for the expected value. Populated with the actual executed amount once the transfer completes.",
     ///      "examples": [
     ///        "100.00"
     ///      ],
@@ -58280,7 +61477,7 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub status: ::std::option::Option<TransferStatus>,
         pub target: TransferTarget,
-        ///The amount of the target asset that will be received, as a decimal string in standard unit denomination.
+        ///The amount of the target asset received, as a decimal string in standard unit denomination. May be omitted in the `quoted` state if the value cannot be guaranteed; see `estimate.targetAmount` for the expected value. Populated with the actual executed amount once the transfer completes.
         #[serde(
             rename = "targetAmount",
             default,
@@ -58548,20 +61745,17 @@ pub mod types {
             Default::default()
         }
     }
-    /**A point-in-time snapshot of estimated values for a transfer where exact amounts cannot be locked in at quote time (e.g., when the executed rate is determined at execution time and moves with the market).
+    /**Captures estimated values for transfers where amounts can't be guaranteed (e.g., USDC -> EURC).
 
-    Present in both pre-execution and post-execution states:
-    * **Quoted state:** top-level fields whose values cannot be guaranteed are absent;
-      `estimate` holds their estimated values.
+    The values in `estimate` are not modified after a transfer is executed. They are preserved as an immutable record of the original pre-execution snapshot.
 
-    * **Completed state:** top-level fields contain the actual executed values;
-      `estimate` is retained as an immutable audit snapshot of the pre-execution estimate.*/
+    The actual executed values are populated in the `transfer` resource post-execution.*/
     ///
     /// <details><summary>JSON schema</summary>
     ///
     /// ```json
     ///{
-    ///  "description": "A point-in-time snapshot of estimated values for a transfer where exact amounts cannot be locked in at quote time (e.g., when the executed rate is determined at execution time and moves with the market).\n\nPresent in both pre-execution and post-execution states:\n* **Quoted state:** top-level fields whose values cannot be guaranteed are absent;\n  `estimate` holds their estimated values.\n\n* **Completed state:** top-level fields contain the actual executed values;\n  `estimate` is retained as an immutable audit snapshot of the pre-execution estimate.",
+    ///  "description": "Captures estimated values for transfers where amounts can't be guaranteed (e.g., USDC -> EURC).\n\nThe values in `estimate` are not modified after a transfer is executed. They are preserved as an immutable record of the original pre-execution snapshot.\n\nThe actual executed values are populated in the `transfer` resource post-execution.",
     ///  "examples": [
     ///    {
     ///      "estimatedAt": "2023-10-08T14:30:00Z",
@@ -59035,7 +62229,32 @@ pub mod types {
     ///      "$ref": "#/components/schemas/TransferTarget"
     ///    },
     ///    "travelRule": {
-    ///      "$ref": "#/components/schemas/TravelRule"
+    ///      "description": "Travel Rule compliance information for this transfer. Required for transfers to external wallets above regulatory thresholds. Fields required differ by region and Coinbase contracting entity.",
+    ///      "examples": [
+    ///        {
+    ///          "beneficiary": {
+    ///            "name": "Jane Smith",
+    ///            "walletType": "custodial"
+    ///          },
+    ///          "isIntermediary": false,
+    ///          "isSelf": false,
+    ///          "originator": {
+    ///            "address": {
+    ///              "city": "San Francisco",
+    ///              "countryCode": "US",
+    ///              "line1": "123 Main St",
+    ///              "postCode": "94105",
+    ///              "state": "CA"
+    ///            },
+    ///            "name": "John Doe"
+    ///          }
+    ///        }
+    ///      ],
+    ///      "allOf": [
+    ///        {
+    ///          "$ref": "#/components/schemas/TravelRule"
+    ///        }
+    ///      ]
     ///    },
     ///    "validateOnly": {
     ///      "description": "If true, validates the transfer without initiating it.  If the request is valid, a 2xx will be returned. If the request is invalid, a 4xx error will be returned. The response will include an errorType, for e.g. invalid_target if the specified target cannot receive funds.",
@@ -59071,6 +62290,7 @@ pub mod types {
         pub metadata: ::std::option::Option<Metadata>,
         pub source: CreateTransferSource,
         pub target: TransferTarget,
+        ///Travel Rule compliance information for this transfer. Required for transfers to external wallets above regulatory thresholds. Fields required differ by region and Coinbase contracting entity.
         #[serde(
             rename = "travelRule",
             default,
@@ -59470,14 +62690,25 @@ pub mod types {
     ///      "isSelf": false,
     ///      "originator": {
     ///        "address": {
-    ///          "city": "Luxembourg",
-    ///          "countryCode": "LU",
+    ///          "city": "San Francisco",
+    ///          "countryCode": "US",
     ///          "line1": "123 Main St",
     ///          "line2": "Unit 201",
-    ///          "postCode": "L-1234"
+    ///          "postCode": "94105",
+    ///          "state": "California"
+    ///        },
+    ///        "dateOfBirth": {
+    ///          "day": "15",
+    ///          "month": "08",
+    ///          "year": "1990"
     ///        },
     ///        "financialInstitution": "PayPal, Inc.",
     ///        "name": "John Doe",
+    ///        "personalIdentification": {
+    ///          "countryOfIssue": "US",
+    ///          "type": "social_security_number",
+    ///          "value": "123-45-6789"
+    ///        },
     ///        "vasp": {
     ///          "address": {
     ///            "city": "San Francisco",
@@ -59499,7 +62730,7 @@ pub mod types {
     ///      "$ref": "#/components/schemas/TravelRuleBeneficiary"
     ///    },
     ///    "isIntermediary": {
-    ///      "description": "Indicates whether Coinbase is being used as an intermediary Virtual Asset Service Provider (VASP) to send crypto on behalf of your customer.\n\n**Background:**\n\nThe Travel Rule (FATF Recommendation 16) requires VASPs to share originator and beneficiary information for virtual asset transfers. When Coinbase acts as an intermediary, additional Travel Rule data must be provided to satisfy compliance requirements.\n\n**Set to `true` when:**\n\n- Your organization is a VASP using Coinbase to send crypto **on behalf of your end customer**\n- In this scenario, Coinbase acts as an intermediary in the transfer chain and handles Travel Rule data exchange with the beneficiary VASP\n\n**Set to `false` (or omit) when:**\n\n- You are transferring funds directly from your own Coinbase account, where **Coinbase is your primary VASP** rather than an intermediary for another institution\n\n**Impact on required fields:**\n\nWhen `isIntermediary` is `true`, you must provide the `originator` object with details about the original sender, including:\n- Originator name\n- Originator address\n- Your VASP information (`virtualAssetServiceProvider` object with `name`, `address`, and `identifier`)\n",
+    ///      "description": "Indicates whether Coinbase is being used as an intermediary Virtual Asset Service Provider (VASP) to send crypto on behalf of your customer.\n\n**Background:**\n\nThe Travel Rule (FATF Recommendation 16) requires VASPs to share originator and beneficiary information for virtual asset transfers. When Coinbase acts as an intermediary, additional Travel Rule data must be provided to satisfy compliance requirements.\n\n**Set to `true` when:**\n\n- Your organization is a VASP using Coinbase to send crypto **on behalf of your end customer**\n- In this scenario, Coinbase acts as an intermediary in the transfer chain and handles Travel Rule data exchange with the beneficiary VASP\n\n**Set to `false` (or omit) when:**\n\n- You are transferring funds directly from your own Coinbase account, where **Coinbase is your primary VASP** rather than an intermediary for another institution\n\n**Impact on required fields:**\n\nWhen `isIntermediary` is `true`, you must provide the `originator` object with details about the **original sender**, including:\n- Originator name\n- Originator address\n- Your VASP information (`virtualAssetServiceProvider` object with `name`, `address`, and `identifier`)\n\nFor jurisdictions that require them (such as Coinbase Luxembourg), `personalIdentification` and `dateOfBirth` must also reflect the **original sender's** identity — not the intermediary's. These fields will not be auto-populated from any internal KYC data when `isIntermediary` is `true`.\n",
     ///      "examples": [
     ///        true
     ///      ],
@@ -59540,10 +62771,12 @@ pub mod types {
 
         **Impact on required fields:**
 
-        When `isIntermediary` is `true`, you must provide the `originator` object with details about the original sender, including:
+        When `isIntermediary` is `true`, you must provide the `originator` object with details about the **original sender**, including:
         - Originator name
         - Originator address
         - Your VASP information (`virtualAssetServiceProvider` object with `name`, `address`, and `identifier`)
+
+        For jurisdictions that require them (such as Coinbase Luxembourg), `personalIdentification` and `dateOfBirth` must also reflect the **original sender's** identity — not the intermediary's. These fields will not be auto-populated from any internal KYC data when `isIntermediary` is `true`.
         */
         #[serde(
             rename = "isIntermediary",
@@ -59749,6 +62982,28 @@ pub mod types {
     ///    {
     ///      "type": "object",
     ///      "properties": {
+    ///        "dateOfBirth": {
+    ///          "description": "Date of birth of the originator. Required by certain jurisdictions (such as Coinbase Luxembourg) to satisfy Travel Rule reporting obligations.",
+    ///          "examples": [
+    ///            {
+    ///              "day": "15",
+    ///              "month": "08",
+    ///              "year": "1990"
+    ///            }
+    ///          ],
+    ///          "allOf": [
+    ///            {
+    ///              "$ref": "#/components/schemas/DateOfBirth"
+    ///            }
+    ///          ]
+    ///        },
+    ///        "personalId": {
+    ///          "description": "Personal identifier for travel rule compliance. For individuals: passport number, national ID, or driver's license. For institutions: LEI (Legal Entity Identifier).",
+    ///          "examples": [
+    ///            "123-45-6789"
+    ///          ],
+    ///          "type": "string"
+    ///        },
     ///        "virtualAssetServiceProvider": {
     ///          "description": "Information about the originating Virtual Asset Service Provider (VASP) that handles cryptocurrency or other virtual assets on behalf of customers.",
     ///          "type": "object",
@@ -59782,6 +63037,13 @@ pub mod types {
     pub struct TravelRuleOriginator {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub address: ::std::option::Option<PhysicalAddress>,
+        ///Date of birth of the originator. Required by certain jurisdictions (such as Coinbase Luxembourg) to satisfy Travel Rule reporting obligations.
+        #[serde(
+            rename = "dateOfBirth",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub date_of_birth: ::std::option::Option<DateOfBirth>,
         ///Name of the financial institution.
         #[serde(
             rename = "financialInstitution",
@@ -59792,6 +63054,13 @@ pub mod types {
         ///Full name of the party.
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub name: ::std::option::Option<::std::string::String>,
+        ///Personal identifier for travel rule compliance. For individuals: passport number, national ID, or driver's license. For institutions: LEI (Legal Entity Identifier).
+        #[serde(
+            rename = "personalId",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub personal_id: ::std::option::Option<::std::string::String>,
         #[serde(
             rename = "virtualAssetServiceProvider",
             default,
@@ -59809,8 +63078,10 @@ pub mod types {
         fn default() -> Self {
             Self {
                 address: Default::default(),
+                date_of_birth: Default::default(),
                 financial_institution: Default::default(),
                 name: Default::default(),
+                personal_id: Default::default(),
                 virtual_asset_service_provider: Default::default(),
             }
         }
@@ -62024,6 +65295,324 @@ pub mod types {
             Default::default()
         }
     }
+    ///`WalletActivityDetectedEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "allOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/WalletActivityEventBase"
+    ///    },
+    ///    {
+    ///      "type": "object",
+    ///      "required": [
+    ///        "eventType"
+    ///      ],
+    ///      "properties": {
+    ///        "eventType": {
+    ///          "description": "The type of webhook event.",
+    ///          "examples": [
+    ///            "wallet.activity.detected"
+    ///          ],
+    ///          "type": "string",
+    ///          "enum": [
+    ///            "wallet.activity.detected"
+    ///          ]
+    ///        }
+    ///      }
+    ///    }
+    ///  ],
+    ///  "x-event-type": "wallet.activity.detected"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct WalletActivityDetectedEvent {
+        pub data: OnchainActivityEventData,
+        ///Unique identifier for this webhook event. Use this for idempotency.
+        #[serde(rename = "eventId")]
+        pub event_id: ::uuid::Uuid,
+        ///The type of webhook event.
+        #[serde(rename = "eventType")]
+        pub event_type: WalletActivityDetectedEventEventType,
+        ///When this event occurred (ISO 8601 format).
+        pub timestamp: ::chrono::DateTime<::chrono::offset::Utc>,
+    }
+    impl ::std::convert::From<&WalletActivityDetectedEvent> for WalletActivityDetectedEvent {
+        fn from(value: &WalletActivityDetectedEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl WalletActivityDetectedEvent {
+        pub fn builder() -> builder::WalletActivityDetectedEvent {
+            Default::default()
+        }
+    }
+    ///The type of webhook event.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The type of webhook event.",
+    ///  "examples": [
+    ///    "wallet.activity.detected"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "wallet.activity.detected"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum WalletActivityDetectedEventEventType {
+        #[serde(rename = "wallet.activity.detected")]
+        WalletActivityDetected,
+    }
+    impl ::std::convert::From<&Self> for WalletActivityDetectedEventEventType {
+        fn from(value: &WalletActivityDetectedEventEventType) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for WalletActivityDetectedEventEventType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::WalletActivityDetected => f.write_str("wallet.activity.detected"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for WalletActivityDetectedEventEventType {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "wallet.activity.detected" => Ok(Self::WalletActivityDetected),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for WalletActivityDetectedEventEventType {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for WalletActivityDetectedEventEventType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for WalletActivityDetectedEventEventType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///Common fields included in every wallet activity webhook event payload.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Common fields included in every wallet activity webhook event payload.",
+    ///  "type": "object",
+    ///  "required": [
+    ///    "data",
+    ///    "eventId",
+    ///    "timestamp"
+    ///  ],
+    ///  "properties": {
+    ///    "data": {
+    ///      "$ref": "#/components/schemas/OnchainActivityEventData"
+    ///    },
+    ///    "eventId": {
+    ///      "description": "Unique identifier for this webhook event. Use this for idempotency.",
+    ///      "examples": [
+    ///        "123e4567-e89b-12d3-a456-426614174000"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "uuid"
+    ///    },
+    ///    "timestamp": {
+    ///      "description": "When this event occurred (ISO 8601 format).",
+    ///      "examples": [
+    ///        "2025-06-01T12:00:00Z"
+    ///      ],
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct WalletActivityEventBase {
+        pub data: OnchainActivityEventData,
+        ///Unique identifier for this webhook event. Use this for idempotency.
+        #[serde(rename = "eventId")]
+        pub event_id: ::uuid::Uuid,
+        ///When this event occurred (ISO 8601 format).
+        pub timestamp: ::chrono::DateTime<::chrono::offset::Utc>,
+    }
+    impl ::std::convert::From<&WalletActivityEventBase> for WalletActivityEventBase {
+        fn from(value: &WalletActivityEventBase) -> Self {
+            value.clone()
+        }
+    }
+    impl WalletActivityEventBase {
+        pub fn builder() -> builder::WalletActivityEventBase {
+            Default::default()
+        }
+    }
+    ///`WalletActivityMultiEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "allOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/WalletActivityEventBase"
+    ///    },
+    ///    {
+    ///      "type": "object",
+    ///      "required": [
+    ///        "eventType"
+    ///      ],
+    ///      "properties": {
+    ///        "eventType": {
+    ///          "description": "The type of webhook event.",
+    ///          "examples": [
+    ///            "wallet.activity.multi"
+    ///          ],
+    ///          "type": "string",
+    ///          "enum": [
+    ///            "wallet.activity.multi"
+    ///          ]
+    ///        }
+    ///      }
+    ///    }
+    ///  ],
+    ///  "x-event-type": "wallet.activity.multi"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct WalletActivityMultiEvent {
+        pub data: OnchainActivityEventData,
+        ///Unique identifier for this webhook event. Use this for idempotency.
+        #[serde(rename = "eventId")]
+        pub event_id: ::uuid::Uuid,
+        ///The type of webhook event.
+        #[serde(rename = "eventType")]
+        pub event_type: WalletActivityMultiEventEventType,
+        ///When this event occurred (ISO 8601 format).
+        pub timestamp: ::chrono::DateTime<::chrono::offset::Utc>,
+    }
+    impl ::std::convert::From<&WalletActivityMultiEvent> for WalletActivityMultiEvent {
+        fn from(value: &WalletActivityMultiEvent) -> Self {
+            value.clone()
+        }
+    }
+    impl WalletActivityMultiEvent {
+        pub fn builder() -> builder::WalletActivityMultiEvent {
+            Default::default()
+        }
+    }
+    ///The type of webhook event.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "The type of webhook event.",
+    ///  "examples": [
+    ///    "wallet.activity.multi"
+    ///  ],
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "wallet.activity.multi"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd,
+    )]
+    pub enum WalletActivityMultiEventEventType {
+        #[serde(rename = "wallet.activity.multi")]
+        WalletActivityMulti,
+    }
+    impl ::std::convert::From<&Self> for WalletActivityMultiEventEventType {
+        fn from(value: &WalletActivityMultiEventEventType) -> Self {
+            value.clone()
+        }
+    }
+    impl ::std::fmt::Display for WalletActivityMultiEventEventType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::WalletActivityMulti => f.write_str("wallet.activity.multi"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for WalletActivityMultiEventEventType {
+        type Err = self::error::ConversionError;
+        fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "wallet.activity.multi" => Ok(Self::WalletActivityMulti),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for WalletActivityMultiEventEventType {
+        type Error = self::error::ConversionError;
+        fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String> for WalletActivityMultiEventEventType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for WalletActivityMultiEventEventType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
     ///Response containing a list of webhook event delivery attempts.
     ///
     /// <details><summary>JSON schema</summary>
@@ -62450,7 +66039,7 @@ pub mod types {
         }
     }
     /**Request to create a new webhook subscription with support for multi-label filtering.
-     */
+    */
     ///
     /// <details><summary>JSON schema</summary>
     ///
@@ -62484,7 +66073,7 @@ pub mod types {
     ///      ],
     ///      "type": "array",
     ///      "items": {
-    ///        "type": "string"
+    ///        "$ref": "#/components/schemas/EventType"
     ///      }
     ///    },
     ///    "isEnabled": {
@@ -62495,14 +66084,7 @@ pub mod types {
     ///      "type": "boolean"
     ///    },
     ///    "labels": {
-    ///      "description": "Optional. Multi-label filters using total overlap logic. Total overlap means the subscription will only trigger when\nan event contains ALL the key-value pairs specified here. Additional labels on\nthe event are allowed and will not prevent matching. Omit to receive all events for the selected event types.\n\n**Note:** Currently, labels are supported for onchain webhooks only.\n\nSee [allowed labels for onchain webhooks](https://docs.cdp.coinbase.com/api-reference/v2/rest-api/webhooks/create-webhook-subscription#onchain-label-filtering).\n",
-    ///      "examples": [
-    ///        {
-    ///          "contract_address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-    ///          "event_name": "Transfer",
-    ///          "network": "base-mainnet"
-    ///        }
-    ///      ],
+    ///      "description": "Optional. Multi-label filters using total overlap logic. Total overlap means the subscription will only trigger when\nan event contains ALL the key-value pairs specified here. Additional labels on\nthe event are allowed and will not prevent matching. Omit to receive all events for the selected event types.\n\n**Note:** Currently, labels are supported for onchain webhooks only (max 20 labels per subscription).\n\n**Allowed labels for `onchain.activity.detected`** (all in snake_case format):\n- `network` (required) — Blockchain network\n- `contract_address` — Smart contract address\n- `event_name` — Event name (e.g., \"Transfer\", \"Burn\")\n- `event_signature` — Event signature hash\n- `transaction_from` — Transaction sender address\n- `transaction_to` — Transaction recipient address\n- `params.*` — Any event parameter (e.g., `params.from`, `params.to`, `params.sender`, `params.tokenId`)\n",
     ///      "type": "object",
     ///      "additionalProperties": {
     ///        "type": "string"
@@ -62529,7 +66111,7 @@ pub mod types {
         The subscription will only receive events matching these types AND the label filter(s).
         */
         #[serde(rename = "eventTypes")]
-        pub event_types: ::std::vec::Vec<::std::string::String>,
+        pub event_types: ::std::vec::Vec<EventType>,
         ///Whether the subscription is enabled.
         #[serde(rename = "isEnabled")]
         pub is_enabled: bool,
@@ -62537,9 +66119,16 @@ pub mod types {
         an event contains ALL the key-value pairs specified here. Additional labels on
         the event are allowed and will not prevent matching. Omit to receive all events for the selected event types.
 
-        **Note:** Currently, labels are supported for onchain webhooks only.
+        **Note:** Currently, labels are supported for onchain webhooks only (max 20 labels per subscription).
 
-        See [allowed labels for onchain webhooks](https://docs.cdp.coinbase.com/api-reference/v2/rest-api/webhooks/create-webhook-subscription#onchain-label-filtering).
+        **Allowed labels for `onchain.activity.detected`** (all in snake_case format):
+        - `network` (required) — Blockchain network
+        - `contract_address` — Smart contract address
+        - `event_name` — Event name (e.g., "Transfer", "Burn")
+        - `event_signature` — Event signature hash
+        - `transaction_from` — Transaction sender address
+        - `transaction_to` — Transaction recipient address
+        - `params.*` — Any event parameter (e.g., `params.from`, `params.to`, `params.sender`, `params.tokenId`)
         */
         #[serde(
             default,
@@ -62630,7 +66219,7 @@ pub mod types {
     ///      ],
     ///      "type": "array",
     ///      "items": {
-    ///        "type": "string"
+    ///        "$ref": "#/components/schemas/EventType"
     ///      }
     ///    },
     ///    "isEnabled": {
@@ -62725,7 +66314,7 @@ pub mod types {
         "acceptance.payment_session.authorization_succeeded").
         */
         #[serde(rename = "eventTypes")]
-        pub event_types: ::std::vec::Vec<::std::string::String>,
+        pub event_types: ::std::vec::Vec<EventType>,
         ///Whether the subscription is enabled.
         #[serde(rename = "isEnabled")]
         pub is_enabled: bool,
@@ -62899,7 +66488,7 @@ pub mod types {
         }
     }
     /**Request to update an existing webhook subscription.
-     */
+    */
     ///
     /// <details><summary>JSON schema</summary>
     ///
@@ -62933,7 +66522,7 @@ pub mod types {
     ///      ],
     ///      "type": "array",
     ///      "items": {
-    ///        "type": "string"
+    ///        "$ref": "#/components/schemas/EventType"
     ///      }
     ///    },
     ///    "isEnabled": {
@@ -62944,14 +66533,7 @@ pub mod types {
     ///      "type": "boolean"
     ///    },
     ///    "labels": {
-    ///      "description": "Optional. Multi-label filters that trigger only when an event contains ALL of these key-value pairs.\n\n**Note:** Currently, labels are supported for onchain webhooks only.\n\nSee [allowed labels for onchain webhooks](https://docs.cdp.coinbase.com/api-reference/v2/rest-api/webhooks/create-webhook-subscription#onchain-label-filtering).\nOmit to receive all events for the selected event types.\n",
-    ///      "examples": [
-    ///        {
-    ///          "contract_address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-    ///          "event_name": "Transfer",
-    ///          "network": "base-mainnet"
-    ///        }
-    ///      ],
+    ///      "description": "Optional. Multi-label filters that trigger only when an event contains ALL of these key-value pairs.\nOmit to receive all events for the selected event types.\n\n**Note:** Currently, labels are supported for onchain webhooks only (max 20 labels per subscription).\n\n**Allowed labels for `onchain.activity.detected`** (all in snake_case format):\n- `network` (required) — Blockchain network\n- `contract_address` — Smart contract address\n- `event_name` — Event name (e.g., \"Transfer\", \"Burn\")\n- `event_signature` — Event signature hash\n- `transaction_from` — Transaction sender address\n- `transaction_to` — Transaction recipient address\n- `params.*` — Any event parameter (e.g., `params.from`, `params.to`, `params.sender`, `params.tokenId`)\n",
     ///      "type": "object",
     ///      "additionalProperties": {
     ///        "type": "string"
@@ -62976,16 +66558,23 @@ pub mod types {
         service.resource.verb (e.g., "onchain.activity.detected", "wallet.activity.detected", "onramp.transaction.created").
         */
         #[serde(rename = "eventTypes")]
-        pub event_types: ::std::vec::Vec<::std::string::String>,
+        pub event_types: ::std::vec::Vec<EventType>,
         ///Whether the subscription is enabled.
         #[serde(rename = "isEnabled")]
         pub is_enabled: bool,
         /**Optional. Multi-label filters that trigger only when an event contains ALL of these key-value pairs.
-
-        **Note:** Currently, labels are supported for onchain webhooks only.
-
-        See [allowed labels for onchain webhooks](https://docs.cdp.coinbase.com/api-reference/v2/rest-api/webhooks/create-webhook-subscription#onchain-label-filtering).
         Omit to receive all events for the selected event types.
+
+        **Note:** Currently, labels are supported for onchain webhooks only (max 20 labels per subscription).
+
+        **Allowed labels for `onchain.activity.detected`** (all in snake_case format):
+        - `network` (required) — Blockchain network
+        - `contract_address` — Smart contract address
+        - `event_name` — Event name (e.g., "Transfer", "Burn")
+        - `event_signature` — Event signature hash
+        - `transaction_from` — Transaction sender address
+        - `transaction_to` — Transaction recipient address
+        - `params.*` — Any event parameter (e.g., `params.from`, `params.to`, `params.sender`, `params.tokenId`)
         */
         #[serde(
             default,
@@ -66503,13 +70092,13 @@ pub mod types {
                 })
         }
     }
-    ///Response containing x402 resources associated with a merchant payment address.
+    ///Response containing x402 resources associated with a merchant payment address. The resources list is empty when no active resources are found.
     ///
     /// <details><summary>JSON schema</summary>
     ///
     /// ```json
     ///{
-    ///  "description": "Response containing x402 resources associated with a merchant payment address.",
+    ///  "description": "Response containing x402 resources associated with a merchant payment address. The resources list is empty when no active resources are found.",
     ///  "type": "object",
     ///  "required": [
     ///    "pagination",
@@ -66556,7 +70145,7 @@ pub mod types {
     ///      "$ref": "#/components/schemas/BlockchainAddress"
     ///    },
     ///    "resources": {
-    ///      "description": "List of discovered x402 resources associated with the merchant's payTo address.",
+    ///      "description": "List of discovered x402 resources associated with the merchant's payTo address. This list is empty when no active resources are found.",
     ///      "examples": [
     ///        [
     ///          {
@@ -66617,7 +70206,7 @@ pub mod types {
         pub pagination: X402DiscoveryMerchantResponsePagination,
         #[serde(rename = "payTo")]
         pub pay_to: BlockchainAddress,
-        ///List of discovered x402 resources associated with the merchant's payTo address.
+        ///List of discovered x402 resources associated with the merchant's payTo address. This list is empty when no active resources are found.
         pub resources: ::std::vec::Vec<X402DiscoveryResource>,
         #[serde(rename = "x402Version")]
         pub x402_version: X402Version,
@@ -79362,248 +82951,6 @@ pub mod types {
             }
         }
         #[derive(Clone, Debug)]
-        pub struct CreateOnrampSessionBody {
-            client_ip: ::std::result::Result<
-                ::std::option::Option<::std::string::String>,
-                ::std::string::String,
-            >,
-            country: ::std::result::Result<
-                ::std::option::Option<::std::string::String>,
-                ::std::string::String,
-            >,
-            destination_address:
-                ::std::result::Result<super::BlockchainAddress, ::std::string::String>,
-            destination_network:
-                ::std::result::Result<::std::string::String, ::std::string::String>,
-            partner_user_ref: ::std::result::Result<
-                ::std::option::Option<::std::string::String>,
-                ::std::string::String,
-            >,
-            payment_amount: ::std::result::Result<
-                ::std::option::Option<::std::string::String>,
-                ::std::string::String,
-            >,
-            payment_currency: ::std::result::Result<
-                ::std::option::Option<::std::string::String>,
-                ::std::string::String,
-            >,
-            payment_method: ::std::result::Result<
-                ::std::option::Option<super::OnrampQuotePaymentMethodTypeId>,
-                ::std::string::String,
-            >,
-            purchase_amount: ::std::result::Result<
-                ::std::option::Option<::std::string::String>,
-                ::std::string::String,
-            >,
-            purchase_currency: ::std::result::Result<::std::string::String, ::std::string::String>,
-            redirect_url:
-                ::std::result::Result<::std::option::Option<super::Uri>, ::std::string::String>,
-            subdivision: ::std::result::Result<
-                ::std::option::Option<::std::string::String>,
-                ::std::string::String,
-            >,
-        }
-        impl ::std::default::Default for CreateOnrampSessionBody {
-            fn default() -> Self {
-                Self {
-                    client_ip: Ok(Default::default()),
-                    country: Ok(Default::default()),
-                    destination_address: Err(
-                        "no value supplied for destination_address".to_string()
-                    ),
-                    destination_network: Err(
-                        "no value supplied for destination_network".to_string()
-                    ),
-                    partner_user_ref: Ok(Default::default()),
-                    payment_amount: Ok(Default::default()),
-                    payment_currency: Ok(Default::default()),
-                    payment_method: Ok(Default::default()),
-                    purchase_amount: Ok(Default::default()),
-                    purchase_currency: Err("no value supplied for purchase_currency".to_string()),
-                    redirect_url: Ok(Default::default()),
-                    subdivision: Ok(Default::default()),
-                }
-            }
-        }
-        impl CreateOnrampSessionBody {
-            pub fn client_ip<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.client_ip = value
-                    .try_into()
-                    .map_err(|e| format!("error converting supplied value for client_ip: {}", e));
-                self
-            }
-            pub fn country<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.country = value
-                    .try_into()
-                    .map_err(|e| format!("error converting supplied value for country: {}", e));
-                self
-            }
-            pub fn destination_address<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<super::BlockchainAddress>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.destination_address = value.try_into().map_err(|e| {
-                    format!(
-                        "error converting supplied value for destination_address: {}",
-                        e
-                    )
-                });
-                self
-            }
-            pub fn destination_network<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<::std::string::String>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.destination_network = value.try_into().map_err(|e| {
-                    format!(
-                        "error converting supplied value for destination_network: {}",
-                        e
-                    )
-                });
-                self
-            }
-            pub fn partner_user_ref<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.partner_user_ref = value.try_into().map_err(|e| {
-                    format!(
-                        "error converting supplied value for partner_user_ref: {}",
-                        e
-                    )
-                });
-                self
-            }
-            pub fn payment_amount<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.payment_amount = value.try_into().map_err(|e| {
-                    format!("error converting supplied value for payment_amount: {}", e)
-                });
-                self
-            }
-            pub fn payment_currency<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.payment_currency = value.try_into().map_err(|e| {
-                    format!(
-                        "error converting supplied value for payment_currency: {}",
-                        e
-                    )
-                });
-                self
-            }
-            pub fn payment_method<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<
-                    ::std::option::Option<super::OnrampQuotePaymentMethodTypeId>,
-                >,
-                T::Error: ::std::fmt::Display,
-            {
-                self.payment_method = value.try_into().map_err(|e| {
-                    format!("error converting supplied value for payment_method: {}", e)
-                });
-                self
-            }
-            pub fn purchase_amount<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.purchase_amount = value.try_into().map_err(|e| {
-                    format!("error converting supplied value for purchase_amount: {}", e)
-                });
-                self
-            }
-            pub fn purchase_currency<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<::std::string::String>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.purchase_currency = value.try_into().map_err(|e| {
-                    format!(
-                        "error converting supplied value for purchase_currency: {}",
-                        e
-                    )
-                });
-                self
-            }
-            pub fn redirect_url<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<::std::option::Option<super::Uri>>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.redirect_url = value.try_into().map_err(|e| {
-                    format!("error converting supplied value for redirect_url: {}", e)
-                });
-                self
-            }
-            pub fn subdivision<T>(mut self, value: T) -> Self
-            where
-                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
-                T::Error: ::std::fmt::Display,
-            {
-                self.subdivision = value
-                    .try_into()
-                    .map_err(|e| format!("error converting supplied value for subdivision: {}", e));
-                self
-            }
-        }
-        impl ::std::convert::TryFrom<CreateOnrampSessionBody> for super::CreateOnrampSessionBody {
-            type Error = super::error::ConversionError;
-            fn try_from(
-                value: CreateOnrampSessionBody,
-            ) -> ::std::result::Result<Self, super::error::ConversionError> {
-                Ok(Self {
-                    client_ip: value.client_ip?,
-                    country: value.country?,
-                    destination_address: value.destination_address?,
-                    destination_network: value.destination_network?,
-                    partner_user_ref: value.partner_user_ref?,
-                    payment_amount: value.payment_amount?,
-                    payment_currency: value.payment_currency?,
-                    payment_method: value.payment_method?,
-                    purchase_amount: value.purchase_amount?,
-                    purchase_currency: value.purchase_currency?,
-                    redirect_url: value.redirect_url?,
-                    subdivision: value.subdivision?,
-                })
-            }
-        }
-        impl ::std::convert::From<super::CreateOnrampSessionBody> for CreateOnrampSessionBody {
-            fn from(value: super::CreateOnrampSessionBody) -> Self {
-                Self {
-                    client_ip: Ok(value.client_ip),
-                    country: Ok(value.country),
-                    destination_address: Ok(value.destination_address),
-                    destination_network: Ok(value.destination_network),
-                    partner_user_ref: Ok(value.partner_user_ref),
-                    payment_amount: Ok(value.payment_amount),
-                    payment_currency: Ok(value.payment_currency),
-                    payment_method: Ok(value.payment_method),
-                    purchase_amount: Ok(value.purchase_amount),
-                    purchase_currency: Ok(value.purchase_currency),
-                    redirect_url: Ok(value.redirect_url),
-                    subdivision: Ok(value.subdivision),
-                }
-            }
-        }
-        #[derive(Clone, Debug)]
         pub struct CreateOnrampSessionResponse {
             quote: ::std::result::Result<
                 ::std::option::Option<super::OnrampQuote>,
@@ -86819,6 +90166,60 @@ pub mod types {
             }
         }
         #[derive(Clone, Debug)]
+        pub struct MoneyAmount {
+            currency: ::std::result::Result<::std::string::String, ::std::string::String>,
+            value: ::std::result::Result<::std::string::String, ::std::string::String>,
+        }
+        impl ::std::default::Default for MoneyAmount {
+            fn default() -> Self {
+                Self {
+                    currency: Err("no value supplied for currency".to_string()),
+                    value: Err("no value supplied for value".to_string()),
+                }
+            }
+        }
+        impl MoneyAmount {
+            pub fn currency<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.currency = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for currency: {}", e));
+                self
+            }
+            pub fn value<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.value = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for value: {}", e));
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<MoneyAmount> for super::MoneyAmount {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: MoneyAmount,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    currency: value.currency?,
+                    value: value.value?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::MoneyAmount> for MoneyAmount {
+            fn from(value: super::MoneyAmount) -> Self {
+                Self {
+                    currency: Ok(value.currency),
+                    value: Ok(value.value),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
         pub struct NetUsdChangeCriterion {
             change_cents: ::std::result::Result<i64, ::std::string::String>,
             operator:
@@ -86989,6 +90390,695 @@ pub mod types {
                     sub: Ok(value.sub),
                     type_: Ok(value.type_),
                     username: Ok(value.username),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub struct OfframpTransactionPayload {
+            asset: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            coinbase_fee: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            created_at: ::std::result::Result<
+                ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                ::std::string::String,
+            >,
+            event_type: ::std::result::Result<::std::string::String, ::std::string::String>,
+            exchange_rate: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            from_address: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            minimum_total: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            network: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            payment_method: ::std::result::Result<
+                ::std::option::Option<super::OfframpTransactionPayloadPaymentMethod>,
+                ::std::string::String,
+            >,
+            redirect_url: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            sell_amount: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            status: ::std::result::Result<
+                super::OfframpTransactionPayloadStatus,
+                ::std::string::String,
+            >,
+            subtotal: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            to_address: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            total: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            transaction_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+            tx_hash: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            unit_price: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            updated_at: ::std::result::Result<
+                ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                ::std::string::String,
+            >,
+        }
+        impl ::std::default::Default for OfframpTransactionPayload {
+            fn default() -> Self {
+                Self {
+                    asset: Ok(Default::default()),
+                    coinbase_fee: Ok(Default::default()),
+                    created_at: Ok(Default::default()),
+                    event_type: Err("no value supplied for event_type".to_string()),
+                    exchange_rate: Ok(Default::default()),
+                    from_address: Ok(Default::default()),
+                    minimum_total: Ok(Default::default()),
+                    network: Ok(Default::default()),
+                    payment_method: Ok(Default::default()),
+                    redirect_url: Ok(Default::default()),
+                    sell_amount: Ok(Default::default()),
+                    status: Err("no value supplied for status".to_string()),
+                    subtotal: Ok(Default::default()),
+                    to_address: Ok(Default::default()),
+                    total: Ok(Default::default()),
+                    transaction_id: Err("no value supplied for transaction_id".to_string()),
+                    tx_hash: Ok(Default::default()),
+                    unit_price: Ok(Default::default()),
+                    updated_at: Ok(Default::default()),
+                }
+            }
+        }
+        impl OfframpTransactionPayload {
+            pub fn asset<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.asset = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for asset: {}", e));
+                self
+            }
+            pub fn coinbase_fee<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.coinbase_fee = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for coinbase_fee: {}", e)
+                });
+                self
+            }
+            pub fn created_at<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.created_at = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for created_at: {}", e));
+                self
+            }
+            pub fn event_type<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_type = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for event_type: {}", e));
+                self
+            }
+            pub fn exchange_rate<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.exchange_rate = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for exchange_rate: {}", e)
+                });
+                self
+            }
+            pub fn from_address<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.from_address = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for from_address: {}", e)
+                });
+                self
+            }
+            pub fn minimum_total<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.minimum_total = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for minimum_total: {}", e)
+                });
+                self
+            }
+            pub fn network<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.network = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for network: {}", e));
+                self
+            }
+            pub fn payment_method<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<super::OfframpTransactionPayloadPaymentMethod>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_method = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for payment_method: {}", e)
+                });
+                self
+            }
+            pub fn redirect_url<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.redirect_url = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for redirect_url: {}", e)
+                });
+                self
+            }
+            pub fn sell_amount<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.sell_amount = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for sell_amount: {}", e));
+                self
+            }
+            pub fn status<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<super::OfframpTransactionPayloadStatus>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.status = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for status: {}", e));
+                self
+            }
+            pub fn subtotal<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.subtotal = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for subtotal: {}", e));
+                self
+            }
+            pub fn to_address<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.to_address = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for to_address: {}", e));
+                self
+            }
+            pub fn total<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.total = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for total: {}", e));
+                self
+            }
+            pub fn transaction_id<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.transaction_id = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for transaction_id: {}", e)
+                });
+                self
+            }
+            pub fn tx_hash<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.tx_hash = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for tx_hash: {}", e));
+                self
+            }
+            pub fn unit_price<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.unit_price = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for unit_price: {}", e));
+                self
+            }
+            pub fn updated_at<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.updated_at = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for updated_at: {}", e));
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<OfframpTransactionPayload> for super::OfframpTransactionPayload {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: OfframpTransactionPayload,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    asset: value.asset?,
+                    coinbase_fee: value.coinbase_fee?,
+                    created_at: value.created_at?,
+                    event_type: value.event_type?,
+                    exchange_rate: value.exchange_rate?,
+                    from_address: value.from_address?,
+                    minimum_total: value.minimum_total?,
+                    network: value.network?,
+                    payment_method: value.payment_method?,
+                    redirect_url: value.redirect_url?,
+                    sell_amount: value.sell_amount?,
+                    status: value.status?,
+                    subtotal: value.subtotal?,
+                    to_address: value.to_address?,
+                    total: value.total?,
+                    transaction_id: value.transaction_id?,
+                    tx_hash: value.tx_hash?,
+                    unit_price: value.unit_price?,
+                    updated_at: value.updated_at?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::OfframpTransactionPayload> for OfframpTransactionPayload {
+            fn from(value: super::OfframpTransactionPayload) -> Self {
+                Self {
+                    asset: Ok(value.asset),
+                    coinbase_fee: Ok(value.coinbase_fee),
+                    created_at: Ok(value.created_at),
+                    event_type: Ok(value.event_type),
+                    exchange_rate: Ok(value.exchange_rate),
+                    from_address: Ok(value.from_address),
+                    minimum_total: Ok(value.minimum_total),
+                    network: Ok(value.network),
+                    payment_method: Ok(value.payment_method),
+                    redirect_url: Ok(value.redirect_url),
+                    sell_amount: Ok(value.sell_amount),
+                    status: Ok(value.status),
+                    subtotal: Ok(value.subtotal),
+                    to_address: Ok(value.to_address),
+                    total: Ok(value.total),
+                    transaction_id: Ok(value.transaction_id),
+                    tx_hash: Ok(value.tx_hash),
+                    unit_price: Ok(value.unit_price),
+                    updated_at: Ok(value.updated_at),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub struct OnchainActivityDetectedEvent {
+            block_number: ::std::result::Result<i64, ::std::string::String>,
+            contract_address: ::std::result::Result<::std::string::String, ::std::string::String>,
+            event_name: ::std::result::Result<::std::string::String, ::std::string::String>,
+            event_signature: ::std::result::Result<::std::string::String, ::std::string::String>,
+            log_index: ::std::result::Result<i64, ::std::string::String>,
+            network: ::std::result::Result<::std::string::String, ::std::string::String>,
+            parameters:
+                ::std::result::Result<super::OnchainActivityEventParameters, ::std::string::String>,
+            timestamp: ::std::result::Result<
+                ::chrono::DateTime<::chrono::offset::Utc>,
+                ::std::string::String,
+            >,
+            transaction_from: ::std::result::Result<::std::string::String, ::std::string::String>,
+            transaction_hash: ::std::result::Result<::std::string::String, ::std::string::String>,
+            transaction_to: ::std::result::Result<::std::string::String, ::std::string::String>,
+        }
+        impl ::std::default::Default for OnchainActivityDetectedEvent {
+            fn default() -> Self {
+                Self {
+                    block_number: Err("no value supplied for block_number".to_string()),
+                    contract_address: Err("no value supplied for contract_address".to_string()),
+                    event_name: Err("no value supplied for event_name".to_string()),
+                    event_signature: Err("no value supplied for event_signature".to_string()),
+                    log_index: Err("no value supplied for log_index".to_string()),
+                    network: Err("no value supplied for network".to_string()),
+                    parameters: Err("no value supplied for parameters".to_string()),
+                    timestamp: Err("no value supplied for timestamp".to_string()),
+                    transaction_from: Err("no value supplied for transaction_from".to_string()),
+                    transaction_hash: Err("no value supplied for transaction_hash".to_string()),
+                    transaction_to: Err("no value supplied for transaction_to".to_string()),
+                }
+            }
+        }
+        impl OnchainActivityDetectedEvent {
+            pub fn block_number<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<i64>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.block_number = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for block_number: {}", e)
+                });
+                self
+            }
+            pub fn contract_address<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.contract_address = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for contract_address: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn event_name<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_name = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for event_name: {}", e));
+                self
+            }
+            pub fn event_signature<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_signature = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for event_signature: {}", e)
+                });
+                self
+            }
+            pub fn log_index<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<i64>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.log_index = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for log_index: {}", e));
+                self
+            }
+            pub fn network<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.network = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for network: {}", e));
+                self
+            }
+            pub fn parameters<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<super::OnchainActivityEventParameters>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.parameters = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for parameters: {}", e));
+                self
+            }
+            pub fn timestamp<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::chrono::DateTime<::chrono::offset::Utc>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.timestamp = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for timestamp: {}", e));
+                self
+            }
+            pub fn transaction_from<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.transaction_from = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for transaction_from: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn transaction_hash<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.transaction_hash = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for transaction_hash: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn transaction_to<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.transaction_to = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for transaction_to: {}", e)
+                });
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<OnchainActivityDetectedEvent> for super::OnchainActivityDetectedEvent {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: OnchainActivityDetectedEvent,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    block_number: value.block_number?,
+                    contract_address: value.contract_address?,
+                    event_name: value.event_name?,
+                    event_signature: value.event_signature?,
+                    log_index: value.log_index?,
+                    network: value.network?,
+                    parameters: value.parameters?,
+                    timestamp: value.timestamp?,
+                    transaction_from: value.transaction_from?,
+                    transaction_hash: value.transaction_hash?,
+                    transaction_to: value.transaction_to?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::OnchainActivityDetectedEvent> for OnchainActivityDetectedEvent {
+            fn from(value: super::OnchainActivityDetectedEvent) -> Self {
+                Self {
+                    block_number: Ok(value.block_number),
+                    contract_address: Ok(value.contract_address),
+                    event_name: Ok(value.event_name),
+                    event_signature: Ok(value.event_signature),
+                    log_index: Ok(value.log_index),
+                    network: Ok(value.network),
+                    parameters: Ok(value.parameters),
+                    timestamp: Ok(value.timestamp),
+                    transaction_from: Ok(value.transaction_from),
+                    transaction_hash: Ok(value.transaction_hash),
+                    transaction_to: Ok(value.transaction_to),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub struct OnchainActivityEventData {
+            block_number: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            block_timestamp: ::std::result::Result<
+                ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                ::std::string::String,
+            >,
+            contract_address: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            event_name: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            log_index: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            network: ::std::result::Result<::std::string::String, ::std::string::String>,
+            transaction_hash: ::std::result::Result<::std::string::String, ::std::string::String>,
+        }
+        impl ::std::default::Default for OnchainActivityEventData {
+            fn default() -> Self {
+                Self {
+                    block_number: Ok(Default::default()),
+                    block_timestamp: Ok(Default::default()),
+                    contract_address: Ok(Default::default()),
+                    event_name: Ok(Default::default()),
+                    log_index: Ok(Default::default()),
+                    network: Err("no value supplied for network".to_string()),
+                    transaction_hash: Err("no value supplied for transaction_hash".to_string()),
+                }
+            }
+        }
+        impl OnchainActivityEventData {
+            pub fn block_number<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.block_number = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for block_number: {}", e)
+                });
+                self
+            }
+            pub fn block_timestamp<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.block_timestamp = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for block_timestamp: {}", e)
+                });
+                self
+            }
+            pub fn contract_address<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.contract_address = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for contract_address: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn event_name<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_name = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for event_name: {}", e));
+                self
+            }
+            pub fn log_index<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.log_index = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for log_index: {}", e));
+                self
+            }
+            pub fn network<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.network = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for network: {}", e));
+                self
+            }
+            pub fn transaction_hash<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.transaction_hash = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for transaction_hash: {}",
+                        e
+                    )
+                });
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<OnchainActivityEventData> for super::OnchainActivityEventData {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: OnchainActivityEventData,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    block_number: value.block_number?,
+                    block_timestamp: value.block_timestamp?,
+                    contract_address: value.contract_address?,
+                    event_name: value.event_name?,
+                    log_index: value.log_index?,
+                    network: value.network?,
+                    transaction_hash: value.transaction_hash?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::OnchainActivityEventData> for OnchainActivityEventData {
+            fn from(value: super::OnchainActivityEventData) -> Self {
+                Self {
+                    block_number: Ok(value.block_number),
+                    block_timestamp: Ok(value.block_timestamp),
+                    contract_address: Ok(value.contract_address),
+                    event_name: Ok(value.event_name),
+                    log_index: Ok(value.log_index),
+                    network: Ok(value.network),
+                    transaction_hash: Ok(value.transaction_hash),
                 }
             }
         }
@@ -87712,7 +91802,7 @@ pub mod types {
         #[derive(Clone, Debug)]
         pub struct OnrampLimitUpgradeRequest {
             fields: ::std::result::Result<
-                super::OnrampLimitUpgradeIdentityFields,
+                ::std::option::Option<super::OnrampLimitUpgradeIdentityFields>,
                 ::std::string::String,
             >,
             user_id: ::std::result::Result<::std::string::String, ::std::string::String>,
@@ -87721,7 +91811,7 @@ pub mod types {
         impl ::std::default::Default for OnrampLimitUpgradeRequest {
             fn default() -> Self {
                 Self {
-                    fields: Err("no value supplied for fields".to_string()),
+                    fields: Ok(Default::default()),
                     user_id: Err("no value supplied for user_id".to_string()),
                     user_id_type: Err("no value supplied for user_id_type".to_string()),
                 }
@@ -87730,7 +91820,9 @@ pub mod types {
         impl OnrampLimitUpgradeRequest {
             pub fn fields<T>(mut self, value: T) -> Self
             where
-                T: ::std::convert::TryInto<super::OnrampLimitUpgradeIdentityFields>,
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<super::OnrampLimitUpgradeIdentityFields>,
+                >,
                 T::Error: ::std::fmt::Display,
             {
                 self.fields = value
@@ -88133,6 +92225,333 @@ pub mod types {
             }
         }
         #[derive(Clone, Debug)]
+        pub struct OnrampOrderPayload {
+            created_at: ::std::result::Result<
+                ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                ::std::string::String,
+            >,
+            destination_address: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            destination_network: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            event_type: ::std::result::Result<::std::string::String, ::std::string::String>,
+            exchange_rate: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            fees: ::std::result::Result<::std::vec::Vec<super::OrderFee>, ::std::string::String>,
+            order_id: ::std::result::Result<::uuid::Uuid, ::std::string::String>,
+            partner_user_ref: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            payment_currency: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            payment_method: ::std::result::Result<
+                ::std::option::Option<super::OnrampOrderPayloadPaymentMethod>,
+                ::std::string::String,
+            >,
+            payment_subtotal: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            payment_total: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            purchase_amount: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            purchase_currency: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            status: ::std::result::Result<super::OnrampOrderPayloadStatus, ::std::string::String>,
+            tx_hash: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            updated_at: ::std::result::Result<
+                ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                ::std::string::String,
+            >,
+        }
+        impl ::std::default::Default for OnrampOrderPayload {
+            fn default() -> Self {
+                Self {
+                    created_at: Ok(Default::default()),
+                    destination_address: Ok(Default::default()),
+                    destination_network: Ok(Default::default()),
+                    event_type: Err("no value supplied for event_type".to_string()),
+                    exchange_rate: Ok(Default::default()),
+                    fees: Ok(Default::default()),
+                    order_id: Err("no value supplied for order_id".to_string()),
+                    partner_user_ref: Ok(Default::default()),
+                    payment_currency: Ok(Default::default()),
+                    payment_method: Ok(Default::default()),
+                    payment_subtotal: Ok(Default::default()),
+                    payment_total: Ok(Default::default()),
+                    purchase_amount: Ok(Default::default()),
+                    purchase_currency: Ok(Default::default()),
+                    status: Err("no value supplied for status".to_string()),
+                    tx_hash: Ok(Default::default()),
+                    updated_at: Ok(Default::default()),
+                }
+            }
+        }
+        impl OnrampOrderPayload {
+            pub fn created_at<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.created_at = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for created_at: {}", e));
+                self
+            }
+            pub fn destination_address<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.destination_address = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for destination_address: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn destination_network<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.destination_network = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for destination_network: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn event_type<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_type = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for event_type: {}", e));
+                self
+            }
+            pub fn exchange_rate<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.exchange_rate = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for exchange_rate: {}", e)
+                });
+                self
+            }
+            pub fn fees<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::vec::Vec<super::OrderFee>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.fees = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for fees: {}", e));
+                self
+            }
+            pub fn order_id<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::uuid::Uuid>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.order_id = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for order_id: {}", e));
+                self
+            }
+            pub fn partner_user_ref<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.partner_user_ref = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for partner_user_ref: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn payment_currency<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_currency = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for payment_currency: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn payment_method<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<super::OnrampOrderPayloadPaymentMethod>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_method = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for payment_method: {}", e)
+                });
+                self
+            }
+            pub fn payment_subtotal<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_subtotal = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for payment_subtotal: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn payment_total<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_total = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for payment_total: {}", e)
+                });
+                self
+            }
+            pub fn purchase_amount<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.purchase_amount = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for purchase_amount: {}", e)
+                });
+                self
+            }
+            pub fn purchase_currency<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.purchase_currency = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for purchase_currency: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn status<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<super::OnrampOrderPayloadStatus>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.status = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for status: {}", e));
+                self
+            }
+            pub fn tx_hash<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.tx_hash = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for tx_hash: {}", e));
+                self
+            }
+            pub fn updated_at<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.updated_at = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for updated_at: {}", e));
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<OnrampOrderPayload> for super::OnrampOrderPayload {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: OnrampOrderPayload,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    created_at: value.created_at?,
+                    destination_address: value.destination_address?,
+                    destination_network: value.destination_network?,
+                    event_type: value.event_type?,
+                    exchange_rate: value.exchange_rate?,
+                    fees: value.fees?,
+                    order_id: value.order_id?,
+                    partner_user_ref: value.partner_user_ref?,
+                    payment_currency: value.payment_currency?,
+                    payment_method: value.payment_method?,
+                    payment_subtotal: value.payment_subtotal?,
+                    payment_total: value.payment_total?,
+                    purchase_amount: value.purchase_amount?,
+                    purchase_currency: value.purchase_currency?,
+                    status: value.status?,
+                    tx_hash: value.tx_hash?,
+                    updated_at: value.updated_at?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::OnrampOrderPayload> for OnrampOrderPayload {
+            fn from(value: super::OnrampOrderPayload) -> Self {
+                Self {
+                    created_at: Ok(value.created_at),
+                    destination_address: Ok(value.destination_address),
+                    destination_network: Ok(value.destination_network),
+                    event_type: Ok(value.event_type),
+                    exchange_rate: Ok(value.exchange_rate),
+                    fees: Ok(value.fees),
+                    order_id: Ok(value.order_id),
+                    partner_user_ref: Ok(value.partner_user_ref),
+                    payment_currency: Ok(value.payment_currency),
+                    payment_method: Ok(value.payment_method),
+                    payment_subtotal: Ok(value.payment_subtotal),
+                    payment_total: Ok(value.payment_total),
+                    purchase_amount: Ok(value.purchase_amount),
+                    purchase_currency: Ok(value.purchase_currency),
+                    status: Ok(value.status),
+                    tx_hash: Ok(value.tx_hash),
+                    updated_at: Ok(value.updated_at),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
         pub struct OnrampPaymentLink {
             payment_link_type:
                 ::std::result::Result<super::OnrampPaymentLinkType, ::std::string::String>,
@@ -88387,6 +92806,741 @@ pub mod types {
             }
         }
         #[derive(Clone, Debug)]
+        pub struct OnrampSessionRequest {
+            client_ip: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            country: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            destination_address:
+                ::std::result::Result<super::BlockchainAddress, ::std::string::String>,
+            destination_network:
+                ::std::result::Result<::std::string::String, ::std::string::String>,
+            partner_user_ref: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            payment_amount: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            payment_currency: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            payment_method: ::std::result::Result<
+                ::std::option::Option<super::OnrampQuotePaymentMethodTypeId>,
+                ::std::string::String,
+            >,
+            purchase_amount: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            purchase_currency: ::std::result::Result<::std::string::String, ::std::string::String>,
+            redirect_url:
+                ::std::result::Result<::std::option::Option<super::Uri>, ::std::string::String>,
+            subdivision: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+        }
+        impl ::std::default::Default for OnrampSessionRequest {
+            fn default() -> Self {
+                Self {
+                    client_ip: Ok(Default::default()),
+                    country: Ok(Default::default()),
+                    destination_address: Err(
+                        "no value supplied for destination_address".to_string()
+                    ),
+                    destination_network: Err(
+                        "no value supplied for destination_network".to_string()
+                    ),
+                    partner_user_ref: Ok(Default::default()),
+                    payment_amount: Ok(Default::default()),
+                    payment_currency: Ok(Default::default()),
+                    payment_method: Ok(Default::default()),
+                    purchase_amount: Ok(Default::default()),
+                    purchase_currency: Err("no value supplied for purchase_currency".to_string()),
+                    redirect_url: Ok(Default::default()),
+                    subdivision: Ok(Default::default()),
+                }
+            }
+        }
+        impl OnrampSessionRequest {
+            pub fn client_ip<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.client_ip = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for client_ip: {}", e));
+                self
+            }
+            pub fn country<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.country = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for country: {}", e));
+                self
+            }
+            pub fn destination_address<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<super::BlockchainAddress>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.destination_address = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for destination_address: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn destination_network<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.destination_network = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for destination_network: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn partner_user_ref<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.partner_user_ref = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for partner_user_ref: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn payment_amount<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_amount = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for payment_amount: {}", e)
+                });
+                self
+            }
+            pub fn payment_currency<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_currency = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for payment_currency: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn payment_method<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<super::OnrampQuotePaymentMethodTypeId>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_method = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for payment_method: {}", e)
+                });
+                self
+            }
+            pub fn purchase_amount<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.purchase_amount = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for purchase_amount: {}", e)
+                });
+                self
+            }
+            pub fn purchase_currency<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.purchase_currency = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for purchase_currency: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn redirect_url<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::Uri>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.redirect_url = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for redirect_url: {}", e)
+                });
+                self
+            }
+            pub fn subdivision<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.subdivision = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for subdivision: {}", e));
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<OnrampSessionRequest> for super::OnrampSessionRequest {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: OnrampSessionRequest,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    client_ip: value.client_ip?,
+                    country: value.country?,
+                    destination_address: value.destination_address?,
+                    destination_network: value.destination_network?,
+                    partner_user_ref: value.partner_user_ref?,
+                    payment_amount: value.payment_amount?,
+                    payment_currency: value.payment_currency?,
+                    payment_method: value.payment_method?,
+                    purchase_amount: value.purchase_amount?,
+                    purchase_currency: value.purchase_currency?,
+                    redirect_url: value.redirect_url?,
+                    subdivision: value.subdivision?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::OnrampSessionRequest> for OnrampSessionRequest {
+            fn from(value: super::OnrampSessionRequest) -> Self {
+                Self {
+                    client_ip: Ok(value.client_ip),
+                    country: Ok(value.country),
+                    destination_address: Ok(value.destination_address),
+                    destination_network: Ok(value.destination_network),
+                    partner_user_ref: Ok(value.partner_user_ref),
+                    payment_amount: Ok(value.payment_amount),
+                    payment_currency: Ok(value.payment_currency),
+                    payment_method: Ok(value.payment_method),
+                    purchase_amount: Ok(value.purchase_amount),
+                    purchase_currency: Ok(value.purchase_currency),
+                    redirect_url: Ok(value.redirect_url),
+                    subdivision: Ok(value.subdivision),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub struct OnrampTransactionPayload {
+            coinbase_fee: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            completed_at: ::std::result::Result<
+                ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                ::std::string::String,
+            >,
+            contract_address: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            country: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            created_at: ::std::result::Result<
+                ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                ::std::string::String,
+            >,
+            end_partner_name: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            error_code: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            event_type: ::std::result::Result<::std::string::String, ::std::string::String>,
+            exchange_rate: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            failure_reason: ::std::result::Result<
+                ::std::option::Option<super::OnrampTransactionPayloadFailureReason>,
+                ::std::string::String,
+            >,
+            network_fee: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            partner_user_ref: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            payment_method: ::std::result::Result<
+                ::std::option::Option<super::OnrampTransactionPayloadPaymentMethod>,
+                ::std::string::String,
+            >,
+            payment_subtotal: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            payment_total: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            payment_total_usd: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            purchase_amount: ::std::result::Result<
+                ::std::option::Option<super::MoneyAmount>,
+                ::std::string::String,
+            >,
+            purchase_currency: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            purchase_network: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            status:
+                ::std::result::Result<super::OnrampTransactionPayloadStatus, ::std::string::String>,
+            transaction_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+            tx_hash: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            type_: ::std::result::Result<
+                ::std::option::Option<super::OnrampTransactionPayloadType>,
+                ::std::string::String,
+            >,
+            user_id: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            user_type: ::std::result::Result<
+                ::std::option::Option<super::OnrampTransactionPayloadUserType>,
+                ::std::string::String,
+            >,
+            wallet_address: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+        }
+        impl ::std::default::Default for OnrampTransactionPayload {
+            fn default() -> Self {
+                Self {
+                    coinbase_fee: Ok(Default::default()),
+                    completed_at: Ok(Default::default()),
+                    contract_address: Ok(Default::default()),
+                    country: Ok(Default::default()),
+                    created_at: Ok(Default::default()),
+                    end_partner_name: Ok(Default::default()),
+                    error_code: Ok(Default::default()),
+                    event_type: Err("no value supplied for event_type".to_string()),
+                    exchange_rate: Ok(Default::default()),
+                    failure_reason: Ok(Default::default()),
+                    network_fee: Ok(Default::default()),
+                    partner_user_ref: Ok(Default::default()),
+                    payment_method: Ok(Default::default()),
+                    payment_subtotal: Ok(Default::default()),
+                    payment_total: Ok(Default::default()),
+                    payment_total_usd: Ok(Default::default()),
+                    purchase_amount: Ok(Default::default()),
+                    purchase_currency: Ok(Default::default()),
+                    purchase_network: Ok(Default::default()),
+                    status: Err("no value supplied for status".to_string()),
+                    transaction_id: Err("no value supplied for transaction_id".to_string()),
+                    tx_hash: Ok(Default::default()),
+                    type_: Ok(Default::default()),
+                    user_id: Ok(Default::default()),
+                    user_type: Ok(Default::default()),
+                    wallet_address: Ok(Default::default()),
+                }
+            }
+        }
+        impl OnrampTransactionPayload {
+            pub fn coinbase_fee<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.coinbase_fee = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for coinbase_fee: {}", e)
+                });
+                self
+            }
+            pub fn completed_at<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.completed_at = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for completed_at: {}", e)
+                });
+                self
+            }
+            pub fn contract_address<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.contract_address = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for contract_address: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn country<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.country = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for country: {}", e));
+                self
+            }
+            pub fn created_at<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.created_at = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for created_at: {}", e));
+                self
+            }
+            pub fn end_partner_name<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.end_partner_name = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for end_partner_name: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn error_code<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.error_code = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for error_code: {}", e));
+                self
+            }
+            pub fn event_type<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_type = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for event_type: {}", e));
+                self
+            }
+            pub fn exchange_rate<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.exchange_rate = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for exchange_rate: {}", e)
+                });
+                self
+            }
+            pub fn failure_reason<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<super::OnrampTransactionPayloadFailureReason>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.failure_reason = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for failure_reason: {}", e)
+                });
+                self
+            }
+            pub fn network_fee<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.network_fee = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for network_fee: {}", e));
+                self
+            }
+            pub fn partner_user_ref<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.partner_user_ref = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for partner_user_ref: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn payment_method<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<super::OnrampTransactionPayloadPaymentMethod>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_method = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for payment_method: {}", e)
+                });
+                self
+            }
+            pub fn payment_subtotal<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_subtotal = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for payment_subtotal: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn payment_total<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_total = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for payment_total: {}", e)
+                });
+                self
+            }
+            pub fn payment_total_usd<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.payment_total_usd = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for payment_total_usd: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn purchase_amount<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::MoneyAmount>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.purchase_amount = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for purchase_amount: {}", e)
+                });
+                self
+            }
+            pub fn purchase_currency<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.purchase_currency = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for purchase_currency: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn purchase_network<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.purchase_network = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for purchase_network: {}",
+                        e
+                    )
+                });
+                self
+            }
+            pub fn status<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<super::OnrampTransactionPayloadStatus>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.status = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for status: {}", e));
+                self
+            }
+            pub fn transaction_id<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::string::String>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.transaction_id = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for transaction_id: {}", e)
+                });
+                self
+            }
+            pub fn tx_hash<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.tx_hash = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for tx_hash: {}", e));
+                self
+            }
+            pub fn type_<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<super::OnrampTransactionPayloadType>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.type_ = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for type_: {}", e));
+                self
+            }
+            pub fn user_id<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.user_id = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for user_id: {}", e));
+                self
+            }
+            pub fn user_type<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<
+                    ::std::option::Option<super::OnrampTransactionPayloadUserType>,
+                >,
+                T::Error: ::std::fmt::Display,
+            {
+                self.user_type = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for user_type: {}", e));
+                self
+            }
+            pub fn wallet_address<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.wallet_address = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for wallet_address: {}", e)
+                });
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<OnrampTransactionPayload> for super::OnrampTransactionPayload {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: OnrampTransactionPayload,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    coinbase_fee: value.coinbase_fee?,
+                    completed_at: value.completed_at?,
+                    contract_address: value.contract_address?,
+                    country: value.country?,
+                    created_at: value.created_at?,
+                    end_partner_name: value.end_partner_name?,
+                    error_code: value.error_code?,
+                    event_type: value.event_type?,
+                    exchange_rate: value.exchange_rate?,
+                    failure_reason: value.failure_reason?,
+                    network_fee: value.network_fee?,
+                    partner_user_ref: value.partner_user_ref?,
+                    payment_method: value.payment_method?,
+                    payment_subtotal: value.payment_subtotal?,
+                    payment_total: value.payment_total?,
+                    payment_total_usd: value.payment_total_usd?,
+                    purchase_amount: value.purchase_amount?,
+                    purchase_currency: value.purchase_currency?,
+                    purchase_network: value.purchase_network?,
+                    status: value.status?,
+                    transaction_id: value.transaction_id?,
+                    tx_hash: value.tx_hash?,
+                    type_: value.type_?,
+                    user_id: value.user_id?,
+                    user_type: value.user_type?,
+                    wallet_address: value.wallet_address?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::OnrampTransactionPayload> for OnrampTransactionPayload {
+            fn from(value: super::OnrampTransactionPayload) -> Self {
+                Self {
+                    coinbase_fee: Ok(value.coinbase_fee),
+                    completed_at: Ok(value.completed_at),
+                    contract_address: Ok(value.contract_address),
+                    country: Ok(value.country),
+                    created_at: Ok(value.created_at),
+                    end_partner_name: Ok(value.end_partner_name),
+                    error_code: Ok(value.error_code),
+                    event_type: Ok(value.event_type),
+                    exchange_rate: Ok(value.exchange_rate),
+                    failure_reason: Ok(value.failure_reason),
+                    network_fee: Ok(value.network_fee),
+                    partner_user_ref: Ok(value.partner_user_ref),
+                    payment_method: Ok(value.payment_method),
+                    payment_subtotal: Ok(value.payment_subtotal),
+                    payment_total: Ok(value.payment_total),
+                    payment_total_usd: Ok(value.payment_total_usd),
+                    purchase_amount: Ok(value.purchase_amount),
+                    purchase_currency: Ok(value.purchase_currency),
+                    purchase_network: Ok(value.purchase_network),
+                    status: Ok(value.status),
+                    transaction_id: Ok(value.transaction_id),
+                    tx_hash: Ok(value.tx_hash),
+                    type_: Ok(value.type_),
+                    user_id: Ok(value.user_id),
+                    user_type: Ok(value.user_type),
+                    wallet_address: Ok(value.wallet_address),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
         pub struct OnrampUserLimit {
             currency: ::std::result::Result<
                 ::std::option::Option<::std::string::String>,
@@ -88468,6 +93622,83 @@ pub mod types {
                     limit: Ok(value.limit),
                     limit_type: Ok(value.limit_type),
                     remaining: Ok(value.remaining),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub struct OrderFee {
+            fee_amount: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            fee_currency: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            fee_type: ::std::result::Result<
+                ::std::option::Option<super::OrderFeeFeeType>,
+                ::std::string::String,
+            >,
+        }
+        impl ::std::default::Default for OrderFee {
+            fn default() -> Self {
+                Self {
+                    fee_amount: Ok(Default::default()),
+                    fee_currency: Ok(Default::default()),
+                    fee_type: Ok(Default::default()),
+                }
+            }
+        }
+        impl OrderFee {
+            pub fn fee_amount<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.fee_amount = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for fee_amount: {}", e));
+                self
+            }
+            pub fn fee_currency<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.fee_currency = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for fee_currency: {}", e)
+                });
+                self
+            }
+            pub fn fee_type<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::OrderFeeFeeType>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.fee_type = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for fee_type: {}", e));
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<OrderFee> for super::OrderFee {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: OrderFee,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    fee_amount: value.fee_amount?,
+                    fee_currency: value.fee_currency?,
+                    fee_type: value.fee_type?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::OrderFee> for OrderFee {
+            fn from(value: super::OrderFee) -> Self {
+                Self {
+                    fee_amount: Ok(value.fee_amount),
+                    fee_currency: Ok(value.fee_currency),
+                    fee_type: Ok(value.fee_type),
                 }
             }
         }
@@ -88937,6 +94168,10 @@ pub mod types {
         pub struct PrepareAndSendUserOperationBody {
             calls: ::std::result::Result<::std::vec::Vec<super::EvmCall>, ::std::string::String>,
             network: ::std::result::Result<super::EvmUserOperationNetwork, ::std::string::String>,
+            paymaster_context: ::std::result::Result<
+                ::std::option::Option<super::PaymasterContext>,
+                ::std::string::String,
+            >,
             paymaster_url:
                 ::std::result::Result<::std::option::Option<super::Url>, ::std::string::String>,
         }
@@ -88945,6 +94180,7 @@ pub mod types {
                 Self {
                     calls: Err("no value supplied for calls".to_string()),
                     network: Err("no value supplied for network".to_string()),
+                    paymaster_context: Ok(Default::default()),
                     paymaster_url: Ok(Default::default()),
                 }
             }
@@ -88970,6 +94206,19 @@ pub mod types {
                     .map_err(|e| format!("error converting supplied value for network: {}", e));
                 self
             }
+            pub fn paymaster_context<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::PaymasterContext>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.paymaster_context = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for paymaster_context: {}",
+                        e
+                    )
+                });
+                self
+            }
             pub fn paymaster_url<T>(mut self, value: T) -> Self
             where
                 T: ::std::convert::TryInto<::std::option::Option<super::Url>>,
@@ -88991,6 +94240,7 @@ pub mod types {
                 Ok(Self {
                     calls: value.calls?,
                     network: value.network?,
+                    paymaster_context: value.paymaster_context?,
                     paymaster_url: value.paymaster_url?,
                 })
             }
@@ -89002,6 +94252,7 @@ pub mod types {
                 Self {
                     calls: Ok(value.calls),
                     network: Ok(value.network),
+                    paymaster_context: Ok(value.paymaster_context),
                     paymaster_url: Ok(value.paymaster_url),
                 }
             }
@@ -89014,6 +94265,10 @@ pub mod types {
                 ::std::string::String,
             >,
             network: ::std::result::Result<super::EvmUserOperationNetwork, ::std::string::String>,
+            paymaster_context: ::std::result::Result<
+                ::std::option::Option<super::PaymasterContext>,
+                ::std::string::String,
+            >,
             paymaster_url:
                 ::std::result::Result<::std::option::Option<super::Url>, ::std::string::String>,
         }
@@ -89023,6 +94278,7 @@ pub mod types {
                     calls: Err("no value supplied for calls".to_string()),
                     data_suffix: Ok(Default::default()),
                     network: Err("no value supplied for network".to_string()),
+                    paymaster_context: Ok(Default::default()),
                     paymaster_url: Ok(Default::default()),
                 }
             }
@@ -89060,6 +94316,19 @@ pub mod types {
                     .map_err(|e| format!("error converting supplied value for network: {}", e));
                 self
             }
+            pub fn paymaster_context<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::PaymasterContext>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.paymaster_context = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for paymaster_context: {}",
+                        e
+                    )
+                });
+                self
+            }
             pub fn paymaster_url<T>(mut self, value: T) -> Self
             where
                 T: ::std::convert::TryInto<::std::option::Option<super::Url>>,
@@ -89080,6 +94349,7 @@ pub mod types {
                     calls: value.calls?,
                     data_suffix: value.data_suffix?,
                     network: value.network?,
+                    paymaster_context: value.paymaster_context?,
                     paymaster_url: value.paymaster_url?,
                 })
             }
@@ -89090,6 +94360,7 @@ pub mod types {
                     calls: Ok(value.calls),
                     data_suffix: Ok(value.data_suffix),
                     network: Ok(value.network),
+                    paymaster_context: Ok(value.paymaster_context),
                     paymaster_url: Ok(value.paymaster_url),
                 }
             }
@@ -90060,6 +95331,10 @@ pub mod types {
                 super::SendEvmAssetWithEndUserAccountBodyNetwork,
                 ::std::string::String,
             >,
+            paymaster_context: ::std::result::Result<
+                ::std::option::Option<super::PaymasterContext>,
+                ::std::string::String,
+            >,
             paymaster_url:
                 ::std::result::Result<::std::option::Option<super::Url>, ::std::string::String>,
             to: ::std::result::Result<super::BlockchainAddress, ::std::string::String>,
@@ -90075,6 +95350,7 @@ pub mod types {
                 Self {
                     amount: Err("no value supplied for amount".to_string()),
                     network: Err("no value supplied for network".to_string()),
+                    paymaster_context: Ok(Default::default()),
                     paymaster_url: Ok(Default::default()),
                     to: Err("no value supplied for to".to_string()),
                     use_cdp_paymaster: Ok(Default::default()),
@@ -90101,6 +95377,19 @@ pub mod types {
                 self.network = value
                     .try_into()
                     .map_err(|e| format!("error converting supplied value for network: {}", e));
+                self
+            }
+            pub fn paymaster_context<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::PaymasterContext>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.paymaster_context = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for paymaster_context: {}",
+                        e
+                    )
+                });
                 self
             }
             pub fn paymaster_url<T>(mut self, value: T) -> Self
@@ -90162,6 +95451,7 @@ pub mod types {
                 Ok(Self {
                     amount: value.amount?,
                     network: value.network?,
+                    paymaster_context: value.paymaster_context?,
                     paymaster_url: value.paymaster_url?,
                     to: value.to?,
                     use_cdp_paymaster: value.use_cdp_paymaster?,
@@ -90176,6 +95466,7 @@ pub mod types {
                 Self {
                     amount: Ok(value.amount),
                     network: Ok(value.network),
+                    paymaster_context: Ok(value.paymaster_context),
                     paymaster_url: Ok(value.paymaster_url),
                     to: Ok(value.to),
                     use_cdp_paymaster: Ok(value.use_cdp_paymaster),
@@ -91242,6 +96533,10 @@ pub mod types {
                 ::std::string::String,
             >,
             network: ::std::result::Result<super::EvmUserOperationNetwork, ::std::string::String>,
+            paymaster_context: ::std::result::Result<
+                ::std::option::Option<super::PaymasterContext>,
+                ::std::string::String,
+            >,
             paymaster_url:
                 ::std::result::Result<::std::option::Option<super::Url>, ::std::string::String>,
             use_cdp_paymaster: ::std::result::Result<bool, ::std::string::String>,
@@ -91256,6 +96551,7 @@ pub mod types {
                     calls: Err("no value supplied for calls".to_string()),
                     data_suffix: Ok(Default::default()),
                     network: Err("no value supplied for network".to_string()),
+                    paymaster_context: Ok(Default::default()),
                     paymaster_url: Ok(Default::default()),
                     use_cdp_paymaster: Err("no value supplied for use_cdp_paymaster".to_string()),
                     wallet_secret_id: Ok(Default::default()),
@@ -91293,6 +96589,19 @@ pub mod types {
                 self.network = value
                     .try_into()
                     .map_err(|e| format!("error converting supplied value for network: {}", e));
+                self
+            }
+            pub fn paymaster_context<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::PaymasterContext>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.paymaster_context = value.try_into().map_err(|e| {
+                    format!(
+                        "error converting supplied value for paymaster_context: {}",
+                        e
+                    )
+                });
                 self
             }
             pub fn paymaster_url<T>(mut self, value: T) -> Self
@@ -91347,6 +96656,7 @@ pub mod types {
                     calls: value.calls?,
                     data_suffix: value.data_suffix?,
                     network: value.network?,
+                    paymaster_context: value.paymaster_context?,
                     paymaster_url: value.paymaster_url?,
                     use_cdp_paymaster: value.use_cdp_paymaster?,
                     wallet_secret_id: value.wallet_secret_id?,
@@ -91361,6 +96671,7 @@ pub mod types {
                     calls: Ok(value.calls),
                     data_suffix: Ok(value.data_suffix),
                     network: Ok(value.network),
+                    paymaster_context: Ok(value.paymaster_context),
                     paymaster_url: Ok(value.paymaster_url),
                     use_cdp_paymaster: Ok(value.use_cdp_paymaster),
                     wallet_secret_id: Ok(value.wallet_secret_id),
@@ -97373,11 +102684,19 @@ pub mod types {
                 ::std::option::Option<super::PhysicalAddress>,
                 ::std::string::String,
             >,
+            date_of_birth: ::std::result::Result<
+                ::std::option::Option<super::DateOfBirth>,
+                ::std::string::String,
+            >,
             financial_institution: ::std::result::Result<
                 ::std::option::Option<::std::string::String>,
                 ::std::string::String,
             >,
             name: ::std::result::Result<
+                ::std::option::Option<::std::string::String>,
+                ::std::string::String,
+            >,
+            personal_id: ::std::result::Result<
                 ::std::option::Option<::std::string::String>,
                 ::std::string::String,
             >,
@@ -97390,8 +102709,10 @@ pub mod types {
             fn default() -> Self {
                 Self {
                     address: Ok(Default::default()),
+                    date_of_birth: Ok(Default::default()),
                     financial_institution: Ok(Default::default()),
                     name: Ok(Default::default()),
+                    personal_id: Ok(Default::default()),
                     virtual_asset_service_provider: Ok(Default::default()),
                 }
             }
@@ -97405,6 +102726,16 @@ pub mod types {
                 self.address = value
                     .try_into()
                     .map_err(|e| format!("error converting supplied value for address: {}", e));
+                self
+            }
+            pub fn date_of_birth<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<super::DateOfBirth>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.date_of_birth = value.try_into().map_err(|e| {
+                    format!("error converting supplied value for date_of_birth: {}", e)
+                });
                 self
             }
             pub fn financial_institution<T>(mut self, value: T) -> Self
@@ -97430,6 +102761,16 @@ pub mod types {
                     .map_err(|e| format!("error converting supplied value for name: {}", e));
                 self
             }
+            pub fn personal_id<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.personal_id = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for personal_id: {}", e));
+                self
+            }
             pub fn virtual_asset_service_provider<T>(mut self, value: T) -> Self
             where
                 T: ::std::convert::TryInto<
@@ -97453,8 +102794,10 @@ pub mod types {
             ) -> ::std::result::Result<Self, super::error::ConversionError> {
                 Ok(Self {
                     address: value.address?,
+                    date_of_birth: value.date_of_birth?,
                     financial_institution: value.financial_institution?,
                     name: value.name?,
+                    personal_id: value.personal_id?,
                     virtual_asset_service_provider: value.virtual_asset_service_provider?,
                 })
             }
@@ -97463,8 +102806,10 @@ pub mod types {
             fn from(value: super::TravelRuleOriginator) -> Self {
                 Self {
                     address: Ok(value.address),
+                    date_of_birth: Ok(value.date_of_birth),
                     financial_institution: Ok(value.financial_institution),
                     name: Ok(value.name),
+                    personal_id: Ok(value.personal_id),
                     virtual_asset_service_provider: Ok(value.virtual_asset_service_provider),
                 }
             }
@@ -98257,6 +103602,253 @@ pub mod types {
             }
         }
         #[derive(Clone, Debug)]
+        pub struct WalletActivityDetectedEvent {
+            data: ::std::result::Result<super::OnchainActivityEventData, ::std::string::String>,
+            event_id: ::std::result::Result<::uuid::Uuid, ::std::string::String>,
+            event_type: ::std::result::Result<
+                super::WalletActivityDetectedEventEventType,
+                ::std::string::String,
+            >,
+            timestamp: ::std::result::Result<
+                ::chrono::DateTime<::chrono::offset::Utc>,
+                ::std::string::String,
+            >,
+        }
+        impl ::std::default::Default for WalletActivityDetectedEvent {
+            fn default() -> Self {
+                Self {
+                    data: Err("no value supplied for data".to_string()),
+                    event_id: Err("no value supplied for event_id".to_string()),
+                    event_type: Err("no value supplied for event_type".to_string()),
+                    timestamp: Err("no value supplied for timestamp".to_string()),
+                }
+            }
+        }
+        impl WalletActivityDetectedEvent {
+            pub fn data<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<super::OnchainActivityEventData>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.data = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for data: {}", e));
+                self
+            }
+            pub fn event_id<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::uuid::Uuid>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_id = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for event_id: {}", e));
+                self
+            }
+            pub fn event_type<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<super::WalletActivityDetectedEventEventType>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_type = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for event_type: {}", e));
+                self
+            }
+            pub fn timestamp<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::chrono::DateTime<::chrono::offset::Utc>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.timestamp = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for timestamp: {}", e));
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<WalletActivityDetectedEvent> for super::WalletActivityDetectedEvent {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: WalletActivityDetectedEvent,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    data: value.data?,
+                    event_id: value.event_id?,
+                    event_type: value.event_type?,
+                    timestamp: value.timestamp?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::WalletActivityDetectedEvent> for WalletActivityDetectedEvent {
+            fn from(value: super::WalletActivityDetectedEvent) -> Self {
+                Self {
+                    data: Ok(value.data),
+                    event_id: Ok(value.event_id),
+                    event_type: Ok(value.event_type),
+                    timestamp: Ok(value.timestamp),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub struct WalletActivityEventBase {
+            data: ::std::result::Result<super::OnchainActivityEventData, ::std::string::String>,
+            event_id: ::std::result::Result<::uuid::Uuid, ::std::string::String>,
+            timestamp: ::std::result::Result<
+                ::chrono::DateTime<::chrono::offset::Utc>,
+                ::std::string::String,
+            >,
+        }
+        impl ::std::default::Default for WalletActivityEventBase {
+            fn default() -> Self {
+                Self {
+                    data: Err("no value supplied for data".to_string()),
+                    event_id: Err("no value supplied for event_id".to_string()),
+                    timestamp: Err("no value supplied for timestamp".to_string()),
+                }
+            }
+        }
+        impl WalletActivityEventBase {
+            pub fn data<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<super::OnchainActivityEventData>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.data = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for data: {}", e));
+                self
+            }
+            pub fn event_id<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::uuid::Uuid>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_id = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for event_id: {}", e));
+                self
+            }
+            pub fn timestamp<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::chrono::DateTime<::chrono::offset::Utc>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.timestamp = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for timestamp: {}", e));
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<WalletActivityEventBase> for super::WalletActivityEventBase {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: WalletActivityEventBase,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    data: value.data?,
+                    event_id: value.event_id?,
+                    timestamp: value.timestamp?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::WalletActivityEventBase> for WalletActivityEventBase {
+            fn from(value: super::WalletActivityEventBase) -> Self {
+                Self {
+                    data: Ok(value.data),
+                    event_id: Ok(value.event_id),
+                    timestamp: Ok(value.timestamp),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub struct WalletActivityMultiEvent {
+            data: ::std::result::Result<super::OnchainActivityEventData, ::std::string::String>,
+            event_id: ::std::result::Result<::uuid::Uuid, ::std::string::String>,
+            event_type: ::std::result::Result<
+                super::WalletActivityMultiEventEventType,
+                ::std::string::String,
+            >,
+            timestamp: ::std::result::Result<
+                ::chrono::DateTime<::chrono::offset::Utc>,
+                ::std::string::String,
+            >,
+        }
+        impl ::std::default::Default for WalletActivityMultiEvent {
+            fn default() -> Self {
+                Self {
+                    data: Err("no value supplied for data".to_string()),
+                    event_id: Err("no value supplied for event_id".to_string()),
+                    event_type: Err("no value supplied for event_type".to_string()),
+                    timestamp: Err("no value supplied for timestamp".to_string()),
+                }
+            }
+        }
+        impl WalletActivityMultiEvent {
+            pub fn data<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<super::OnchainActivityEventData>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.data = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for data: {}", e));
+                self
+            }
+            pub fn event_id<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::uuid::Uuid>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_id = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for event_id: {}", e));
+                self
+            }
+            pub fn event_type<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<super::WalletActivityMultiEventEventType>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.event_type = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for event_type: {}", e));
+                self
+            }
+            pub fn timestamp<T>(mut self, value: T) -> Self
+            where
+                T: ::std::convert::TryInto<::chrono::DateTime<::chrono::offset::Utc>>,
+                T::Error: ::std::fmt::Display,
+            {
+                self.timestamp = value
+                    .try_into()
+                    .map_err(|e| format!("error converting supplied value for timestamp: {}", e));
+                self
+            }
+        }
+        impl ::std::convert::TryFrom<WalletActivityMultiEvent> for super::WalletActivityMultiEvent {
+            type Error = super::error::ConversionError;
+            fn try_from(
+                value: WalletActivityMultiEvent,
+            ) -> ::std::result::Result<Self, super::error::ConversionError> {
+                Ok(Self {
+                    data: value.data?,
+                    event_id: value.event_id?,
+                    event_type: value.event_type?,
+                    timestamp: value.timestamp?,
+                })
+            }
+        }
+        impl ::std::convert::From<super::WalletActivityMultiEvent> for WalletActivityMultiEvent {
+            fn from(value: super::WalletActivityMultiEvent) -> Self {
+                Self {
+                    data: Ok(value.data),
+                    event_id: Ok(value.event_id),
+                    event_type: Ok(value.event_type),
+                    timestamp: Ok(value.timestamp),
+                }
+            }
+        }
+        #[derive(Clone, Debug)]
         pub struct WebhookEventListResponse {
             events: ::std::result::Result<
                 ::std::vec::Vec<super::WebhookEventResponse>,
@@ -98595,10 +104187,8 @@ pub mod types {
                 ::std::option::Option<super::Description>,
                 ::std::string::String,
             >,
-            event_types: ::std::result::Result<
-                ::std::vec::Vec<::std::string::String>,
-                ::std::string::String,
-            >,
+            event_types:
+                ::std::result::Result<::std::vec::Vec<super::EventType>, ::std::string::String>,
             is_enabled: ::std::result::Result<bool, ::std::string::String>,
             labels: ::std::result::Result<
                 ::std::collections::HashMap<::std::string::String, ::std::string::String>,
@@ -98635,7 +104225,7 @@ pub mod types {
             }
             pub fn event_types<T>(mut self, value: T) -> Self
             where
-                T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+                T: ::std::convert::TryInto<::std::vec::Vec<super::EventType>>,
                 T::Error: ::std::fmt::Display,
             {
                 self.event_types = value
@@ -98723,10 +104313,8 @@ pub mod types {
                 ::std::option::Option<super::Description>,
                 ::std::string::String,
             >,
-            event_types: ::std::result::Result<
-                ::std::vec::Vec<::std::string::String>,
-                ::std::string::String,
-            >,
+            event_types:
+                ::std::result::Result<::std::vec::Vec<super::EventType>, ::std::string::String>,
             is_enabled: ::std::result::Result<bool, ::std::string::String>,
             labels: ::std::result::Result<
                 ::std::collections::HashMap<::std::string::String, ::std::string::String>,
@@ -98783,7 +104371,7 @@ pub mod types {
             }
             pub fn event_types<T>(mut self, value: T) -> Self
             where
-                T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+                T: ::std::convert::TryInto<::std::vec::Vec<super::EventType>>,
                 T::Error: ::std::fmt::Display,
             {
                 self.event_types = value
@@ -98979,10 +104567,8 @@ pub mod types {
                 ::std::option::Option<super::Description>,
                 ::std::string::String,
             >,
-            event_types: ::std::result::Result<
-                ::std::vec::Vec<::std::string::String>,
-                ::std::string::String,
-            >,
+            event_types:
+                ::std::result::Result<::std::vec::Vec<super::EventType>, ::std::string::String>,
             is_enabled: ::std::result::Result<bool, ::std::string::String>,
             labels: ::std::result::Result<
                 ::std::collections::HashMap<::std::string::String, ::std::string::String>,
@@ -99019,7 +104605,7 @@ pub mod types {
             }
             pub fn event_types<T>(mut self, value: T) -> Self
             where
-                T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+                T: ::std::convert::TryInto<::std::vec::Vec<super::EventType>>,
                 T::Error: ::std::fmt::Display,
             {
                 self.event_types = value
@@ -103461,58 +109047,30 @@ impl Client {
     }
     /**Create webhook subscription
 
-    Subscribe to real-time events across CDP products using flexible filtering.
+    Subscribe to real-time events across CDP products.
 
-    ### Event Types
+    ### Filtering
 
-    **Onchain Events** - Monitor Base mainnet with microsecond precision:
-    - `onchain.activity.detected` - Smart contract events, transfers, swaps, NFT activity
-    - **Requires** `labels` for filtering (e.g., `contract_address`, `event_name`)
+    Onchain events can utilize multi-label filtering to only receive events that match all the specified labels.
 
-    **Onramp/Offramp Events** - Transaction lifecycle notifications:
-    - `onramp.transaction.created`, `onramp.transaction.updated`
-    - `onramp.transaction.success`, `onramp.transaction.failed`
-    - `offramp.transaction.created`, `offramp.transaction.updated`
-    - `offramp.transaction.success`, `offramp.transaction.failed`
-    - **No labels required** - maximum simplicity for transaction monitoring
+    Allows labels are:
+    - `network` (required) — Blockchain network
+    - `contract_address` — Smart contract address
+    - `event_name` — Event name (e.g., "Transfer", "Burn")
+    - `event_signature` — Event signature (e.g., "Transfer(address,address,uint256)")
+    - `transaction_from` — Transaction sender address
+    - `transaction_to` — Transaction recipient address
+    - `params.*` — Any event parameter from the log event (e.g., `params.from`, `params.to`, `params.sender`, `params.tokenId`)
 
-    **Payments Transfers Events** - Transfer lifecycle notifications:
-    - `payments.transfers.quoted` - Transfer created and awaiting execution
-    - `payments.transfers.processing` - Transfer execution in progress
-    - `payments.transfers.completed` - Transfer completed successfully
-    - `payments.transfers.failed` - Transfer failed
-    - `payments.transfers.travel_rule_incomplete` - Travel rule information is missing
-    - `payments.transfers.travel_rule_completed` - Travel rule information has been provided and the transfer will proceed
-    - **No labels required** - enable the transfers webhook to monitor status transitions
-
-    **Wallet Events** - Wallet activity notifications:
-    - `wallet.activity.detected`
+    For webhook types that aren't `onchain.*`, labels are ignored.
 
     ### Webhook Signature Verification
-    All webhooks include cryptographic signatures for security.
-    The signature secret is returned in `secret` field when creating a subscription.
 
-    **Note:** Webhooks are in beta and this interface is subject to change.
+    All webhooks include an HMAC-SHA256 signed header for security. The signature is signed with the secret that is returned in the `secret` field when creating a subscription.
+
+    Do not lose the secret, as you will not be able to recreate it. If you lose the secret, you will need to create a new subscription.
 
     See the [verification guide](https://docs.cdp.coinbase.com/onramp-&-offramp/webhooks#webhook-signature-verification) for implementation details.
-
-    ### Onchain Label Filtering
-
-    For `onchain.activity.detected` events, use `labels` for precise filtering with AND logic (max 20 labels per webhook).
-
-    **Allowed labels** (all in snake_case format):
-    - `network` (required) - Blockchain network
-    - `contract_address` - Smart contract address
-    - `event_name` - Event name (e.g., "Transfer", "Burn")
-    - `event_signature` - Event signature hash
-    - `transaction_from` - Transaction sender address
-    - `transaction_to` - Transaction recipient address
-    - `params.*` - Any event parameter (e.g., `params.from`, `params.to`, `params.sender`, `params.tokenId`)
-
-    **Examples**:
-    - **Liquidity Pool Monitor**: `{"network": "base-mainnet", "contract_address": "0xcd1f9777571493aeacb7eae45cd30a226d3e612d", "event_name": "Burn"}`
-    - **Price Oracle Tracker**: `{"network": "base-mainnet", "contract_address": "0xbac4a9428ea707c51f171ed9890c3c2fa810305d", "event_name": "PriceUpdated"}`
-    - **DeFi Protocol Activity**: `{"network": "base-mainnet", "contract_address": "0x45c6e6a47a711b14d8357d5243f46704904578e3", "event_name": "Deposit"}`
 
 
     Sends a `POST` request to `/v2/data/webhooks/subscriptions`
@@ -104466,6 +110024,9 @@ impl Client {
       Both params must be provided together.
 
     - **phoneNumber**: looks up a user by their SMS-verified phone number.
+    - **siweAddress**: looks up a user by the Ethereum address they authenticated
+      with via Sign In With Ethereum (EIP-4361).
+
 
     Returns all matching end users. If no end users match, an empty array is returned.
 
@@ -104478,12 +110039,14 @@ impl Client {
     - `oauth_provider`: The OAuth provider to search by. Must be provided together with oauthSubject.
     - `oauth_subject`: The OAuth subject (the `sub` claim from the provider's ID token). Must be provided together with oauthProvider.
     - `phone_number`: The E.164-formatted phone number to search for. Must be URL-encoded when passed as a query parameter (e.g. `+14155552671` → `%2B14155552671`).
+    - `siwe_address`: The ERC-55 checksummed Ethereum address to search for. Looks up a user by the address they authenticated with via Sign In With Ethereum (EIP-4361).
     ```ignore
     let response = client.lookup_end_user()
         .email(email)
         .oauth_provider(oauth_provider)
         .oauth_subject(oauth_subject)
         .phone_number(phone_number)
+        .siwe_address(siwe_address)
         .send()
         .await;
     ```*/
@@ -106184,6 +111747,7 @@ impl Client {
 
     Gets x402 merchant discovery information for a given merchant payment address.
     This endpoint returns all active x402 resources associated with the specified `payTo` address, allowing clients to discover what payment-gated resources a merchant exposes and their corresponding payment requirements.
+    If no active resources are found for the `payTo` address, the endpoint returns an empty `resources` list.
     The response is paginated, and by default, returns 20 items per page.
 
     Sends a `GET` request to `/v2/x402/discovery/merchant`
@@ -106522,9 +112086,6 @@ pub mod builder {
             match response.status().as_u16() {
                 200u16 => ResponseValue::from_response::<types::Error>(response).await,
                 400u16 => Err(Error::ErrorResponse(
-                    ResponseValue::from_response(response).await?,
-                )),
-                403u16 => Err(Error::ErrorResponse(
                     ResponseValue::from_response(response).await?,
                 )),
                 422u16 => Err(Error::ErrorResponse(
@@ -108131,9 +113692,6 @@ pub mod builder {
                     ResponseValue::from_response(response).await?,
                 )),
                 401u16 => Err(Error::ErrorResponse(
-                    ResponseValue::from_response(response).await?,
-                )),
-                403u16 => Err(Error::ErrorResponse(
                     ResponseValue::from_response(response).await?,
                 )),
                 404u16 => Err(Error::ErrorResponse(
@@ -111827,6 +117385,7 @@ pub mod builder {
         oauth_provider: Result<Option<types::OAuth2ProviderType>, String>,
         oauth_subject: Result<Option<::std::string::String>, String>,
         phone_number: Result<Option<types::PhoneNumber>, String>,
+        siwe_address: Result<Option<types::BlockchainAddress>, String>,
     }
     impl<'a> LookupEndUser<'a> {
         pub fn new(client: &'a super::Client) -> Self {
@@ -111836,6 +117395,7 @@ pub mod builder {
                 oauth_provider: Ok(None),
                 oauth_subject: Ok(None),
                 phone_number: Ok(None),
+                siwe_address: Ok(None),
             }
         }
         pub fn email<V>(mut self, value: V) -> Self
@@ -111876,6 +117436,15 @@ pub mod builder {
                 .map_err(|_| "conversion to `PhoneNumber` for phone_number failed".to_string());
             self
         }
+        pub fn siwe_address<V>(mut self, value: V) -> Self
+        where
+            V: std::convert::TryInto<types::BlockchainAddress>,
+        {
+            self.siwe_address = value.try_into().map(Some).map_err(|_| {
+                "conversion to `BlockchainAddress` for siwe_address failed".to_string()
+            });
+            self
+        }
         ///Sends a `GET` request to `/v2/end-users/lookup`
         pub async fn send(
             self,
@@ -111886,11 +117455,13 @@ pub mod builder {
                 oauth_provider,
                 oauth_subject,
                 phone_number,
+                siwe_address,
             } = self;
             let email = email.map_err(Error::InvalidRequest)?;
             let oauth_provider = oauth_provider.map_err(Error::InvalidRequest)?;
             let oauth_subject = oauth_subject.map_err(Error::InvalidRequest)?;
             let phone_number = phone_number.map_err(Error::InvalidRequest)?;
+            let siwe_address = siwe_address.map_err(Error::InvalidRequest)?;
             let url = format!("{}/v2/end-users/lookup", client.baseurl,);
             let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
             header_map.append(
@@ -111919,6 +117490,10 @@ pub mod builder {
                 .query(&progenitor_middleware_client::QueryParam::new(
                     "phoneNumber",
                     &phone_number,
+                ))
+                .query(&progenitor_middleware_client::QueryParam::new(
+                    "siweAddress",
+                    &siwe_address,
                 ))
                 .headers(header_map)
                 .build()?;
@@ -116660,7 +122235,7 @@ pub mod builder {
     #[derive(Debug, Clone)]
     pub struct CreateOnrampSession<'a> {
         client: &'a super::Client,
-        body: Result<types::builder::CreateOnrampSessionBody, String>,
+        body: Result<types::builder::OnrampSessionRequest, String>,
     }
     impl<'a> CreateOnrampSession<'a> {
         pub fn new(client: &'a super::Client) -> Self {
@@ -116671,12 +122246,12 @@ pub mod builder {
         }
         pub fn body<V>(mut self, value: V) -> Self
         where
-            V: std::convert::TryInto<types::CreateOnrampSessionBody>,
-            <V as std::convert::TryInto<types::CreateOnrampSessionBody>>::Error: std::fmt::Display,
+            V: std::convert::TryInto<types::OnrampSessionRequest>,
+            <V as std::convert::TryInto<types::OnrampSessionRequest>>::Error: std::fmt::Display,
         {
             self.body = value.try_into().map(From::from).map_err(|s| {
                 format!(
-                    "conversion to `CreateOnrampSessionBody` for body failed: {}",
+                    "conversion to `OnrampSessionRequest` for body failed: {}",
                     s
                 )
             });
@@ -116685,8 +122260,8 @@ pub mod builder {
         pub fn body_map<F>(mut self, f: F) -> Self
         where
             F: std::ops::FnOnce(
-                types::builder::CreateOnrampSessionBody,
-            ) -> types::builder::CreateOnrampSessionBody,
+                types::builder::OnrampSessionRequest,
+            ) -> types::builder::OnrampSessionRequest,
         {
             self.body = self.body.map(f);
             self
@@ -116698,9 +122273,7 @@ pub mod builder {
         {
             let Self { client, body } = self;
             let body = body
-                .and_then(|v| {
-                    types::CreateOnrampSessionBody::try_from(v).map_err(|e| e.to_string())
-                })
+                .and_then(|v| types::OnrampSessionRequest::try_from(v).map_err(|e| e.to_string()))
                 .map_err(Error::InvalidRequest)?;
             let url = format!("{}/v2/onramp/sessions", client.baseurl,);
             let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
@@ -119997,9 +125570,6 @@ pub mod builder {
             match response.status().as_u16() {
                 200u16 => ResponseValue::from_response::<types::Error>(response).await,
                 400u16 => Err(Error::ErrorResponse(
-                    ResponseValue::from_response(response).await?,
-                )),
-                404u16 => Err(Error::ErrorResponse(
                     ResponseValue::from_response(response).await?,
                 )),
                 500u16 => Err(Error::ErrorResponse(
