@@ -171,7 +171,7 @@ importers:
         version: link:../../../../../typescript/packages/cdp-sdk
       '@hono/node-server':
         specifier: ^1.14.0
-        version: 1.19.14(hono@4.12.30)
+        version: 1.19.14(hono@4.12.34)
       '@x402/core':
         specifier: ^2.21.0
         version: 2.21.0
@@ -183,7 +183,7 @@ importers:
         version: 2.21.0(bufferutil@4.1.0)(typescript@5.8.3)(utf-8-validate@6.0.6)
       '@x402/hono':
         specifier: ^2.21.0
-        version: 2.21.0(bufferutil@4.1.0)(hono@4.12.30)(typescript@5.8.3)(utf-8-validate@6.0.6)
+        version: 2.21.0(bufferutil@4.1.0)(hono@4.12.34)(typescript@5.8.3)(utf-8-validate@6.0.6)
       '@x402/svm':
         specifier: ^2.21.0
         version: 2.21.0(@solana/kit@5.5.1(bufferutil@4.1.0)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3)(utf-8-validate@6.0.6))(@solana/sysvars@5.5.1(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))
@@ -191,8 +191,8 @@ importers:
         specifier: ^16.4.3
         version: 16.6.1
       hono:
-        specifier: ^4.7.1
-        version: 4.12.30
+        specifier: ^4.12.34
+        version: 4.12.34
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
@@ -1485,8 +1485,8 @@ packages:
     resolution: {integrity: sha512-T2UbfbBEF32wiepXIsMlTW9+dDYC6wMh/t/vYA4tuOMKqWz/n3vr1NFSxQiyP+zk2mXsoMA/i/7qV6LKut1t1A==}
     engines: {node: '>= 0.4'}
 
-  hono@4.12.30:
-    resolution: {integrity: sha512-emn+JoJjrN9YTpRDS5it/UI2SO9BAE37T6I3d963RxcZ81G9A4pr2SZTEiiaiKbzx+NKRg5BZ89fCL7gCJCUog==}
+  hono@4.12.34:
+    resolution: {integrity: sha512-GqXJqY/xJkJmuloTrnV1ZEXG3fqte+VjkUqoRNZXcrUidiUOP4fMSIHHY4tsqZBK++kVyWmt/AAfSUuy57/eSA==}
     engines: {node: '>=16.9.0'}
 
   http-errors@2.0.1:
@@ -1986,9 +1986,9 @@ snapshots:
   '@esbuild/win32-x64@0.27.3':
     optional: true
 
-  '@hono/node-server@1.19.14(hono@4.12.30)':
+  '@hono/node-server@1.19.14(hono@4.12.34)':
     dependencies:
-      hono: 4.12.30
+      hono: 4.12.34
 
   '@img/colour@1.1.0':
     optional: true
@@ -2089,7 +2089,7 @@ snapshots:
 
   '@modelcontextprotocol/sdk@1.29.0(zod@3.25.76)':
     dependencies:
-      '@hono/node-server': 1.19.14(hono@4.12.30)
+      '@hono/node-server': 1.19.14(hono@4.12.34)
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       content-type: 1.0.5
@@ -2099,7 +2099,7 @@ snapshots:
       eventsource-parser: 3.1.0
       express: 5.2.1
       express-rate-limit: 8.5.2(express@5.2.1)
-      hono: 4.12.30
+      hono: 4.12.34
       jose: 6.2.0
       json-schema-typed: 8.0.2
       pkce-challenge: 5.0.1
@@ -2717,11 +2717,11 @@ snapshots:
     dependencies:
       '@x402/core': 2.21.0
 
-  '@x402/hono@2.21.0(bufferutil@4.1.0)(hono@4.12.30)(typescript@5.8.3)(utf-8-validate@6.0.6)':
+  '@x402/hono@2.21.0(bufferutil@4.1.0)(hono@4.12.34)(typescript@5.8.3)(utf-8-validate@6.0.6)':
     dependencies:
       '@x402/core': 2.21.0
       '@x402/extensions': 2.21.0(bufferutil@4.1.0)(typescript@5.8.3)(utf-8-validate@6.0.6)
-      hono: 4.12.30
+      hono: 4.12.34
     transitivePeerDependencies:
       - bufferutil
       - ethers
@@ -3095,7 +3095,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono@4.12.30: {}
+  hono@4.12.34: {}
 
   http-errors@2.0.1:
     dependencies:
